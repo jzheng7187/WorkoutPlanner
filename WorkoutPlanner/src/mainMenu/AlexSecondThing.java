@@ -7,12 +7,12 @@ package mainMenu;
  * @author Alex
  *
  */
-public class Thing {
+public class AlexSecondThing {
 
 	/**
 	 * 
 	 */
-	public Thing() {
+	public AlexSecondThing() {
 		// TODO Auto-generated constructor stub
 	}
 
