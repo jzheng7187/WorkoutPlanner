@@ -4,7 +4,7 @@
 package timer;
 
 /**
- * @author Student6
+ * @author Nikita
  *
  */
 public class NikitaThing {
