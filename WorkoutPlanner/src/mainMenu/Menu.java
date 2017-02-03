@@ -7,6 +7,7 @@ import gui.components.Action;
 import gui.components.Button;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
+import main.workoutPlanner;
 
 public class Menu extends ClickableScreen {
 	private Button timer;
@@ -31,8 +32,7 @@ public class Menu extends ClickableScreen {
 
 			@Override
 			public void act() {
-				// TODO Auto-generated method stub
-
+				workoutPlanner.app.setScreen(workoutPlanner.timerScreen);
 			}
 		});
 	}
