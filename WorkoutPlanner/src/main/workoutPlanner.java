@@ -6,7 +6,7 @@ package main;
 import gui.GUIApplication;
 
 /**
- * @author Student 6
+ * @author Jonathan Zheng
  *
  */
 public class workoutPlanner extends GUIApplication {
@@ -15,6 +15,9 @@ public class workoutPlanner extends GUIApplication {
 	 * @param width
 	 * @param height
 	 */
+	
+	public static workoutPlanner app;
+	
 	public workoutPlanner(int width, int height) {
 		super(width, height);
 		// TODO Auto-generated constructor stub
@@ -33,7 +36,9 @@ public class workoutPlanner extends GUIApplication {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		app = new workoutPlanner(800, 700);
+		Thread go = new Thread(app);
+		go.start();
 
 	}
 
