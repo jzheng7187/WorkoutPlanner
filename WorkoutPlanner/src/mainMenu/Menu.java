@@ -26,16 +26,24 @@ public class Menu extends ClickableScreen {
 	}
 
 	@Override
-	public void initAllObjects(ArrayList<Visible> arg0) {
+	public void initAllObjects(ArrayList<Visible> view) {
 		// TODO Auto-generated method stub
 		timer = new Button(MARGINX, MARGINY, WIDTH, HEIGHT, "Timer",BUTTON_COLOR , new Action(){
-
+			
 			@Override
 			public void act() {
 				workoutPlanner.app.setScreen(workoutPlanner.timerScreen);
 			}
 		});
+		view.add(timer);
+		exercises = new Button(MARGINX, MARGINY, WIDTH, HEIGHT, "Exercises",BUTTON_COLOR , new Action(){
+			@Override
+			public void act() {
+				workoutPlanner.app.setScreen(workoutPlanner.timerScreen);
+			}
+		});
+		}
 	}
 
 
-}
+

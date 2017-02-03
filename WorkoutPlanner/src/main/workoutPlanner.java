@@ -19,6 +19,7 @@ public class workoutPlanner extends GUIApplication {
 	
 	public static workoutPlanner app;
 	public static Screen timerScreen;
+	public static Screen exerciseScreen;
 	
 	public workoutPlanner(int width, int height) {
 		super(width, height);
