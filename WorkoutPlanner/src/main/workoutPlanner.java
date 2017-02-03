@@ -4,6 +4,7 @@
 package main;
 
 import gui.GUIApplication;
+import gui.Screen;
 
 /**
  * @author Jonathan Zheng
@@ -17,6 +18,7 @@ public class workoutPlanner extends GUIApplication {
 	 */
 	
 	public static workoutPlanner app;
+	public static Screen timerScreen;
 	
 	public workoutPlanner(int width, int height) {
 		super(width, height);
