@@ -36,10 +36,10 @@ public class Menu extends ClickableScreen {
 			}
 		});
 		view.add(timer);
-		exercises = new Button(MARGINX, MARGINY, WIDTH, HEIGHT, "Exercises",BUTTON_COLOR , new Action(){
+		exercises = new Button(MARGINX, MARGINY+20, WIDTH, HEIGHT, "Exercises",BUTTON_COLOR , new Action(){
 			@Override
 			public void act() {
-				workoutPlanner.app.setScreen(workoutPlanner.timerScreen);
+				workoutPlanner.app.setScreen(workoutPlanner.exerciseScreen);
 			}
 		});
 		}
