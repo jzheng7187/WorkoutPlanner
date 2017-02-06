@@ -8,9 +8,11 @@ import gui.components.Button;
 import gui.components.TextLabel;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
+import interfaces.Timer;
 import main.workoutPlanner;
 
 public class Menu extends ClickableScreen {
+	private Timer timerInt;
 	private Button timer;
 	private Button exercises;
 	private Button stop;
@@ -28,6 +30,7 @@ public class Menu extends ClickableScreen {
 	}
 
 	@Override
+	
 	
 	public void initAllObjects(ArrayList<Visible> view) {
 		// TODO Auto-generated method stub
