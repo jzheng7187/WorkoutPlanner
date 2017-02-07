@@ -5,6 +5,7 @@ package main;
 
 import gui.GUIApplication;
 import gui.Screen;
+import mainMenu.Menu;
 
 /**
  * @author Jonathan Zheng
@@ -31,8 +32,8 @@ public class workoutPlanner extends GUIApplication {
 	 */
 	@Override
 	public void initScreen() {
-		// TODO Auto-generated method stub
-
+		Menu ws = new Menu(getWidth(),getHeight());
+		setScreen(ws);
 	}
 
 	/**
