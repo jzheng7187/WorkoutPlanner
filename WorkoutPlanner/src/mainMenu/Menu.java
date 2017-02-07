@@ -23,7 +23,7 @@ public class Menu extends ClickableScreen {
 	public static final int WIDTH=100;
 	public static final int HEIGHT=60;
 	public static final int SPACE=80;
-	public static final Color BUTTON_COLOR=  new Color(0,0,0);
+	public static final Color BUTTON_COLOR=  new Color(255,255,255);
 
 	public Menu(int width, int height) {
 		super(width, height);
@@ -34,10 +34,11 @@ public class Menu extends ClickableScreen {
 	public void initAllObjects(ArrayList<Visible> view) {
 		// TODO Auto-generated method stub
 		label = new TextLabel(50,50,100,50,"Workout");
-		label2 = new TextLabel(80,50,100,50,"Planner");
+		label2 = new TextLabel(150,50,100,50,"Planner");
 		view.add(label);
 		view.add(label2);
-		timer = new Button(MARGINX, MARGINY, WIDTH, HEIGHT, "Timer",BUTTON_COLOR , new Action(){
+		
+		timer = new Button(MARGINX, MARGINY, WIDTH, HEIGHT, "Timer",BUTTON_COLOR ,new Action(){
 			
 			@Override
 			public void act() {
@@ -45,13 +46,20 @@ public class Menu extends ClickableScreen {
 			}
 		});
 		view.add(timer);
-		exercises = new Button(MARGINX, MARGINY+20, WIDTH, HEIGHT, "Exercises",BUTTON_COLOR , new Action(){
+		exercises = new Button(MARGINX, MARGINY+80, WIDTH, HEIGHT, "Exercises",BUTTON_COLOR , new Action(){
 			@Override
 			public void act() {
 				workoutPlanner.app.setScreen(workoutPlanner.exerciseScreen);
 			}
 		});
 		view.add(exercises);
+		stop = new Button(MARGINX, MARGINY+160, WIDTH, HEIGHT, "Stop",BUTTON_COLOR , new Action(){
+			@Override
+			public void act() {
+			//	workoutPlanner.timerScreen.stopTimer();
+			}
+		});
+		view.add(stop);
 		}
 	}
 
