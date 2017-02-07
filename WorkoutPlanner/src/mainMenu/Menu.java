@@ -54,11 +54,13 @@ public class Menu extends ClickableScreen {
 		});
 		view.add(exercises);
 		stop = new Button(MARGINX, MARGINY+160, WIDTH, HEIGHT, "Stop",BUTTON_COLOR , new Action(){
+			
 			@Override
 			public void act() {
 			//	workoutPlanner.timerScreen.stopTimer();
 			}
 		});
+		stop.setColor(Color.BLACK);
 		view.add(stop);
 		}
 	}
