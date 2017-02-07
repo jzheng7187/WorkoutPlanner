@@ -10,13 +10,14 @@ import gui.components.Visible;
 import gui.screens.ClickableScreen;
 import interfaces.Timer;
 import main.workoutPlanner;
-
+//make a new textlabel but with different colors
 public class Menu extends ClickableScreen {
 	private Timer timerInt;
 	private Button timer;
 	private Button exercises;
 	private Button stop;
 	private TextLabel label;
+	private TextLabel label2;
 	public static final int MARGINX=500;
 	public static final int MARGINY=100;
 	public static final int WIDTH=100;
@@ -30,11 +31,12 @@ public class Menu extends ClickableScreen {
 	}
 
 	@Override
-	
-	
 	public void initAllObjects(ArrayList<Visible> view) {
 		// TODO Auto-generated method stub
 		label = new TextLabel(50,50,100,50,"Workout");
+		label2 = new TextLabel(80,50,100,50,"Planner");
+		view.add(label);
+		view.add(label2);
 		timer = new Button(MARGINX, MARGINY, WIDTH, HEIGHT, "Timer",BUTTON_COLOR , new Action(){
 			
 			@Override
@@ -49,6 +51,7 @@ public class Menu extends ClickableScreen {
 				workoutPlanner.app.setScreen(workoutPlanner.exerciseScreen);
 			}
 		});
+		view.add(exercises);
 		}
 	}
 
