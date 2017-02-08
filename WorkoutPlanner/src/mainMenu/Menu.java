@@ -1,22 +1,23 @@
 package mainMenu;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.util.ArrayList;
 
 import gui.components.Action;
 import gui.components.Button;
 import gui.components.TextLabel;
+import mainMenu.CustomTextLabel;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
 import interfaces.Timer;
 import main.workoutPlanner;
-//make a new textlabel but with different colors
 public class Menu extends ClickableScreen {
 	private Timer timerInt;
 	private Button timer;
 	private Button exercises;
 	private Button stop;
-	private TextLabel label;
+	private CustomTextLabel label;
 	private TextLabel label2;
 	public static final int MARGINX=500;
 	public static final int MARGINY=100;
@@ -33,7 +34,7 @@ public class Menu extends ClickableScreen {
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
 		// TODO Auto-generated method stub
-		label = new TextLabel(50,50,100,50,"Workout");
+		label = new CustomTextLabel(50,50,100,50,"Workout");
 		label2 = new TextLabel(150,50,100,50,"Planner");
 		view.add(label);
 		view.add(label2);
@@ -60,8 +61,7 @@ public class Menu extends ClickableScreen {
 			//	workoutPlanner.timerScreen.stopTimer();
 			}
 		});
-		stop.setColor(Color.BLACK);
-		view.add(stop);
+			view.add(stop);
 		}
 	}
 
