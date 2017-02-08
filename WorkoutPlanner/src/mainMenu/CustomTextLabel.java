@@ -11,12 +11,14 @@ public class CustomTextLabel extends Component {
 	private Object text;
 	private String font;
 	private int size;
+	private Color color;
 
-	public CustomTextLabel(int x, int y, int w, int h, String string) {
+	public CustomTextLabel(int x, int y, int w, int h, String string, Color color) {
 		super(x, y, w, h);
 		this.text = text;
 		this.font = "Helvetica";
 		this.size = 20;
+		this.color = color;
 		update();
 	}
 
@@ -53,7 +55,7 @@ public class CustomTextLabel extends Component {
 	public void update(Graphics2D g) {
 		g = clear();
 		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-		g.setColor(Color.WHITE);
+		g.setColor(color);
 		g.setFont(new Font(font,Font.PLAIN,size));
 		if(text!=null) g.drawString((String) text, 4, getHeight()-5);
 		
