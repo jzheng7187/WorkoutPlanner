@@ -1,7 +1,10 @@
 package timer;
 
+
 import java.util.ArrayList;
 import java.util.Objects;
+
+import java.awt.Graphics2D;
 
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
@@ -40,6 +43,14 @@ public class Timer extends ClickableScreen {
 	@Override
 	public void initAllObjects(ArrayList<Visible> arg0) {
 		// TODO Auto-generated method stub
+	}
+	
+	public static void main(String args){
+		
+	}
+	
+	
+	public void update(Graphics2D g){
 		
 	}
 }
