@@ -16,18 +16,15 @@ import gui.screens.ClickableScreen;
  * @author Alam
  *
  */
-public class TimerApplication extends ClickableScreen implements KeyListener{
+public class TimerApplication extends ClickableScreen implements KeyListener, Runnable{
 
 	public TimerApplication(int width, int height) {
 		super(width, height);
-		// TODO Auto-generated constructor stub
+		Thread app = new Thread(this);
+		app.start();
 	}
-	public static void main(String args){
-		createButton("Start", 100, 50, 300, 20);
-		createButton("Stop", 100, 50, 300, 20);
-		createButton("Lap", 100, 50, 300, 20);
-		createButton("Pause", 100, 50, 300, 20);
-	}
+
+
 	private static void createButton(String string, int w, int h, int x, int y) {
 		// TODO Auto-generated method stub
 		
@@ -60,6 +57,11 @@ public class TimerApplication extends ClickableScreen implements KeyListener{
 	}
 	@Override
 	public void initAllObjects(ArrayList<Visible> arg0) {
+		
+		
+	}
+	@Override
+	public void run() {
 		// TODO Auto-generated method stub
 		
 	}
