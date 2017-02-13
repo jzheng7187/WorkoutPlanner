@@ -15,7 +15,6 @@ import gui.components.MovingComponent;
 import gui.components.TextArea;
 import gui.components.TextLabel;
 import gui.components.Visible;
-import gui.sampleGames.MouseCoordinateGame;
 
 public class CoordinateScreen extends Screen implements MouseMotionListener, MouseListener{
 
@@ -36,12 +35,12 @@ public class CoordinateScreen extends Screen implements MouseMotionListener, Mou
 			public void act() {
 				//MouseCoordinateGame.game.setScreen(MouseCoordinateGame.myScreen);
 			}
-		});
+		},Color.black);
 		viewObjects.add(button);
-		text = new TextLabel(20, 150, 500, 40, "Some Text");
+		text = new TextLabel(20, 150, 500, 40, "Some Text",Color.black);
 		viewObjects.add(text);
 		area = new TextArea(20, 200, 500, 1000, "This is really long text. It prints over multiple lines, as you can see"
-				+ " we worked on this in class. This is called Text Area.");
+				+ " we worked on this in class. This is called Text Area.",Color.black);
 		viewObjects.add(area);
 		
 //		luminous  = new ClickableGraphic(500, 30, "resources/sampleImages/Luminous.png", new Action(){

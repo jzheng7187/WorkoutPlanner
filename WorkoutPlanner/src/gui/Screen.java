@@ -63,7 +63,8 @@ public abstract class Screen {
 	}
 	
 	public void drawBackground(Graphics2D g){
-		g.setColor(Color.white);
+		Color c = new Color(180,225,50);
+		g.setColor(c);
 		g.fillRect(0, 0, image.getWidth(), image.getHeight());
 	}
 	
