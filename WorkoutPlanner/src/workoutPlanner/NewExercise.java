@@ -18,6 +18,7 @@ public class NewExercise extends Button implements MouseListener{
 	private int value;
 	private ButtonInterfaceMatthewN clickedGraphic;
 	
+	//new exercise adds exercises into a list
 	public NewExercise(int x, int y, int w, int h, String text, Color color, Action action) {
 		super(x, y, w, h, text, color, action);
 		update();
@@ -31,8 +32,8 @@ public class NewExercise extends Button implements MouseListener{
 		exercises.remove(clickedGraphic);
 	}
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+	public void mouseClicked(MouseEvent g) {
+		return 
 		
 	}
 	@Override
@@ -60,14 +61,25 @@ public class NewExercise extends Button implements MouseListener{
 		return x>getX() && x<getX()+getWidth() && y > getY() && y<getY()+getHeight();
 	}
 	
+	//highlights picture when mouse hovers over image
+	public boolean highlight(){
+		for(int i = 0; i <  exercises.length(); i++)
+		if(isHovered(getX(),getY())){
+			return exercises[i].setColor(new Color(255, 255, 255, 25));
+		}else{
+			return false;
+		}
+	}
 	public boolean isClicked(){
 		return true;
 	}
+	
 	
 	public void addExercise(ArrayList<ButtonInterfaceMatthewN> g){
 		boolean clickedAgain = false;
 		if(isClicked()){
 			System.out.println("You have already chosen this exercise.");
+			g.highlight();
 		}else{
 			exercises.add(clickedGraphic);
 		}
