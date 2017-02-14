@@ -18,7 +18,7 @@ public InputDisplay(int width, int height) {
 	public void initObjects(ArrayList<Visible> viewObjects) {
 		// TODO Auto-generated method stub
 		title = new TextLabel(130,230,300,40,"Plan Your Routine");
-		viewObjects.add(title);
+		viewObjects.add(title); 
 	}
 
 }

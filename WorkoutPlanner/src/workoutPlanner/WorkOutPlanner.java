@@ -15,7 +15,7 @@ public class WorkOutPlanner extends Screen{
 	
 	public void initScreen() {
 		InputDisplay ssa = new InputDisplay (getWidth(), getHeight());
-		setScreen(ssa);
+		//setScreen(ssa);
 	}
 
 
