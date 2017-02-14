@@ -2,7 +2,9 @@ package timer;
 
 import gui.GUIApplication;
 import gui.Screen;
-
+/*
+ * Author Alam
+ */
 public class TimerStarter extends GUIApplication{
 
 	public TimerStarter(int width, int height) {

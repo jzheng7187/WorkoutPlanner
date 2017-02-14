@@ -18,6 +18,8 @@ import gui.screens.ClickableScreen;
  */
 public class TimerApplication extends ClickableScreen implements KeyListener, Runnable{
 
+	Color c = new Color (180,225,50);
+	
 	public TimerApplication(int width, int height) {
 		super(width, height);
 		Thread app = new Thread(this);
@@ -32,9 +34,8 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	public void update(Graphics2D g){
 		
 	}
-	public void drawbackground(Graphics2D g){
-		g.setColor(Color.green);
-		g.fillRect(0,0, getWidth(), getHeight());
+	public void drawBackground(Graphics2D g){
+		
 	}
 	@Override
 	public void keyPressed(KeyEvent arg0) {
@@ -57,12 +58,14 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	}
 	@Override
 	public void initAllObjects(ArrayList<Visible> arg0) {
-		
+		//Graphics2D g = 
+	//	g.setColor(c);
+	//	g.fillRect(0,0, getWidth(), getHeight());
 		
 	}
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	
