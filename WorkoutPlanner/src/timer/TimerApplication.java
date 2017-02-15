@@ -17,6 +17,7 @@ import gui.screens.ClickableScreen;
 /**
  * @author Alam
  *
+ *gf
  */
 public class TimerApplication extends ClickableScreen implements KeyListener, Runnable{
 
