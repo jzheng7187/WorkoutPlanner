@@ -12,7 +12,7 @@ import gui.screens.ClickableScreen;
 import interfaces.Timer;
 import main.workoutPlanner;
 
-public class Menu extends ClickableScreen {
+public class Menu extends ClickableScreen implements Runnable {
 	private Timer timerInt;
 	private Button timer;
 	private Button exercises;
@@ -36,16 +36,14 @@ public class Menu extends ClickableScreen {
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
 		// TODO Auto-generated method stub
-		stopwatch = new TextLabel(700,0,100,50,"QQQ",Color.black);
-		view.add(stopwatch);
 		label = new TextLabel(50,50,100,50,"Workout",Color.white);
 		view.add(label);
 		label2 = new TextLabel(150,50,100,50,"Planner",Color.black);
 		view.add(label2);
-		stopwatchbut = new Button(650,25,100,50,"",BUTTON_COLOR,new Action(){
+		stopwatchbut = new Button(650,25,200,100,"",BUTTON_COLOR,new Action(){
 			@Override
 			public void act() {
-				workoutPlanner.app.setScreen(workoutPlanner.stopwatchScreen);
+				
 			}
 		},Color.BLACK);
 		view.add(stopwatchbut);
@@ -72,8 +70,38 @@ public class Menu extends ClickableScreen {
 			//	workoutPlanner.timerScreen.stopTimer();
 			}
 		},Color.BLACK);
-			view.add(stop);
+		view.add(stop);
+		stopwatch = new TextLabel(650,30,100,50,"0.0",Color.black);
+		view.add(stopwatch);
 		}
+	
+	@Override
+	public void run(){
+		stopwatch.setText("q");
+		while(1 > 0){
+			updateTimer();
+		}
+	}
+	
+	private void updateTimer() {
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ChangeText("q");
+	}
+
+	private void ChangeText(String string) {
+		stopwatch.setText(string);
+		try{
+			Thread.sleep(100);
+		}
+		catch(InterruptedException e){
+			e.printStackTrace();
+		}
+	}
 }
 
 
