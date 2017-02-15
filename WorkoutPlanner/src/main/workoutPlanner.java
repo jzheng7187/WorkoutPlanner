@@ -41,7 +41,7 @@ public class workoutPlanner extends GUIApplication {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		app = new workoutPlanner(800, 700);
+		app = new workoutPlanner(800, 800);
 		Thread go = new Thread(app);
 		go.start();
 
