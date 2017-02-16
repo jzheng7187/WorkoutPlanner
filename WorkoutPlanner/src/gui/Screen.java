@@ -62,10 +62,10 @@ public abstract class Screen {
 		return image.getHeight();
 	}
 	
-	public void drawBackground(Graphics2D g){
+	public void drawBackground(Graphics2D d){
 		Color c = new Color(180,225,50);
-		g.setColor(c);
-		g.fillRect(0, 0, image.getWidth(), image.getHeight());
+		d.setColor(c);
+		d.fillRect(0, 0, image.getWidth(), image.getHeight());
 	}
 	
 	public void update() {

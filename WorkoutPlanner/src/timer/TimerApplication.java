@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import gui.components.Action;
 import gui.components.Button;
+import gui.components.DrawLines;
 import gui.components.TextHeadder;
 import gui.components.TextLabel;
 import gui.components.Visible;
@@ -21,7 +22,7 @@ import gui.screens.ClickableScreen;
 /**
  * @author Alam
  *
- *gf
+ *
  */
 public class TimerApplication extends ClickableScreen implements KeyListener, Runnable{
 
@@ -43,6 +44,9 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	private TextLabel tt; //Total time
 	private TextLabel cl; //Current lap
 	
+	//lines
+	private DrawLines line;
+	
 	
 	//Buttons Dimensions
 	public static final int MARGINX=400;
@@ -50,6 +54,9 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	public static final int WIDTH=100;
 	public static final int HEIGHT=60;
 	public static final int SPACE=35;
+	
+	//background
+	private BufferedImage image;
 	
 	
 	
@@ -127,6 +134,10 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		v.add(pause);
 		
 		
+	//add lines
+		line = new DrawLines(0,0,0,0,W);
+		v.add(line);
+		
 	}
 
 	private static void createButton(String string, int w, int h, int x, int y) {
@@ -137,10 +148,10 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		
 	}
 //	@Override
-//	public void drawBackground(Graphics2D g){	
-//		//g.drawRect (10, 10, 1000, 15);  
-//		//g.drawRect (10, 10, 1000, 15);  
-//
+//	public void drawBackground(Graphics2D g){
+//		Color c = new Color(180,225,50);
+//		g.setColor(c);
+//		g.fillRect(0, 0, image.getWidth(), image.getHeight());
 //	}
 
 	@Override
