@@ -15,7 +15,6 @@ import gui.components.MovingComponent;
 import gui.components.TextArea;
 import gui.components.TextLabel;
 import gui.components.Visible;
-import gui.sampleGames.MouseCoordinateGame;
 
 public class CoordinateScreen extends Screen implements MouseMotionListener, MouseListener{
 

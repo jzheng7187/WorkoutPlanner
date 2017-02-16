@@ -29,11 +29,11 @@ public class NewExercise extends Button implements MouseListener{
 	
 	public static void main(String[] args) {
 		getExercises();
-		for(int i = 0; i < allExercises.length(); i++){
+		for(int i = 0; i < allExercises.size(); i++){
 			value[i] = 1;
 			clicked[i] = false;
 		}
-		for(int i = 0; i < allExercises.length(); i++){
+		for(int i = 0; i < allExercises.size(); i++){
 			System.out.println(allExercises[i]);
 			System.out.println(value[i]);
 			System.out.println(clicked[i]);
@@ -41,8 +41,8 @@ public class NewExercise extends Button implements MouseListener{
 	}
 	
 	public void update(Graphics2D g){
-		value = new int[allExercises.length()];
-		clicked  = new boolean[allExercises.length()];
+		value = new int[allExercises.size()];
+		clicked  = new boolean[allExercises.size()];
 		addExercise(allExercises);
 		allExercises.remove(clickedGraphic);
 	}
@@ -61,7 +61,7 @@ public class NewExercise extends Button implements MouseListener{
 	
 	//highlights picture when mouse hovers over image
 	public boolean highlight(){
-		for(int i = 0; i <  allExercises.length(); i++){
+		for(int i = 0; i <  allExercises.size(); i++){
 			if(isHovered(getX(),getY())){
 				return allExercises[i].setColor(new Color(255, 255, 255, 25));
 			}else{
