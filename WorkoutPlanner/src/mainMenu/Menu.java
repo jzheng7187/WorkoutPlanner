@@ -6,9 +6,6 @@ import java.awt.RenderingHints;
 import java.util.ArrayList;
 
 import gui.components.Action;
-import gui.components.Button;
-import gui.components.TextArea;
-import gui.components.TextLabel;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
 import interfaces.Timer;
@@ -40,7 +37,7 @@ public class Menu extends ClickableScreen implements Runnable {
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
 		// TODO Auto-generated method stub
-
+		stopwatch = new CustomTextLabel(650, 90, 100, 50, "0.0", Color.black);
 		label = new CustomTextLabel(50, 50, 100, 50, "Workout", Color.white);
 		view.add(label);
 		label2 = new CustomTextLabel(150, 50, 100, 50, "Planner", Color.black);
@@ -90,32 +87,24 @@ public class Menu extends ClickableScreen implements Runnable {
 			}
 		}, Color.BLACK);
 		view.add(stop);
-		stopwatch = new CustomTextLabel(650, 90, 100, 50, "0.0", Color.black);
 		view.add(stopwatch);
 	}
 
 	@Override
 	public void run() {
+		stopwatch.setText("999");
+		startTimer();
+	}
+
+	private void startTimer() {
+		changeText("!!!");
 		stopwatch.setText("");
-		/*
-		 * while(1 > 0){ updateTimer(); }
-		 */
 	}
 
-	private void updateTimer() {
-		try {
-			Thread.sleep(100);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		ChangeText("q");
-	}
-
-	private void ChangeText(String string) {
+	private void changeText(String string) {
 		stopwatch.setText(string);
 		try {
-			Thread.sleep(100);
+			Thread.sleep(10000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
