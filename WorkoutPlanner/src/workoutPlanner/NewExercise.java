@@ -17,8 +17,8 @@ public class NewExercise extends Button implements MouseListener{
 	private static ArrayList<String> myExercises = new ArrayList<String>();
 	
 	//private ArrayList<ButtonInterfaceMatthewN> ;
-	private boolean[] clicked;
-	private int[] value;
+	private static boolean[] clicked;
+	private static int[] value;
 	private String clickedGraphic;
 	
 	//new exercise adds exercises into a list
@@ -34,7 +34,7 @@ public class NewExercise extends Button implements MouseListener{
 			clicked[i] = false;
 		}
 		for(int i = 0; i < allExercises.size(); i++){
-			System.out.println(allExercises[i]);
+			System.out.println(allExercises.get(i));
 			System.out.println(value[i]);
 			System.out.println(clicked[i]);
 		}
@@ -63,7 +63,7 @@ public class NewExercise extends Button implements MouseListener{
 	public boolean highlight(){
 		for(int i = 0; i <  allExercises.size(); i++){
 			if(isHovered(getX(),getY())){
-				return allExercises[i].setColor(new Color(255, 255, 255, 25));
+				return allExercises.get(i).setColor(new Color(255, 255, 255, 25));
 			}else{
 				return false;
 			}
@@ -87,12 +87,12 @@ public class NewExercise extends Button implements MouseListener{
 		boolean clickedAgain = false;
 		
 		for(int i = 0; i < value.length; i++){
-			if(value[i] == 0 && isHovered()){
+			if(value[i] == 0 && isHovered(getX(),getY())){
 				System.out.println("You have already chosen this exercise.");
 				exercises.highlight();
 			}else{
-				myExercises.add(allExercises[i]);
-				allExercises.remove(allExercises[i]);
+				myExercises.add(allExercises.get(i));
+				allExercises.remove(allExercises.get(i));
 			}
 		}
 		update();

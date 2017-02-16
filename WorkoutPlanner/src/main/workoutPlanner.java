@@ -4,6 +4,7 @@
 package main;
 
 import gui.GUIApplication;
+import gui.Screen;
 import gui.screens.CoordinateScreen;
 
 /**
@@ -18,7 +19,6 @@ public class workoutPlanner extends GUIApplication {
 	 */
 	
 	public static workoutPlanner app;
-	private CoordinateScreen cs;
 	
 	public workoutPlanner(int width, int height) {
 		super(width, height);
@@ -30,7 +30,7 @@ public class workoutPlanner extends GUIApplication {
 	 */
 	@Override
 	public void initScreen() {
-		cs = new CoordinateScreen(getWidth(), getHeight());
+		workoutPlanner cs = new workoutPlanner(getWidth(), getHeight());
 		setScreen(cs);
 	}
 
