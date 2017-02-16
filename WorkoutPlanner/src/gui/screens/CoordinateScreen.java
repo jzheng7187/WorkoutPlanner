@@ -35,9 +35,9 @@ public class CoordinateScreen extends Screen implements MouseMotionListener, Mou
 			public void act() {
 				//MouseCoordinateGame.game.setScreen(MouseCoordinateGame.myScreen);
 			}
-		},Color.black);
+		});
 		viewObjects.add(button);
-		text = new TextLabel(20, 150, 500, 40, "Some Text",Color.black);
+		text = new TextLabel(20, 150, 500, 40, "Some Text");
 		viewObjects.add(text);
 		area = new TextArea(20, 200, 500, 1000, "This is really long text. It prints over multiple lines, as you can see"
 				+ " we worked on this in class. This is called Text Area.",Color.black);
