@@ -136,11 +136,12 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	public void update(Graphics2D g){
 		
 	}
-	public void drawBackground(Graphics2D g){	
-		//g.drawRect (10, 10, 1000, 15);  
-		//g.drawRect (10, 10, 1000, 15);  
-
-	}
+//	@Override
+//	public void drawBackground(Graphics2D g){	
+//		//g.drawRect (10, 10, 1000, 15);  
+//		//g.drawRect (10, 10, 1000, 15);  
+//
+//	}
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
