@@ -9,7 +9,7 @@ import java.awt.RenderingHints;
 public class TextArea extends TextLabel {
 
 	public TextArea(int x, int y, int w, int h, String text, Color color) {
-		super(x, y, w, h, text, color);
+		super(x, y, w, h, text);
 		// TODO Auto-generated constructor stub
 	}
 

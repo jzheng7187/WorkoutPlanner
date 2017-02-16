@@ -18,7 +18,7 @@ private Color textColor;
 
 
 	public CustomButton(int x, int y, int w, int h, String text, Color color, Action action,Color textColor) {
-		super(x, y, w, h, text,color);
+		super(x, y, w, h, text);
 		this.action = action;
 		this.color = color;
 		this.textColor = textColor;

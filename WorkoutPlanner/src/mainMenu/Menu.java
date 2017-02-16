@@ -19,7 +19,7 @@ public class Menu extends ClickableScreen implements Runnable {
 	private CustomButton timer;
 	private CustomButton exercises;
 	private CustomButton stop;
-	private TextLabel stopwatch;
+	private CustomTextLabel stopwatch;
 	private CustomButton stopwatchbut;
 	private CustomButton border1;
 	private CustomButton border2;
