@@ -14,7 +14,7 @@ import gui.screens.ClickableScreen;
  * @author Jonathan Zheng
  *
  */
-public class JonathanPlans extends ClickableScreen implements ExercisesInterfaceJonathanZ{
+public class JonathanPlans extends ClickableScreen implements ExercisesInterfaceJonathanZ, MouseListener{
 
 	private ArrayList<ExercisesInterfaceJonathanZ> exercises;
 	private int value;
