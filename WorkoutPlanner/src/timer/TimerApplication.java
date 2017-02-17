@@ -17,6 +17,7 @@ import gui.components.Button;
 import gui.components.DrawLines;
 import gui.components.TextHeadder;
 import gui.components.TextLabel;
+import gui.components.ThemedButton;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
 
@@ -67,6 +68,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	//lime green color temp out of service until background is fixed.
 	//TODO
 	//Color g = new Color (180,225,50);
+	public static final Color T = new Color (180,225,50);
 	public static final Color G = new Color (0,0,0);
 	public static final Color W = new Color (255,255,255);
 	public static final Color B = new Color (0,0,0);
@@ -91,42 +93,42 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		//Creates Total time and current lap
 		totalTime1 = new ThemedTextLabel(50,SPACE*5,50,30, "Total", G);
 		v.add(totalTime1);
-		totalTime2 = new TextLabel(105,SPACE*5,50,30, "Time:", W);
+		totalTime2 = new ThemedTextLabel(105,SPACE*5,50,30, "Time:", W);
 		v.add(totalTime2);
-		tt = new TextLabel(160,SPACE*5,100,30, "00:00:00", W);
+		tt = new ThemedTextLabel(160,SPACE*5,100,30, "00:00:00", W);
 		v.add(tt);
 		
-		lapTime1 = new TextLabel(50,SPACE*6,70,30, "Current", G);
+		lapTime1 = new ThemedTextLabel(50,SPACE*6,70,30, "Current", G);
 		v.add(lapTime1);
-		lapTime2 = new TextLabel(125,SPACE*6,40,30, "Lap:", W);
+		lapTime2 = new ThemedTextLabel(125,SPACE*6,40,30, "Lap:", W);
 		v.add(lapTime2);
-		cl = new TextLabel(170,SPACE*6,100,30, "00:00:00", W);
+		cl = new ThemedTextLabel(170,SPACE*6,100,30, "00:00:00", W);
 		v.add(cl);
 		
 		
 		//Buttons 
-		start = new Button(MARGINX, MARGINY, WIDTH, HEIGHT, "Start", G ,new Action(){
+		start = new ThemedButton(MARGINX, MARGINY, WIDTH, HEIGHT, "Start", G ,new Action(){
 			@Override
 			public void act() {
 				
 			}
 		}, Color.WHITE);
 		v.add(start);
-		stop = new Button(MARGINX+110, MARGINY, WIDTH, HEIGHT, "Stop", G ,new Action(){
+		stop = new ThemedButton(MARGINX+110, MARGINY, WIDTH, HEIGHT, "Stop", G ,new Action(){
 			@Override
 			public void act() {
 				
 			}
 		}, Color.WHITE);
 		v.add(stop);
-		lap = new Button(MARGINX, MARGINY+80, WIDTH, HEIGHT, "Lap", G ,new Action(){
+		lap = new ThemedButton(MARGINX, MARGINY+80, WIDTH, HEIGHT, "Lap", G ,new Action(){
 			@Override
 			public void act() {
 				
 			}
 		}, Color.WHITE);
 		v.add(lap);
-		pause = new Button(MARGINX+110, MARGINY+80, WIDTH, HEIGHT, "Pause", G ,new Action(){
+		pause = new ThemedButton(MARGINX+110, MARGINY+80, WIDTH, HEIGHT, "Pause", G ,new Action(){
 			@Override
 			public void act() {
 				
