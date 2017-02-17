@@ -16,7 +16,7 @@ public class WorkOutPlanner extends GUIApplication{
 
 	
 	public static void main(String[] args) {
-		InputDisplay ID = new InputDisplay(800,500);
+		WorkOutPlanner ID = new WorkOutPlanner(800,500);
 		Thread planner = new Thread(ID);
 		planner.start();
 	}
