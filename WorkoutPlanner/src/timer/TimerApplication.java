@@ -135,8 +135,8 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		
 		
 	//add lines
-		line = new DrawLines(0,0,0,0,W);
-		v.add(line);
+//		line = new DrawLines(0,0,0,0,W);
+//		v.add(line);
 		
 	}
 
