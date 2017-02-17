@@ -92,17 +92,6 @@ public class Menu extends ClickableScreen implements Runnable {
 		view.add(stopwatch);
 	}
 
-	@Override
-	public void run() {
-		stopwatch.setText("999");
-		startTimer();
-	}
-
-	private void startTimer() {
-		changeText("!!!");
-		stopwatch.setText("");
-	}
-
 	private void changeText(String string) {
 		stopwatch.setText(string);
 		try {
@@ -128,6 +117,11 @@ public class Menu extends ClickableScreen implements Runnable {
 			Visible v = viewObjects.get(i);
 			g.drawImage(v.getImage(), v.getX(), v.getY(), null);
 		}
+	}
+
+	@Override
+	public void run() {
+		stopwatch.setText("999");
 	}
 
 }
