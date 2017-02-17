@@ -8,8 +8,10 @@ import java.awt.RenderingHints;
 
 public class TextArea extends TextLabel {
 
+
 	public TextArea(int x, int y, int w, int h, String text) {
 		super(x, y, w, h, text);
+
 		// TODO Auto-generated constructor stub
 	}
 

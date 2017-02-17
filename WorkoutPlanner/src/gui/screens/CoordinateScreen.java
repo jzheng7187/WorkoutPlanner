@@ -41,6 +41,7 @@ public class CoordinateScreen extends Screen implements MouseMotionListener, Mou
 		viewObjects.add(text);
 		area = new TextArea(20, 200, 500, 1000, "This is really long text. It prints over multiple lines, as you can see"
 				+ " we worked on this in class. This is called Text Area.");
+
 		viewObjects.add(area);
 		
 //		luminous  = new ClickableGraphic(500, 30, "resources/sampleImages/Luminous.png", new Action(){

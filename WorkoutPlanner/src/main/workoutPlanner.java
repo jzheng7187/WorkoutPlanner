@@ -6,6 +6,8 @@ package main;
 import gui.GUIApplication;
 import gui.Screen;
 import mainMenu.Menu;
+import timer.TimerApplication;
+import timer.TimerStarter;
 
 /**
  * @author Jonathan Zheng
@@ -22,6 +24,7 @@ public class workoutPlanner extends GUIApplication {
 	public static Screen timerScreen;
 	public static Screen exerciseScreen;
 	public static Screen stopwatchScreen;
+	public static Screen ws;
 	
 	public workoutPlanner(int width, int height) {
 		super(width, height);
@@ -33,7 +36,8 @@ public class workoutPlanner extends GUIApplication {
 	 */
 	@Override
 	public void initScreen() {
-		Menu ws = new Menu(getWidth(),getHeight());
+		timerScreen = new TimerApplication(getWidth(), getHeight());
+		ws = new Menu(getWidth(),getHeight());
 		setScreen(ws);
 	}
 
@@ -42,6 +46,7 @@ public class workoutPlanner extends GUIApplication {
 	 */
 	public static void main(String[] args) {
 		app = new workoutPlanner(800, 800);
+
 		Thread go = new Thread(app);
 		go.start();
 
