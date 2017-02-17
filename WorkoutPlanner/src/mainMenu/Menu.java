@@ -5,6 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.util.ArrayList;
 
+import components.ThemedBorder;
+import components.ThemedBorder2;
 import gui.components.Action;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
@@ -65,19 +67,19 @@ public class Menu extends ClickableScreen implements Runnable {
 			}
 		}, Color.BLACK);
 		view.add(exercises);
-		border1 = new CustomButton(20, 20, 20, 900, "", BUTTON_COLOR, new Action() {
+		border1 = new ThemedBorder(BUTTON_COLOR,new Action() {
 			@Override
 			public void act() {
 
 			}
-		}, Color.BLACK);
+		});
 		view.add(border1);
-		border2 = new CustomButton(0, 40, 900, 20, "", BUTTON_COLOR, new Action() {
+		border2 = new ThemedBorder2(BUTTON_COLOR, new Action() {
 			@Override
 			public void act() {
 
 			}
-		}, Color.BLACK);
+		});
 		view.add(border2);
 		stop = new CustomButton(MARGINX, MARGINY + SPACE + SPACE, WIDTH, HEIGHT, "Stop", BUTTON_COLOR, new Action() {
 
