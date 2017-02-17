@@ -40,8 +40,7 @@ public class Timer extends ClickableScreen {
 				Thread.sleep(x); // 1 Second timer (1000 milliseconds)
 				x = x + 1000;
 				
-				showTime(); //Update the time
-				System.out.println(currentTime); //Print currentTime
+				System.out.println(showTime()); //Print currentTime
 				
 				addLap(); //Add a new lap to ArrayList laps
 				System.out.println(ms); //Print ArrayList laps
@@ -67,17 +66,17 @@ public class Timer extends ClickableScreen {
 		currentTimeM(); // Set the time since the start of timer.
 	}
 	
-	public static void showTime() {
-		currentTimeM(); // Set the time since the start of timer.
-		
-		long elapsedSeconds = currentTimeM / 1000; // Convert time (milliseconds) to seconds.
+	public static String showTime() {
+		long elapsedSeconds = (System.currentTimeMillis() - startTime) / 1000; // Convert time (milliseconds) to seconds.
 		
 		long secondsDisplay = elapsedSeconds % 60; // Set the current amount of seconds.
 		long minutesDisplay = elapsedSeconds / 60; // Set the current amount of minutes.
-		String seconds = Objects.toString(secondsDisplay, null); // Convert seconds to string.
-		String minutes = Objects.toString(minutesDisplay, null); // Convert minutes to string.
 		
-		currentTime = minutes + ":" + seconds; //Set currentTime to a standard clock string.
+		if (secondsDisplay < 10){
+			return minutesDisplay + ":0" + secondsDisplay; //Set currentTime to a standard clock string.
+		} else {
+			return minutesDisplay + ":" + secondsDisplay; //Set currentTime to a standard clock string.
+		}
 	}
 	
 	public static void currentTimeM() {
@@ -85,27 +84,18 @@ public class Timer extends ClickableScreen {
 	}
 	
 	public static void newLapTimeM() {
-		if (ms.size() == 0){
-			ms.add(currentTimeM);
-		}
 		newLapTimeM = System.currentTimeMillis() - ms.get(ms.size() - 1); // Set the time since the new lap of timer.
 	}
 	
 	public static void addLap() {
-		if (ms.size() != 0){
+		if (ms.size() == 0){
+			ms.add(currentTimeM);
+		}
+		else {
+			newLapTimeM();
 			ms.add(newLapTimeM); // Makes the current time a string and adds it to ArrayList.
 		}
-		
-		newLapTimeM();
-		
-		long elapsedSeconds = newLapTimeM / 1000000000; // Convert time (milliseconds) to seconds.
-		
-		long secondsDisplay = elapsedSeconds % 60; // Set the current amount of seconds.
-		long minutesDisplay = elapsedSeconds / 60; // Set the current amount of minutes.
-		String seconds = Objects.toString(secondsDisplay, null); // Convert seconds to string.
-		String minutes = Objects.toString(minutesDisplay, null); // Convert minutes to string.
-		
-		newLapTime = minutes + ":" + seconds; //Set currentTime to a standard clock string.
+		newLapTime = showTime();
 		
 		laps.add(newLapTime); // Makes the current time a string and adds it to ArrayList.
 		
