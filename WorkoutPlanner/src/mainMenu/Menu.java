@@ -26,7 +26,10 @@ public class Menu extends ClickableScreen implements Runnable {
 	private CustomTextLabel label2;
 	private CustomTextLabel remain;
 	private CustomTextLabel exerci;
-	public static final int MARGINX = 500;
+	private CustomTextLabel stat;
+	private CustomTextLabel curr;
+	private CustomTextLabel start;
+	public static final int MARGINX = 550;
 	public static final int MARGINY = 200;
 	public static final int WIDTH = 200;
 	public static final int HEIGHT = 120;
@@ -46,11 +49,16 @@ public class Menu extends ClickableScreen implements Runnable {
 		view.add(label);
 		label2 = new CustomTextLabel(150, 50, 100, 50, "Planner", Color.black);
 		view.add(label2);
-		remain = new CustomTextLabel(150, 300, 120, 50, "Remaining", Color.white);
+		remain = new CustomTextLabel(50, 300, 120, 50, "Remaining", Color.white);
 		view.add(remain);
-		exerci = new CustomTextLabel(300, 300, 100, 50, "Planner", Color.black);
+		exerci = new CustomTextLabel(175, 300, 100, 50, "Exercises", Color.black);
 		view.add(exerci);
-		
+		stat = new CustomTextLabel(330, 300, 100, 50, "Status", Color.black);
+		view.add(stat);
+		curr = new CustomTextLabel(330, 350, 100, 50, "Current", Color.black);
+		view.add(curr);
+		start = new CustomTextLabel(330, 400, 100, 50, "Start", Color.black);
+		view.add(start);
 		
 		stopwatchbut = new CustomButton(600, 55, 200, 100, "Elapsed Time", BUTTON_COLOR, new Action() {
 			@Override
