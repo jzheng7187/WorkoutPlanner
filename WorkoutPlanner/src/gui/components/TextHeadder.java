@@ -20,14 +20,16 @@ public class TextHeadder extends Component {
 	private String font;
 	private int size;
 	private Color color;
+	Action newAction;
 	
-	public TextHeadder(int x, int y, int w, int h, String text,Color color) {
+	public TextHeadder(int x, int y, int w, int h, String text,Color color, Action act) {
 	
 		super(x, y, w, h);
 		this.text = text;
 		this.font = "Helvetica";
 		this.size = 55;
 		this.color = color;
+		
 		update();
 	}
 
