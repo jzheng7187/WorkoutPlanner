@@ -84,10 +84,10 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		//NOTICE Each letter is 40 space is 20
 		
 		//Creates titles
-		title1 = new TextHeadder(50,SPACE*2,120,50, "Stop", G); 
+		title1 = new TextHeadder(50,SPACE*2,120,50, "Stop", G, null); 
 		//adds title to the page
 		v.add(title1);
-		title2 = new TextHeadder(185,SPACE*2,160,50, "Watch", W); 
+		title2 = new TextHeadder(185,SPACE*2,160,50, "Watch", W, null); 
 		v.add(title2);
 		
 		//Creates Total time and current lap
