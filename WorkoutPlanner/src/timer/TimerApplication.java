@@ -96,7 +96,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		totalTime2 = new ThemedTextLabel(105,SPACE*5,50,30, "Time:", W);
 		v.add(totalTime2);
 		tt = new ThemedTextLabel(160,SPACE*5,100,30, "00:00:00", W);
-		v.add(tt);
+		v.add(tt);  
 		
 		lapTime1 = new ThemedTextLabel(50,SPACE*6,70,30, "Current", G);
 		v.add(lapTime1);
