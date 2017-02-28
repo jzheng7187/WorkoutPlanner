@@ -35,18 +35,20 @@ public class Menu extends ClickableScreen implements Runnable {
 	public static final int HEIGHT = 120;
 	public static final int SPACE = 160;
 	public static final Color BUTTON_COLOR = new Color(255, 255, 255);
+	private double Timer;
+	private boolean timerOn;
 
 	public Menu(int width, int height) {
 		super(width, height);
-		Thread time = new Thread(this);
-		time.start();
+		Thread play = new Thread(this);
+		play.start();
 		// jframe.setBackground(Color.RED);
 	}
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
 		// TODO Auto-generated method stub
-		stopwatch = new CustomTextLabel(650, 90, 100, 50, "0.0", Color.black);
+		stopwatch = new CustomTextLabel(650, 90, 100, 50, "0.00", Color.black);
 		label = new CustomTextLabel(50, 50, 100, 50, "Workout", Color.white);
 		view.add(label);
 		label2 = new CustomTextLabel(150, 50, 100, 50, "Planner", Color.black);
@@ -103,21 +105,21 @@ public class Menu extends ClickableScreen implements Runnable {
 
 			@Override
 			public void act() {
-				// workoutPlanner.timerScreen.stopTimer();
+				timerOn = false;
 			}
 		}, Color.BLACK);
 		view.add(stop);
 		view.add(stopwatch);
 	}
 
-	/*private void changeText(String string) {
+	private void changeTime(String string) {
 		stopwatch.setText(string);
 		try {
-			Thread.sleep(100);
+			Thread.sleep(10);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 
 	public void drawBackground(Graphics2D g) {
 		Color c = new Color(180, 225, 50);
@@ -125,21 +127,15 @@ public class Menu extends ClickableScreen implements Runnable {
 		g.fillRect(0, 0, getImage().getWidth(), getImage().getHeight());
 	}
 
-	/*public void update() {
-		Graphics2D g = getImage().createGraphics();
-		// smooth the graphics
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		drawBackground(g);
-		g.setColor(Color.black);
-		for (int i = 0; i < viewObjects.size(); i++) {
-			Visible v = viewObjects.get(i);
-			g.drawImage(v.getImage(), v.getX(), v.getY(), null);
-		}
-	}*/
-
 	@Override
 	public void run() {
-		stopwatch.setText("999");
+		//Timer = timerInt.getTimer();
+		Timer = 0.00;
+		timerOn = true;
+		while(timerOn){
+			changeTime((""+(int)(Timer*100)/100.00));
+			Timer += .01;
+		}
 	}
 
 }
