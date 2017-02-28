@@ -2,6 +2,7 @@ package timer;
 
 /**
  * 
+<<<<<<< HEAD
  * @author Nikita Smirnov 
  *
  */
@@ -17,5 +18,4 @@ public interface TimeDisplay {
 	public void currentLap(String time);
 
 	public void time(String time);
-	
 }
