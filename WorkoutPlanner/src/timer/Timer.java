@@ -79,6 +79,19 @@ public class Timer extends ClickableScreen {
 		}
 	}
 	
+	public static String showTimeSinceLap(long time) {
+		long elapsedSeconds = time / 1000; // Convert time (milliseconds) to seconds.
+		
+		long secondsDisplay = elapsedSeconds % 60; // Set the current amount of seconds.
+		long minutesDisplay = elapsedSeconds / 60; // Set the current amount of minutes.
+		
+		if (secondsDisplay < 10){
+			return minutesDisplay + ":0" + secondsDisplay; //Set currentTime to a standard clock string.
+		} else {
+			return minutesDisplay + ":" + secondsDisplay; //Set currentTime to a standard clock string.
+		}
+	}
+	
 	public static void currentTimeM() {
 		currentTimeM = System.currentTimeMillis() - startTime; // Set the time since the start of timer.
 	}
@@ -89,19 +102,60 @@ public class Timer extends ClickableScreen {
 	
 	public static void addLap() {
 		if (ms.size() == 0){
-			ms.add(currentTimeM);
+			currentTimeM();
+			ms.add(System.currentTimeMillis());
+			laps.add(showTimeSinceLap(currentTimeM));
 		}
 		else {
 			newLapTimeM();
-			ms.add(newLapTimeM); // Makes the current time a string and adds it to ArrayList.
+			ms.add(System.currentTimeMillis()); // Makes the current time a string and adds it to ArrayList.
+			laps.add(showTimeSinceLap(newLapTimeM));
 		}
-		newLapTime = showTime();
-		
-		laps.add(newLapTime); // Makes the current time a string and adds it to ArrayList.
 		
 		//calculate the new longest lap
 		//identify the index of that long lap
-//		display.markLongestTime(i);
+		display.markLongestTime(findLongestTime());
+		display.markShortestTime(findShortestTime());
+		display.markAverageTime(showTimeSinceLap(findAverageTime() - startTime));
+		display.time(showTime());
+	}
+	
+	public static String findLongestTime() {
+		int longestTime = 0;
+		long x = ms.get(0);
+		
+		for (int i = 0; i < ms.size(); i++) {
+			if (ms.get(i) > x) {
+				longestTime = i;
+			}
+ 		}
+		
+		return laps.get(longestTime);
+	}
+	
+	public static String findShortestTime() {
+		int shortestTime = 0;
+		long x = ms.get(0);
+		
+		for (int i = 0; i < ms.size(); i++) {
+			if (ms.get(i) < x) {
+				shortestTime = i;
+			}
+ 		}
+		
+		return laps.get(shortestTime);
+	}
+	
+	public static long findAverageTime() {
+		long x = ms.get(0);
+		
+		for (int i = 1; i < ms.size(); i++) {
+			x = x + ms.get(i);
+ 		}
+		
+		long averageTime = x / ms.size();
+		
+		return averageTime;
 	}
 	
 	@Override
