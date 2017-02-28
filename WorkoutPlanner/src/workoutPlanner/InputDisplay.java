@@ -25,7 +25,7 @@ public InputDisplay(int width, int height) {
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		// TODO Auto-generated method stub
-		title = new TextLabel(130,230,300,40,"Plan Your Routine");
+		title = new TextLabel(100,100,300,40,"Plan Your Routine");
 		viewObjects.add(title); 
 		sub = new TextLabel(300,300,400,60,"Activities");
 		viewObjects.add(sub);
