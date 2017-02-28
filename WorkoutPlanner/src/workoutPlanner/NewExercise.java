@@ -45,14 +45,16 @@ public class NewExercise extends Button implements MouseListener{
 		clicked  = new boolean[allExercises.size()];
 		addExercise(allExercises);
 		allExercises.remove(clickedGraphic);
-	}
-	@Override
-	public void mouseClicked(MouseEvent g) {
-		if(isHovered(getX(),getY())){
-			
-		}
 		
 	}
+	
+//	public boolean mouseClicked() {
+//		if(isHovered(getX(),getY())){
+//			return true;
+//		}
+//		return false;
+//		
+//	}
 	
 	@Override
 	public boolean isHovered(int x, int y) {
@@ -83,7 +85,7 @@ public class NewExercise extends Button implements MouseListener{
 	}
 	
 	//adds exercises to myExercises
-	public void addExercise(ArrayList<String> exercises){
+	public ArrayList<String> addExercise(ArrayList<String> exercises){
 		boolean clickedAgain = false;
 		
 		for(int i = 0; i < value.length; i++){
@@ -93,6 +95,7 @@ public class NewExercise extends Button implements MouseListener{
 			}else{
 				myExercises.add(allExercises.get(i));
 				allExercises.remove(allExercises.get(i));
+				return myExercises;
 			}
 		}
 		update();
@@ -107,6 +110,10 @@ public class NewExercise extends Button implements MouseListener{
 		allExercises.add("Plank");
 		allExercises.add("Dips");
 		allExercises.add("Squats");
+	}
+	
+	public void startExercise(){
+		
 	}
 	
 	@Override
@@ -127,6 +134,12 @@ public class NewExercise extends Button implements MouseListener{
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void mouseClicked(MouseEvent g) {
+		g.highlight();
 		
 	}
 }
