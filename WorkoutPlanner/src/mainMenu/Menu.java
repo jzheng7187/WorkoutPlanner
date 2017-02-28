@@ -38,6 +38,8 @@ public class Menu extends ClickableScreen implements Runnable {
 
 	public Menu(int width, int height) {
 		super(width, height);
+		Thread time = new Thread(this);
+		time.start();
 		// jframe.setBackground(Color.RED);
 	}
 
@@ -108,14 +110,14 @@ public class Menu extends ClickableScreen implements Runnable {
 		view.add(stopwatch);
 	}
 
-	private void changeText(String string) {
+	/*private void changeText(String string) {
 		stopwatch.setText(string);
 		try {
-			Thread.sleep(10000);
+			Thread.sleep(100);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	public void drawBackground(Graphics2D g) {
 		Color c = new Color(180, 225, 50);
@@ -123,7 +125,7 @@ public class Menu extends ClickableScreen implements Runnable {
 		g.fillRect(0, 0, getImage().getWidth(), getImage().getHeight());
 	}
 
-	public void update() {
+	/*public void update() {
 		Graphics2D g = getImage().createGraphics();
 		// smooth the graphics
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -133,7 +135,7 @@ public class Menu extends ClickableScreen implements Runnable {
 			Visible v = viewObjects.get(i);
 			g.drawImage(v.getImage(), v.getX(), v.getY(), null);
 		}
-	}
+	}*/
 
 	@Override
 	public void run() {
