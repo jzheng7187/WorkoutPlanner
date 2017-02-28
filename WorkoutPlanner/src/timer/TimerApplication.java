@@ -21,6 +21,8 @@ import gui.components.ThemedButton;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
 import main.workoutPlanner;
+import timer.TimeDisplay;
+
 
 /**
  * @author Alam
@@ -117,7 +119,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		start = new ThemedButton(MARGINX, MARGINY, WIDTH, HEIGHT, "Start", G ,new Action(){
 			@Override
 			public void act() {
-				
+				//startTimer();
 			}
 		}, Color.WHITE);
 		v.add(start);
