@@ -20,6 +20,7 @@ import gui.components.TextLabel;
 import gui.components.ThemedButton;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
+import main.workoutPlanner;
 
 /**
  * @author Alam
@@ -41,6 +42,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	private static TextLabel totalTime2;
 	private static TextLabel lapTime1;
 	private static TextLabel lapTime2;
+	//private static ThemedBorder 1;
 	
 	//Dynamic changing text fields
 	private TextLabel tt; //Total time
@@ -84,7 +86,12 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		//NOTICE Each letter is 40 space is 20
 		
 		//Creates titles
-		title1 = new TextHeadder(50,SPACE*2,120,50, "Stop", G, null); 
+		title1 = new TextHeadder(50,SPACE*2,120,50, "Stop", G, new Action(){
+			@Override
+			public void act() {
+				workoutPlanner.app.setScreen(workoutPlanner.ws);
+			}
+		}); 
 		//adds title to the page
 		v.add(title1);
 		title2 = new TextHeadder(185,SPACE*2,160,50, "Watch", W, null); 

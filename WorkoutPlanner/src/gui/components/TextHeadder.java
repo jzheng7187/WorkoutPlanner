@@ -14,17 +14,17 @@ import java.awt.RenderingHints;
 */
 
 
-public class TextHeadder extends Component {	
+public class TextHeadder extends TextLabel implements Clickable{	
 	//FIELD
 	private String text;
 	private String font;
 	private int size;
 	private Color color;
-	Action newAction;
+	private Action newAction;
 	
 	public TextHeadder(int x, int y, int w, int h, String text,Color color, Action act) {
 	
-		super(x, y, w, h);
+		super(x, y, w, h, text);
 		this.text = text;
 		this.font = "Helvetica";
 		this.size = 55;
@@ -69,6 +69,17 @@ public class TextHeadder extends Component {
 		public void setSize(int size) {
 			this.size = size;
 			update();
+		}
+
+		@Override
+		public boolean isHovered(int x, int y) {
+			return x > getX() && x < getX() + getWidth() && y > getY() && y < getY() + getHeight();
+		}
+
+		@Override
+		public void act() {
+			newAction.act();
+			
 		}
 
 	}
