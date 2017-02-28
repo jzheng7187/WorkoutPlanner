@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import gui.components.Action;
 import gui.components.Button;
+import gui6.components.Clickable;
 
 public class NewExercise extends Button implements MouseListener{
 	
@@ -139,7 +140,11 @@ public class NewExercise extends Button implements MouseListener{
 	
 	@Override
 	public void mouseClicked(MouseEvent g) {
-		g.highlight();
-		
+		for(Clickable c: allExercises){
+			if(c.isHovered(g.getX(), g.getY())){
+				c.act();
+				break;
+			}
+		}
 	}
 }
