@@ -47,7 +47,7 @@ public class NewExercise extends Button implements MouseListener{
 		addExercise(allExercises);
 		allExercises.remove(clickedGraphic);
 		
-	}
+	} 
 	
 //	public boolean mouseClicked() {
 //		if(isHovered(getX(),getY())){
