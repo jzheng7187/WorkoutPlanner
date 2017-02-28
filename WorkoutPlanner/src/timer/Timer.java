@@ -43,6 +43,7 @@ public class Timer extends ClickableScreen {
 				System.out.println(showTime()); //Print currentTime
 				
 				addLap(); //Add a new lap to ArrayList laps
+				System.out.println(ms); //Print ArrayList laps
 				System.out.println(laps); //Print ArrayList laps
 			}
 			
@@ -115,7 +116,7 @@ public class Timer extends ClickableScreen {
 		//identify the index of that long lap
 		display.markLongestTime(findLongestTime());
 		display.markShortestTime(findShortestTime());
-//		display.markAverageTime(findAverageTime());
+		display.markAverageTime(showTimeSinceLap(findAverageTime() - startTime));
 		display.time(showTime());
 	}
 	
@@ -145,17 +146,17 @@ public class Timer extends ClickableScreen {
 		return laps.get(shortestTime);
 	}
 	
-//	public static String findAverageTime() {
-//		long x = ms.get(0);
-//		
-//		for (int i = 1; i < ms.size(); i++) {
-//			x = x + ms.get(i);
-// 		}
-//		
-//		long averageTime = x / ms.size();
-//		
-//		return laps.get(averageTime);
-//	}
+	public static long findAverageTime() {
+		long x = ms.get(0);
+		
+		for (int i = 1; i < ms.size(); i++) {
+			x = x + ms.get(i);
+ 		}
+		
+		long averageTime = x / ms.size();
+		
+		return averageTime;
+	}
 	
 	@Override
 	public void initAllObjects(ArrayList<Visible> arg0) {
