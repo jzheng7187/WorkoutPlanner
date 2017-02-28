@@ -2,7 +2,7 @@ package timer;
 
 /**
  * 
- * @author Nikita Smirnov
+ * @author Nikita Smirnov 
  *
  */
 
