@@ -74,8 +74,8 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	//lime green color temp out of service until background is fixed.
 	//TODO
 	//Color g = new Color (180,225,50);
-	public static final Color T = new Color (180,225,50);
-	public static final Color G = new Color (0,0,0);
+	public static final Color G = new Color (180,225,50);
+	public static final Color T = new Color (0,0,0);
 	public static final Color W = new Color (255,255,255);
 	public static final Color B = new Color (0,0,0);
 	
@@ -98,7 +98,12 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		}); 
 		//adds title to the page
 		v.add(title1);
-		title2 = new TextHeadder(185,SPACE*2,160,50, "Watch", W, null); 
+		title2 = new TextHeadder(185,SPACE*2,160,50, "Watch", W, new Action(){
+			@Override
+			public void act() {
+				workoutPlanner.app.setScreen(workoutPlanner.ws);
+			}
+		}); 
 		v.add(title2);
 		
 		//Creates Total time and current lap
