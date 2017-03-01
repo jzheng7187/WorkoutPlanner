@@ -21,7 +21,7 @@ public abstract class GUIApplication extends JFrame implements Runnable{
 	public GUIApplication(int width, int height, String imagelocation){
 		super();
 //		setUndecorated(true);
-		setBounds(20, 20, width, height);
+		setBounds(20, 20, width, height); 
 		//terminates program when window is closed
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		initScreen();

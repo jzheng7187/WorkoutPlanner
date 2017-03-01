@@ -22,5 +22,5 @@ public class WorkOutPlanner extends GUIApplication{
 		planner.start();
 	}
 
-	
+	 
 }
