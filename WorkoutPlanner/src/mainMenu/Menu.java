@@ -2,6 +2,7 @@ package mainMenu;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import components.ThemedBorder;
@@ -44,12 +45,8 @@ public class Menu extends ClickableScreen implements Runnable {
 	public static final Color BUTTON_COLOR = new Color(255, 255, 255);
 	private double Timer;
 	private boolean timerOn;
-	private String Activity1;
-	private String Activity2;
-	private String Activity3;
-	private String Activity4;
-	private String Activity5;
-	private ArrayList exerciseList;
+	private String[] Activity;
+	private ArrayList<String> exerciseList;
 
 	public Menu(int width, int height) {
 		super(width, height);
@@ -60,7 +57,7 @@ public class Menu extends ClickableScreen implements Runnable {
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
-		exerciseList = new ArrayList();
+		exerciseList = new ArrayList<String>();
 		stopwatch = new CustomTextLabel(650, 90, 100, 50, "0.00", Color.black);
 		label = new CustomTitle(50, 50, 300, 50, "Workout", Color.white);
 		view.add(label);
@@ -78,18 +75,18 @@ public class Menu extends ClickableScreen implements Runnable {
 		view.add(start);
 		progress = new CustomTextLabel(50, 250, 130, 50, "Inprogress", Color.white);
 		view.add(progress);
-		act1 = new CustomTextLabel(50, 300, 100, 50, Activity1, Color.white);
+		/*act1 = new CustomTextLabel(50, 300, 100, 50, Activity[0], Color.white);
 		view.add(act1);
-		act2 = new CustomTextLabel(50, 350, 100, 50, Activity2, Color.white);
+		act2 = new CustomTextLabel(50, 350, 100, 50, Activity[1], Color.white);
 		view.add(act2);
-		act3 = new CustomTextLabel(50, 400, 100, 50, Activity3, Color.white);
+		act3 = new CustomTextLabel(50, 400, 100, 50, Activity[2], Color.white);
 		view.add(act3);
-		act4 = new CustomTextLabel(50, 450, 100, 50, Activity4, Color.white);
+		act4 = new CustomTextLabel(50, 450, 100, 50, Activity[3], Color.white);
 		view.add(act4);
-		act5 = new CustomTextLabel(50, 500, 100, 50, Activity5 , Color.white);
-		view.add(act5);
-		
-		
+		act5 = new CustomTextLabel(50, 500, 100, 50, Activity[4] , Color.white);
+		view.add(act5);*/
+
+
 		stopwatchbut = new CustomButton(600, 55, 200, 100, "Elapsed Time", BUTTON_COLOR, new Action() {
 			@Override
 			public void act() {
@@ -156,6 +153,7 @@ public class Menu extends ClickableScreen implements Runnable {
 	@Override
 	public void run() {
 		//Timer = timerInt.getTimer();
+		Activity = new String[5];
 		Timer = 0.00;
 		timerOn = true;
 		updateExercises();
@@ -163,11 +161,33 @@ public class Menu extends ClickableScreen implements Runnable {
 			changeTime((""+(int)(Timer*100)/100.00));
 			Timer += .01;
 		}
-		
 	}
 
 	private void updateExercises() {
-		exerciseList.add(Exercises.getExercise());
+		exerciseList.add("Push Up"
+				//Exercises.getExercise()
+				);
+		exerciseList.add("Push Up"
+				//Exercises.getExercise()
+				);
+		exerciseList.add("Push Up"
+				//Exercises.getExercise()
+				);
+		exerciseList.add("Push Up"
+				//Exercises.getExercise()
+				);
+		exerciseList.add("Push Up"
+				//Exercises.getExercise()
+				);
+		for(int i = 0; i < exerciseList.size(); i++){
+			Activity[i] = exerciseList.get(i);
+			//act1.setText(exerciseList.get(i));
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }
