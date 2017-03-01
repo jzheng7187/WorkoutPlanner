@@ -64,7 +64,6 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	public static final int SPACE=35;
 	
 	//background
-	private BufferedImage image;
 	private ThemedBorder border1;
 	private ThemedBorder2 border2;
 	
@@ -172,15 +171,13 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		// TODO Auto-generated method stub
 		
 	}
-	public void update(Graphics2D g){
-		
+
+	@Override
+	public void drawBackground(Graphics2D g){
+		Color c = new Color(0,0,0);
+		g.setColor(c);
+		g.fillRect(0, 0, getWidth(), getHeight());
 	}
-//	@Override
-//	public void drawBackground(Graphics2D g){
-//		Color c = new Color(180,225,50);
-//		g.setColor(c);
-//		g.fillRect(0, 0, image.getWidth(), image.getHeight());
-//	}
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {

@@ -29,7 +29,7 @@ public class TextHeadder extends TextLabel implements Clickable{
 		this.font = "Helvetica";
 		this.size = 55;
 		this.color = color;
-		
+		newAction = act;
 		update();
 	}
 
