@@ -2,7 +2,7 @@ package workoutPlanner;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import components.ThemedTextLabel;
+//import components.ThemedTextLabel;
 
 //import gui.Screen;
 import gui.components.TextLabel;
@@ -28,7 +28,7 @@ public InputDisplay(int width, int height) {
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		// TODO Auto-generated method stub
-		ThemedTextLabel(50,10,50,30, "Plan", 10);
+		//ThemedTextLabel(50,10,50,30, "Plan", 10);
 		title = new TextLabel(100,100,300,40,"Plan Your Routine");
 		viewObjects.add(title); 
 		sub = new TextLabel(300,300,400,60,"Activities");
