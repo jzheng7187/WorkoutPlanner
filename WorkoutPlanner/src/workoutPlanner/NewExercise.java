@@ -8,12 +8,12 @@ import java.util.ArrayList;
 
 import gui.components.Action;
 import gui.components.Button;
-import gui6.components.Clickable;
+import gui.components.Clickable;
 
 public class NewExercise extends Button implements MouseListener{
 	
 	//allExercises ArrayList has all the exercises
-	private static ArrayList<String> allExercises;
+	private static ArrayList<ButtonInterfaceMatthewN> allExercises;
 	//myExercises ArrayList has all the exercises you added
 	private static ArrayList<String> myExercises = new ArrayList<String>();
 	
@@ -46,9 +46,13 @@ public class NewExercise extends Button implements MouseListener{
 		clicked  = new boolean[allExercises.size()];
 		addExercise(allExercises);
 		allExercises.remove(clickedGraphic);
-		
+		showExercises();
 	} 
 	
+	
+	public ArrayList<String> showExercises(){
+		return myExercises;
+	}
 //	public boolean mouseClicked() {
 //		if(isHovered(getX(),getY())){
 //			return true;
@@ -86,13 +90,13 @@ public class NewExercise extends Button implements MouseListener{
 	}
 	
 	//adds exercises to myExercises
-	public ArrayList<String> addExercise(ArrayList<String> exercises){
+	public ArrayList<String> addExercise(ArrayList<ButtonInterfaceMatthewN> g){
 		boolean clickedAgain = false;
 		
 		for(int i = 0; i < value.length; i++){
 			if(value[i] == 0 && isHovered(getX(),getY())){
 				System.out.println("You have already chosen this exercise.");
-				exercises.highlight();
+				g.highlight();
 			}else{
 				myExercises.add(allExercises.get(i));
 				allExercises.remove(allExercises.get(i));
@@ -103,14 +107,15 @@ public class NewExercise extends Button implements MouseListener{
 	}
 	
 	public static void getExercises(){
-		allExercises = new ArrayList<String>();
-		allExercises.add("Push-up");
-		allExercises.add("Curl-up");
-		allExercises.add("Sit-up");
-		allExercises.add("Bench Press");
-		allExercises.add("Plank");
-		allExercises.add("Dips");
-		allExercises.add("Squats");
+		allExercises = new ArrayList<ButtonInterfaceMatthewN>();
+		//swap with images 
+//		allExercises.addAll("Push-up");
+//		allExercises.addAll("Curl-up");
+//		allExercises.add("Sit-up");
+//		allExercises.add("Bench Press");
+//		allExercises.add("Plank");
+//		allExercises.add("Dips");
+//		allExercises.addAll("Squats");
 	}
 	
 	public void startExercise(){
