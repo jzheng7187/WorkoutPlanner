@@ -18,7 +18,7 @@ public abstract class GUIApplication extends JFrame implements Runnable{
 //		new GUIApplication(800,600);
 //	}
 	
-	public GUIApplication(int width, int height){
+	public GUIApplication(int width, int height, String imagelocation){
 		super();
 //		setUndecorated(true);
 		setBounds(20, 20, width, height);
