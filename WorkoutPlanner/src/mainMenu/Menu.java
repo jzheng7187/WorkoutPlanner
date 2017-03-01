@@ -189,5 +189,4 @@ public class Menu extends ClickableScreen implements Runnable {
 			}
 		}
 	}
-
 }
