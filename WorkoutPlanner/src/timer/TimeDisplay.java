@@ -22,7 +22,7 @@ public interface TimeDisplay {
 	
 	public void pauseTimer();
 	
-	public TextLabel startTimer();
+	public void startTimer();
 	
 	public void unpauseTimer();
 	

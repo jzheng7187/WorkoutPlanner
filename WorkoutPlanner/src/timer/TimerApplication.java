@@ -126,21 +126,21 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		start = new ThemedButton(MARGINX, MARGINY, WIDTH, HEIGHT, "Start", G ,new Action(){
 			@Override
 			public void act() {
-				//tt = TimeDisplay.startTimer();
+				Timer.startTimer();
 			}
 		}, Color.WHITE);
 		v.add(start);
 		stop = new ThemedButton(MARGINX+110, MARGINY, WIDTH, HEIGHT, "Stop", G ,new Action(){
 			@Override
 			public void act() {
-				
+				Timer.stopTimer();
 			}
 		}, Color.WHITE);
 		v.add(stop);
 		lap = new ThemedButton(MARGINX, MARGINY+80, WIDTH, HEIGHT, "Lap", G ,new Action(){
 			@Override
 			public void act() {
-				
+				Timer.addLap();
 			}
 		}, Color.WHITE);
 		v.add(lap);
@@ -205,10 +205,12 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 //	}
 		
 	}
+
 	@Override
 	public void run() {
-		
+		// TODO Auto-generated method stub
 		
 	}
+
 	
 }
