@@ -1,5 +1,7 @@
 package timer;
 
+import gui.components.TextLabel;
+
 /**
  * 
  * @author Nikita Smirnov 
@@ -20,7 +22,7 @@ public interface TimeDisplay {
 	
 	public void pauseTimer();
 	
-	public void startTimer();
+	public TextLabel startTimer();
 	
 	public void unpauseTimer();
 	

@@ -11,6 +11,8 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import components.ThemedBorder;
+import components.ThemedBorder2;
 import components.ThemedTextLabel;
 import gui.components.Action;
 import gui.components.Button;
@@ -63,7 +65,8 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	
 	//background
 	private BufferedImage image;
-	
+	private ThemedBorder border1;
+	private ThemedBorder2 border2;
 	
 	
 	//TODO  removed if unnecessary
@@ -119,7 +122,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		start = new ThemedButton(MARGINX, MARGINY, WIDTH, HEIGHT, "Start", G ,new Action(){
 			@Override
 			public void act() {
-				//startTimer();
+				//tt = TimeDisplay.startTimer();
 			}
 		}, Color.WHITE);
 		v.add(start);
@@ -145,7 +148,20 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		}, Color.WHITE);
 		v.add(pause);
 		
-		
+		border1 = new ThemedBorder(T,new Action() {
+			@Override
+			public void act() {
+
+			}
+		});
+		v.add(border1);
+		border2 = new ThemedBorder2(T, new Action() {
+			@Override
+			public void act() {
+
+			}
+		});
+		v.add(border2);
 	//add lines
 //		line = new DrawLines(0,0,0,0,W);
 //		v.add(line);
@@ -179,6 +195,8 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
+		
+		
 		
 //	public KeyListener getKeyListner(){
 //		return this;
