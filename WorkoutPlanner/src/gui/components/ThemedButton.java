@@ -5,27 +5,18 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-public class Button extends TextLabel implements Clickable{
+public class ThemedButton extends Button {
 
 	private Color color;
 	private Action action;
+	private Color textColor;
 	
-	public Button(int x, int y, int w, int h, String text, Color color, Action action) {
-		super(x, y, w, h, text);
+	public ThemedButton(int x, int y, int w, int h, String text, Color color, Action action, Color c) {
+		super(x, y, w, h, text, color, action);
 		this.action = action;
 		this.color = color;
-		update();
-	}
-
-	public Color getColor(){
-		return color;
-	}
-	
-	public void setColor(Color c){
-		color = c;
+		this.textColor = c;
 		update();
 	}
 	
@@ -39,7 +30,7 @@ public class Button extends TextLabel implements Clickable{
 		g.setFont(new Font(getFont(), Font.PLAIN, getSize()));
 		FontMetrics fm = g.getFontMetrics();
 		if(getText() != null){
-			g.setColor(Color.white);
+			g.setColor(textColor);
 			String t = getText();
 			int cutoff = t.length();
 			while(cutoff > 0 && fm.stringWidth(t) > getWidth()){
@@ -50,16 +41,4 @@ public class Button extends TextLabel implements Clickable{
 //			g.drawString(getText(), 4, (getHeight()-5));
 		}	
 	}
-
-	@Override
-	public boolean isHovered(int x, int y) {
-		return x > getX() && x < getX() + getWidth() && y > getY() && y < getY() + getHeight();
-	}
-
-	@Override
-	public void act() {
-		action.act();
-	}
-
 }
-

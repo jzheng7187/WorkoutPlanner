@@ -1,25 +1,24 @@
-package gui.components;
-
+package mainMenu;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
-public class TextLabel extends Component {
+import gui.components.Component;
 
-	//FIELD
+public class CustomTextLabel extends Component {
 	private String text;
 	private String font;
 	private int size;
+	private Color color;
 	
-	
-	public TextLabel(int x, int y, int w, int h, String text) {
+
+	public CustomTextLabel(int x, int y, int w, int h, String text,Color color) {
 		super(x, y, w, h);
 		this.text = text;
-
-		this.font = "Helvetica";
-
+		this.font = "Courier New";
 		this.size = 20;
+		this.color = color;
 		update();
 	}
 
@@ -27,7 +26,7 @@ public class TextLabel extends Component {
 	public void update(Graphics2D g) {
 		g = clear();//delete previous text
 		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-		g.setColor(Color.black);
+		g.setColor(color);
 		g.setFont(new Font(font, Font.PLAIN, size));
 		if(text != null){
 			g.drawString(text, 4, (getHeight()-5));
@@ -60,5 +59,6 @@ public class TextLabel extends Component {
 		this.size = size;
 		update();
 	}
+
 
 }

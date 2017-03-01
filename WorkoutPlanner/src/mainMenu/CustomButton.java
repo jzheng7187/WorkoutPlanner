@@ -1,5 +1,4 @@
-package gui.components;
-
+package mainMenu;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
@@ -8,18 +7,23 @@ import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class Button extends TextLabel implements Clickable{
+import gui.components.Action;
+import gui.components.Clickable;
+import gui.components.TextLabel;
 
-	private Color color;
-	private Action action;
-	
-	public Button(int x, int y, int w, int h, String text, Color color, Action action) {
+public class CustomButton extends TextLabel implements Clickable{
+private Color color;
+private Action action;
+private Color textColor;
+
+
+	public CustomButton(int x, int y, int w, int h, String text, Color color, Action action,Color textColor) {
 		super(x, y, w, h, text);
 		this.action = action;
 		this.color = color;
+		this.textColor = textColor;
 		update();
 	}
-
 	public Color getColor(){
 		return color;
 	}
@@ -39,7 +43,7 @@ public class Button extends TextLabel implements Clickable{
 		g.setFont(new Font(getFont(), Font.PLAIN, getSize()));
 		FontMetrics fm = g.getFontMetrics();
 		if(getText() != null){
-			g.setColor(Color.white);
+			g.setColor(textColor);
 			String t = getText();
 			int cutoff = t.length();
 			while(cutoff > 0 && fm.stringWidth(t) > getWidth()){
@@ -51,7 +55,7 @@ public class Button extends TextLabel implements Clickable{
 		}	
 	}
 
-	@Override
+	@Override 
 	public boolean isHovered(int x, int y) {
 		return x > getX() && x < getX() + getWidth() && y > getY() && y < getY() + getHeight();
 	}
@@ -62,4 +66,3 @@ public class Button extends TextLabel implements Clickable{
 	}
 
 }
-
