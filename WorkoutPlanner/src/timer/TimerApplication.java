@@ -74,8 +74,8 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	//lime green color temp out of service until background is fixed.
 	//TODO
 	//Color g = new Color (180,225,50);
-	public static final Color T = new Color (180,225,50);
-	public static final Color G = new Color (0,0,0);
+	public static final Color G = new Color (180,225,50);
+	public static final Color T = new Color (0,0,0);
 	public static final Color W = new Color (255,255,255);
 	public static final Color B = new Color (0,0,0);
 	
@@ -98,7 +98,12 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		}); 
 		//adds title to the page
 		v.add(title1);
-		title2 = new TextHeadder(185,SPACE*2,160,50, "Watch", W, null); 
+		title2 = new TextHeadder(185,SPACE*2,160,50, "Watch", W, new Action(){
+			@Override
+			public void act() {
+				workoutPlanner.app.setScreen(workoutPlanner.ws);
+			}
+		}); 
 		v.add(title2);
 		
 		//Creates Total time and current lap
@@ -121,21 +126,21 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		start = new ThemedButton(MARGINX, MARGINY, WIDTH, HEIGHT, "Start", G ,new Action(){
 			@Override
 			public void act() {
-				//tt = TimeDisplay.startTimer();
+				Timer.startTimer();
 			}
 		}, Color.WHITE);
 		v.add(start);
 		stop = new ThemedButton(MARGINX+110, MARGINY, WIDTH, HEIGHT, "Stop", G ,new Action(){
 			@Override
 			public void act() {
-				
+				Timer.stopTimer();
 			}
 		}, Color.WHITE);
 		v.add(stop);
 		lap = new ThemedButton(MARGINX, MARGINY+80, WIDTH, HEIGHT, "Lap", G ,new Action(){
 			@Override
 			public void act() {
-				
+				Timer.addLap();
 			}
 		}, Color.WHITE);
 		v.add(lap);
@@ -200,10 +205,12 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 //	}
 		
 	}
+
 	@Override
 	public void run() {
-		
+		// TODO Auto-generated method stub
 		
 	}
+
 	
 }
