@@ -12,12 +12,12 @@ import java.util.Objects;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
 
-public class Timer extends ClickableScreen {
+public class Timer extends ClickableScreen implements TimeDisplay{
 
 	public static boolean count;
 	public static long startTime;
+	public static long pauseTime;
 	public static long currentTimeM;
-	public static long x;
 	public static String newLapTime;
 	public static long newLapTimeM;
 	public static String currentTime;
@@ -32,13 +32,11 @@ public class Timer extends ClickableScreen {
 	}
 	
 	public static void main(String[] args) {
-		startTimer();
-		x = 1000;
+		startTime();
 		try {
 			
 			while (count == true) {
-				Thread.sleep(x); // 1 Second timer (1000 milliseconds)
-				x = x + 1000;
+				Thread.sleep(1000); // 1 Second timer (1000 milliseconds)
 				
 				System.out.println(showTime()); //Print currentTime
 				
@@ -52,16 +50,32 @@ public class Timer extends ClickableScreen {
 		}
 	}
 
-	public static void startTimer() {
-		count = true; //Allow the timer to count
+	public static void startTime() {
+//		count = true; //Allow the timer to count
+		
+		try {
+			
+			while (count == true) {
+				Thread.sleep(1000); // 1 Second timer (1000 milliseconds)
+				
+				System.out.println(showTime()); //Print currentTime
+				
+				addLap(); //Add a new lap to ArrayList laps
+				System.out.println(ms); //Print ArrayList laps
+				System.out.println(laps); //Print ArrayList laps
+			}
+			
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		
 		startTime = System.currentTimeMillis(); //Start keeping track of startTime.
 		laps = new ArrayList<String>(); //Instantiate ArrayList.
 		ms = new ArrayList<Long>(); //Instantiate ArrayList.
 	}
 	
-	public static void stopTimer() {
-		count = false; //Stop the timer from counting
+	public static void pauseTime() {
+//		count = false; //Stop the timer from counting
 		
 		currentTimeM(); // Set the time since the start of timer.
 	}
@@ -114,17 +128,18 @@ public class Timer extends ClickableScreen {
 		
 		//calculate the new longest lap
 		//identify the index of that long lap
-		display.markLongestTime(findLongestTime());
-		display.markShortestTime(findShortestTime());
-		display.markAverageTime(showTimeSinceLap(findAverageTime() - startTime));
-		display.time(showTime());
+//		display.markLongestTime(findLongestTime());
+//		display.markShortestTime(findShortestTime());
+//		display.markAverageTime(showTimeSinceLap(findAverageTime() - startTime));
+//		display.time(showTime());
+//		display.currentLap(laps.get(laps.size()));
 	}
 	
 	public static String findLongestTime() {
 		int longestTime = 0;
 		long x = ms.get(0);
 		
-		for (int i = 0; i < ms.size(); i++) {
+		for (int i = 1; i < ms.size(); i++) {
 			if (ms.get(i) > x) {
 				longestTime = i;
 			}
@@ -137,7 +152,7 @@ public class Timer extends ClickableScreen {
 		int shortestTime = 0;
 		long x = ms.get(0);
 		
-		for (int i = 0; i < ms.size(); i++) {
+		for (int i = 1; i < ms.size(); i++) {
 			if (ms.get(i) < x) {
 				shortestTime = i;
 			}
@@ -161,5 +176,86 @@ public class Timer extends ClickableScreen {
 	@Override
 	public void initAllObjects(ArrayList<Visible> arg0) {
 		// TODO Auto-generated method stub
+	}
+	
+	
+//====================================================================================================================
+	//-------Interface Methods----------------------------------------------------------------------------------------
+//====================================================================================================================
+	
+	
+	@Override
+	public String markLongestTime() {
+		int longestTime = 0;
+		long x = ms.get(0);
+		
+		for (int i = 1; i < ms.size(); i++) {
+			if (ms.get(i) > x) {
+				longestTime = i;
+			}
+ 		}
+		
+		return laps.get(longestTime);
+	}
+
+	@Override
+	public String markShortestTime() {
+		int shortestTime = 0;
+		long x = ms.get(0);
+		
+		for (int i = 1; i < ms.size(); i++) {
+			if (ms.get(i) < x) {
+				shortestTime = i;
+			}
+ 		}
+		
+		return laps.get(shortestTime);
+	}
+
+	@Override
+	public String markAverageTime() {
+		long x = ms.get(0);
+		
+		for (int i = 1; i < ms.size(); i++) {
+			x = x + ms.get(i);
+ 		}
+		
+		long averageTime = x / ms.size();
+		
+		return showTimeSinceLap(averageTime - startTime);
+	}
+
+	@Override
+	public String time(String time) {
+		return showTime();
+	}
+
+	@Override
+	public String currentLap(String time) {
+		return laps.get(laps.size() - 1);
+	}
+
+	@Override
+	public void pauseTimer() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void startTimer() {
+		startTime();
+		
+	}
+
+	@Override
+	public void unpauseTimer() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void resetTimer() {
+		// TODO Auto-generated method stub
+		
 	}
 }
