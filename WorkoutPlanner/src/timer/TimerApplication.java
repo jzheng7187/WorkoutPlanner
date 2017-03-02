@@ -135,16 +135,41 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 			@Override
 			public void act() {
 				timer.startTimer();
+					try{
+						pauseTimer = false;
+					
+						
+						//we NEED NOCKLES TO FIX THIS
+						
+						while(pauseTimer == false){
+							Thread.sleep(100);
+							tt.setText(timer.time());
+							update();	
+						}
+						
+						
+					}catch(InterruptedException e) {
+						e.printStackTrace(); 	
+					}
 			}
+
 		}, Color.WHITE);
 		v.add(start);
+		
+		
 		stop = new ThemedButton(MARGINX+180, MARGINY, WIDTH, HEIGHT, "Stop", G ,new Action(){
 			@Override
 			public void act() {
 				timer.pauseTimer();
+				tt.setText(timer.time());
+				update();	
+				pauseTimer = true;
+				timer.resetTimer();
 			}
 		}, Color.WHITE);
 		v.add(stop);
+		
+		
 		lap = new ThemedButton(MARGINX-30, MARGINY+140, WIDTH, HEIGHT, "Lap", G ,new Action(){
 			@Override
 			public void act() {
@@ -152,13 +177,26 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 			}
 		}, Color.WHITE);
 		v.add(lap);
+		
+		
 		pause = new ThemedButton(MARGINX+180, MARGINY+140, WIDTH, HEIGHT, "Pause", G ,new Action(){
 			@Override
 			public void act() {
 				if(pauseTimer){
 					timer.unpauseTimer();
+					pauseTimer = false;
+					try{
+						while(pauseTimer == false){
+							Thread.sleep(100);
+							tt.setText(timer.time());
+							update();	
+						}
+					}catch(InterruptedException e) {
+						e.printStackTrace(); 
+					}
 				}else{
 					timer.pauseTimer();
+					pauseTimer = true;
 				}
 			}
 		}, Color.WHITE);
@@ -171,6 +209,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 			}
 		});
 		v.add(border1);
+		
 		border2 = new ThemedBorder2(G, new Action() {
 			@Override
 			public void act() {
