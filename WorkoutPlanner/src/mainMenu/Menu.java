@@ -2,7 +2,6 @@ package mainMenu;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import components.ThemedBorder;
@@ -10,13 +9,11 @@ import components.ThemedBorder2;
 import gui.components.Action;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
-import interfaces.Exercises;
 import interfaces.Timer;
 import main.workoutPlanner;
 
 public class Menu extends ClickableScreen implements Runnable {
-	private Timer timerInt;
-	private Exercises fg;
+	private Timer timerInterface;
 	private CustomButton timer;
 	private CustomButton exercises;
 	private CustomButton stop;
@@ -40,7 +37,7 @@ public class Menu extends ClickableScreen implements Runnable {
 	public static final int SPACE = 160;
 	public static final Color BUTTON_COLOR = new Color(255, 255, 255);
 	private double Timer;
-	private boolean timerOn;
+	private boolean isTimerOn;
 	private String[] Activity;
 	private ArrayList<String> exerciseList;
 
@@ -76,11 +73,11 @@ public class Menu extends ClickableScreen implements Runnable {
 		view.add(start);
 		progress = new CustomTextLabel(50, 250, 130, 50, "Inprogress", Color.white);
 		view.add(progress);
-		act[0] = new CustomTextLabel(50, 300, 100, 50, Activity[0], Color.white);
-		act[1] = new CustomTextLabel(50, 350, 100, 50, Activity[1], Color.white);
-		act[2] = new CustomTextLabel(50, 400, 100, 50, Activity[2], Color.white);
-		act[3] = new CustomTextLabel(50, 450, 100, 50, Activity[3], Color.white);
-		act[4] = new CustomTextLabel(50, 500, 100, 50, Activity[4] , Color.white);
+		act[0] = new CustomTextLabel(50, 300, 200, 50, Activity[0], Color.white);
+		act[1] = new CustomTextLabel(50, 350, 200, 50, Activity[1], Color.white);
+		act[2] = new CustomTextLabel(50, 400, 200, 50, Activity[2], Color.white);
+		act[3] = new CustomTextLabel(50, 450, 200, 50, Activity[3], Color.white);
+		act[4] = new CustomTextLabel(50, 500, 200, 50, Activity[4] , Color.white);
 		view.add(act[0]);
 		view.add(act[1]);
 		view.add(act[2]);
@@ -128,7 +125,7 @@ public class Menu extends ClickableScreen implements Runnable {
 
 			@Override
 			public void act() {
-				timerOn = false;
+				isTimerOn = false;
 			}
 		}, Color.BLACK);
 		view.add(stop);
@@ -152,32 +149,53 @@ public class Menu extends ClickableScreen implements Runnable {
 
 	@Override
 	public void run() {
-		//Timer = timerInt.getTimer();
+		//Timer = timerInterface.getTimer();
+		//isTimerOn = timerInterface.isTimerOn();
 		Timer = 0.00;
-		timerOn = true;
+		isTimerOn = false;
 		updateExercises();
-		while(timerOn){
+		while(isTimerOn){
 			changeTime((""+(int)(Timer*100)/100.00));
 			Timer += .01;
 		}
 	}
 
 	private void updateExercises() {
-		exerciseList.add("Push Up"
-				//Exercises.getExercise()
-				);
-		exerciseList.add("Push Up"
-				//Exercises.getExercise()
-				);
-		exerciseList.add("Push Up"
-				//Exercises.getExercise()
-				);
-		exerciseList.add("Push Up"
-				//Exercises.getExercise()
-				);
-		exerciseList.add("Push Up"
-				//Exercises.getExercise()
-				);
+		if(exerciseList.size() < 5){
+			exerciseList.add(0,"Exercise 1"
+					//Exercises.clickedExercise()
+					);
+		}
+		if(exerciseList.size() < 5){
+			exerciseList.add(0,"Exercise 2"
+					//Exercises.clickedExercise()
+					);
+		}
+		if(exerciseList.size() < 5){
+			exerciseList.add(0,"Exercise 3"
+					//Exercises.clickedExercise()
+					);
+		}
+		if(exerciseList.size() < 5){
+			exerciseList.add(0,"Exercise 4"
+					//Exercises.clickedExercise()
+					);
+		}
+		if(exerciseList.size() < 5){
+			exerciseList.add(0,"Exercise 5"
+					//Exercises.clickedExercise()
+					);
+		}
+		if(exerciseList.size() < 5){
+			exerciseList.add(0,"Exercise 6"
+					//Exercises.clickedExercise()
+					);
+		}else{
+			exerciseList.remove(4);
+			exerciseList.add(0,"Exercise 6"
+					//Exercises.clickedExercise()
+					);
+		}
 		for(int i = 0; i < exerciseList.size(); i++){
 			Activity[i] = exerciseList.get(i);
 			for(int j = 0; j < Activity.length; j++){
