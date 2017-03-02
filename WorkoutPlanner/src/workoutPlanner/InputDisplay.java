@@ -75,6 +75,6 @@ public InputDisplay(int width, int height) {
 		viewObjects.add(p5);
 		p6 = new Graphic(660, 300, .75, "resources/pushup.jpg");
 		viewObjects.add(p6);
-	}
+	} 
 
 }
