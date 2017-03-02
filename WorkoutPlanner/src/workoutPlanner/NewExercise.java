@@ -58,7 +58,7 @@ public class NewExercise extends Button implements MouseListener{
 		addExercise(allExercises);
 		allExercises.remove(clickedGraphic);
 		showExercises();
-	} 
+	}  
 	
 	
 	
