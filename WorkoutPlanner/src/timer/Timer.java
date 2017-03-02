@@ -210,12 +210,12 @@ public class Timer extends ClickableScreen implements TimeDisplay{
 	}
 
 	@Override
-	public String time(String time) {
+	public String time() {
 		return showTime();
 	}
 
 	@Override
-	public String currentLap(String time) {
+	public String currentLap() {
 		return laps.get(laps.size() - 1);
 	}
 

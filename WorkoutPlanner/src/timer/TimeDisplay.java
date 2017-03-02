@@ -16,9 +16,9 @@ public interface TimeDisplay {
 	
 	public String markAverageTime();
 
-	public String time(String time);
+	public String time();
 	
-	public String currentLap(String time);
+	public String currentLap();
 	
 	public void pauseTimer();
 	
