@@ -14,7 +14,8 @@ import gui.screens.ClickableScreen;
 public class InputDisplay extends ClickableScreen implements Runnable{
 	private ThemedTextLabel accentTitle;
 	private TextLabel title;
-	private TextLabel sub;
+	private TextLabel topSub;
+	private ThemedTextLabel sub;
 	private Graphic ex;
 
 public InputDisplay(int width, int height) {
@@ -37,10 +38,14 @@ public InputDisplay(int width, int height) {
 		title = new TextLabel(100,100,300,40,"Plan");
 		viewObjects.add(title);
 		viewObjects.add(accentTitle); 
-		sub = new TextLabel(300,300,400,60,"Activities");
+		
+		topSub = new TextLabel(100, 200, 200, 50, "Total");
+		viewObjects.add(topSub);
+		
+		sub = new ThemedTextLabel(300,300,400,60,"Activities", new Color(180,225,50));
 		viewObjects.add(sub);
-		ex = new Graphic(300, 200, .5, "resources/Capture.PNG");
-		viewObjects.add(ex);
+		//ex = new Graphic(300, 200, .5, "resources/Capture.PNG");
+		//viewObjects.add(ex);
 	}
 
 }
