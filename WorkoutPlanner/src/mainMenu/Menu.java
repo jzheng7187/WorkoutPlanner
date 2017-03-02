@@ -45,7 +45,6 @@ public class Menu extends ClickableScreen implements Runnable {
 		super(width, height);
 		Thread play = new Thread(this);
 		play.start();
-		// jframe.setBackground(Color.RED);
 	}
 
 	@Override
