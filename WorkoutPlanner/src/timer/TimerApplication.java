@@ -135,22 +135,31 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 			@Override
 			public void act() {
 				timer.startTimer();
-					try{
-						pauseTimer = false;
+				Thread startTimer = new Thread(new Runnable() {
 					
+					@Override
+					public void run() {
+						try{
+							pauseTimer = false;
 						
-						//we NEED NOCKLES TO FIX THIS
-						
-						while(pauseTimer == false){
-							Thread.sleep(100);
-							tt.setText(timer.time());
-							update();	
+							
+							//we NEED NOCKLES TO FIX THIS
+							
+							while(pauseTimer == false){
+								Thread.sleep(100);
+								tt.setText(timer.time());
+								update();	
+							}
+							
+							
+						}catch(InterruptedException e) {
+							e.printStackTrace(); 	
 						}
-						
-						
-					}catch(InterruptedException e) {
-						e.printStackTrace(); 	
 					}
+				});
+				startTimer.start();
+				
+					
 			}
 
 		}, Color.WHITE);
