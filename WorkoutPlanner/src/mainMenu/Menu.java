@@ -45,16 +45,15 @@ public class Menu extends ClickableScreen implements Runnable {
 		super(width, height);
 		Thread play = new Thread(this);
 		play.start();
-		// jframe.setBackground(Color.RED);
 	}
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
-		Activity = new String[5];
-		for(int i = 0; i < 5; i++){
+		Activity = new String[3];
+		for(int i = 0; i < Activity.length; i++){
 			Activity[i] = "";
 		}
-		act = new CustomTextLabel[5];
+		act = new CustomTextLabel[3];
 		exerciseList = new ArrayList<String>();
 		stopwatch = new CustomTextLabel(650, 90, 100, 50, "0.00", Color.black);
 		label = new CustomTitle(50, 50, 300, 50, "Workout", Color.white);
@@ -76,14 +75,9 @@ public class Menu extends ClickableScreen implements Runnable {
 		act[0] = new CustomTextLabel(50, 300, 200, 50, Activity[0], Color.white);
 		act[1] = new CustomTextLabel(50, 350, 200, 50, Activity[1], Color.white);
 		act[2] = new CustomTextLabel(50, 400, 200, 50, Activity[2], Color.white);
-		act[3] = new CustomTextLabel(50, 450, 200, 50, Activity[3], Color.white);
-		act[4] = new CustomTextLabel(50, 500, 200, 50, Activity[4] , Color.white);
 		view.add(act[0]);
 		view.add(act[1]);
 		view.add(act[2]);
-		view.add(act[3]);
-		view.add(act[4]);
-
 		stopwatchbut = new CustomButton(600, 55, 200, 100, "Elapsed Time", BUTTON_COLOR, new Action() {
 			@Override
 			public void act() {
@@ -161,38 +155,28 @@ public class Menu extends ClickableScreen implements Runnable {
 	}
 
 	private void updateExercises() {
-		if(exerciseList.size() < 5){
+		if(exerciseList.size() < 3){
 			exerciseList.add(0,"Exercise 1"
 					//Exercises.clickedExercise()
 					);
 		}
-		if(exerciseList.size() < 5){
+		if(exerciseList.size() < 3){
 			exerciseList.add(0,"Exercise 2"
 					//Exercises.clickedExercise()
 					);
 		}
-		if(exerciseList.size() < 5){
+		if(exerciseList.size() < 3){
 			exerciseList.add(0,"Exercise 3"
 					//Exercises.clickedExercise()
 					);
 		}
-		if(exerciseList.size() < 5){
+		if(exerciseList.size() < 3){
 			exerciseList.add(0,"Exercise 4"
 					//Exercises.clickedExercise()
 					);
-		}
-		if(exerciseList.size() < 5){
-			exerciseList.add(0,"Exercise 5"
-					//Exercises.clickedExercise()
-					);
-		}
-		if(exerciseList.size() < 5){
-			exerciseList.add(0,"Exercise 6"
-					//Exercises.clickedExercise()
-					);
 		}else{
-			exerciseList.remove(4);
-			exerciseList.add(0,"Exercise 6"
+			exerciseList.remove(2);
+			exerciseList.add(0,"Exercise 4"
 					//Exercises.clickedExercise()
 					);
 		}

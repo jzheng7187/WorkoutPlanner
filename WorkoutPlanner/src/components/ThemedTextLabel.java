@@ -14,6 +14,7 @@ public class ThemedTextLabel extends TextLabel {
 	public ThemedTextLabel(int x, int y, int w, int h, String text, Color c) {
 		super(x, y, w, h, text);
 		this.color = c;
+		update();
 	}
 
 	@Override
