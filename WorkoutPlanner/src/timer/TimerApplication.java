@@ -60,7 +60,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	public static final int MARGINX=400;
 	public static final int MARGINY=200;
 	public static final int WIDTH=200;
-	public static final int HEIGHT=75;
+	public static final int HEIGHT=120;
 	public static final int SPACE=35;
 	
 	//background
@@ -83,6 +83,9 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	private boolean pauseTimer = false;
 	
 	
+//implements interface
+	Timer timer = new Timer(800, 600);
+
 	
 	public TimerApplication(int width, int height) {
 		super(width, height);
@@ -131,31 +134,31 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		start = new ThemedButton(MARGINX-30, MARGINY, WIDTH, HEIGHT, "Start", G ,new Action(){
 			@Override
 			public void act() {
-				Timer.startTimer();
+				timer.startTimer();
 			}
 		}, Color.WHITE);
 		v.add(start);
 		stop = new ThemedButton(MARGINX+180, MARGINY, WIDTH, HEIGHT, "Stop", G ,new Action(){
 			@Override
 			public void act() {
-				Timer.stopTimer();
+				timer.pauseTimer();
 			}
 		}, Color.WHITE);
 		v.add(stop);
-		lap = new ThemedButton(MARGINX-30, MARGINY+160, WIDTH, HEIGHT, "Lap", G ,new Action(){
+		lap = new ThemedButton(MARGINX-30, MARGINY+140, WIDTH, HEIGHT, "Lap", G ,new Action(){
 			@Override
 			public void act() {
-				Timer.addLap();
+				timer.addLap();
 			}
 		}, Color.WHITE);
 		v.add(lap);
-		pause = new ThemedButton(MARGINX+180, MARGINY+160, WIDTH, HEIGHT, "Pause", G ,new Action(){
+		pause = new ThemedButton(MARGINX+180, MARGINY+140, WIDTH, HEIGHT, "Pause", G ,new Action(){
 			@Override
 			public void act() {
 				if(pauseTimer){
-					//Timer.unpauseTimer();
+					timer.unpauseTimer();
 				}else{
-					//Timer.pauseTimer();
+					timer.pauseTimer();
 				}
 			}
 		}, Color.WHITE);
