@@ -59,8 +59,8 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	//Buttons Dimensions
 	public static final int MARGINX=400;
 	public static final int MARGINY=200;
-	public static final int WIDTH=100;
-	public static final int HEIGHT=60;
+	public static final int WIDTH=200;
+	public static final int HEIGHT=75;
 	public static final int SPACE=35;
 	
 	//background
@@ -78,6 +78,11 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	public static final Color T = new Color (0,0,0);
 	public static final Color W = new Color (255,255,255);
 	public static final Color B = new Color (0,0,0);
+	
+	//Timer boolean
+	private boolean pauseTimer = false;
+	
+	
 	
 	public TimerApplication(int width, int height) {
 		super(width, height);
@@ -123,43 +128,47 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		
 		
 		//Buttons 
-		start = new ThemedButton(MARGINX, MARGINY, WIDTH, HEIGHT, "Start", G ,new Action(){
+		start = new ThemedButton(MARGINX-30, MARGINY, WIDTH, HEIGHT, "Start", G ,new Action(){
 			@Override
 			public void act() {
 				Timer.startTimer();
 			}
 		}, Color.WHITE);
 		v.add(start);
-		stop = new ThemedButton(MARGINX+110, MARGINY, WIDTH, HEIGHT, "Stop", G ,new Action(){
+		stop = new ThemedButton(MARGINX+180, MARGINY, WIDTH, HEIGHT, "Stop", G ,new Action(){
 			@Override
 			public void act() {
 				Timer.stopTimer();
 			}
 		}, Color.WHITE);
 		v.add(stop);
-		lap = new ThemedButton(MARGINX, MARGINY+80, WIDTH, HEIGHT, "Lap", G ,new Action(){
+		lap = new ThemedButton(MARGINX-30, MARGINY+160, WIDTH, HEIGHT, "Lap", G ,new Action(){
 			@Override
 			public void act() {
 				Timer.addLap();
 			}
 		}, Color.WHITE);
 		v.add(lap);
-		pause = new ThemedButton(MARGINX+110, MARGINY+80, WIDTH, HEIGHT, "Pause", G ,new Action(){
+		pause = new ThemedButton(MARGINX+180, MARGINY+160, WIDTH, HEIGHT, "Pause", G ,new Action(){
 			@Override
 			public void act() {
-				
+				if(pauseTimer){
+					//Timer.unpauseTimer();
+				}else{
+					//Timer.pauseTimer();
+				}
 			}
 		}, Color.WHITE);
 		v.add(pause);
 		
-		border1 = new ThemedBorder(T,new Action() {
+		border1 = new ThemedBorder(G,new Action() {
 			@Override
 			public void act() {
 
 			}
 		});
 		v.add(border1);
-		border2 = new ThemedBorder2(T, new Action() {
+		border2 = new ThemedBorder2(G, new Action() {
 			@Override
 			public void act() {
 
