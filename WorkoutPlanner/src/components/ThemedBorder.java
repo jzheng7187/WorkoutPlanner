@@ -15,14 +15,6 @@ public class ThemedBorder extends CustomButton {
 	public ThemedBorder(Color color, Action action) {
 		super(0, 40, 900, 20, "", color, action, Color.black);
 		this.color = color;
-	}
-	
-	public Color getColor(){
-		return color;
-	}
-	
-	public void setColor(Color c){
-		color = c;
 		update();
 	}
 	
