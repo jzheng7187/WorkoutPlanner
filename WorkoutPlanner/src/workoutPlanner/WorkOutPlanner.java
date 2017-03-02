@@ -6,7 +6,8 @@ import gui.GUIApplication;
 public class WorkOutPlanner extends GUIApplication{
 	
 	public WorkOutPlanner(int width, int height) {
-		super(width, height);
+		super(width, height, "resources/a.png");
+		
 	}
 	
 	public void initScreen() {
@@ -21,5 +22,5 @@ public class WorkOutPlanner extends GUIApplication{
 		planner.start();
 	}
 
-	
+	 
 }

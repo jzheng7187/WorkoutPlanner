@@ -1,17 +1,18 @@
 /**
  * 
  */
+package mainMenu;
 
 /**
- * @author Anna Ho
+ * @author Alex
  *
  */
-public class AnnaSecondThing {
+public class Thing {
 
 	/**
 	 * 
 	 */
-	public AnnaSecondThing() {
+	public Thing() {
 		// TODO Auto-generated constructor stub
 	}
 

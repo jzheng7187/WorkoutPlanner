@@ -1,17 +1,18 @@
 /**
  * 
  */
+package mainMenu;
 
 /**
- * @author Matthew Nguyen
+ * @author Alex
  *
  */
-public class MatthewThing {
+public class AlexSecondThing {
 
 	/**
 	 * 
 	 */
-	public MatthewThing() {
+	public AlexSecondThing() {
 		// TODO Auto-generated constructor stub
 	}
 

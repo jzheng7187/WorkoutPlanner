@@ -1,25 +1,22 @@
-package gui.components;
+package components;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-public class Button extends TextLabel implements Clickable{
+import gui.components.Action;
+import mainMenu.CustomButton;
 
+public class ThemedBorder extends CustomButton {
 	private Color color;
-	private Action action;
-	
-	public Button(int x, int y, int w, int h, String text, Color color, Action action) {
-		super(x, y, w, h, text);
-		this.action = action;
-		this.color = color;
-		update();
-	}
 
+	public ThemedBorder(Color color, Action action) {
+		super(0, 40, 900, 20, "", color, action, Color.black);
+		this.color = color;
+	}
+	
 	public Color getColor(){
 		return color;
 	}
@@ -51,15 +48,4 @@ public class Button extends TextLabel implements Clickable{
 		}	
 	}
 
-	@Override
-	public boolean isHovered(int x, int y) {
-		return x > getX() && x < getX() + getWidth() && y > getY() && y < getY() + getHeight();
-	}
-
-	@Override
-	public void act() {
-		action.act();
-	}
-
 }
-
