@@ -12,14 +12,15 @@ import gui.components.Clickable;
 
 public class NewExercise extends Button implements MouseListener{
 	
-	//allExercises ArrayList has all the exercises
-	private static ArrayList<ButtonInterfaceMatthewN> allExercises;
+	//allExercises ArrayList has all the exercises //ButtonInterfaceMatthewN
+	private static ArrayList<String> allExercises;
 	//myExercises ArrayList has all the exercises you added
 	private static ArrayList<String> myExercises = new ArrayList<String>();
 	
 	//private ArrayList<ButtonInterfaceMatthewN> ;
-	private static boolean[] clicked;
-	private static int[] value;
+	private static boolean[] clicked;//used to check if exercise was clicked
+	private static boolean[] inMyExercise;//used to check if exercise is already added
+	private static int[] value;// an array of ids to keep track of each exercise
 	private String clickedGraphic;
 	
 	//new exercise adds exercises into a list
@@ -30,29 +31,37 @@ public class NewExercise extends Button implements MouseListener{
 	
 	public static void main(String[] args) {
 		getExercises();
+		value = new int[allExercises.size()];
+		inMyExercise  = new boolean[allExercises.size()];
+		clicked  = new boolean[allExercises.size()];
 		for(int i = 0; i < allExercises.size(); i++){
-			value[i] = 1;
+			value[i] = i;
+			inMyExercise[i] = false;
 			clicked[i] = false;
 		}
+		System.out.println("All exercises and attributes");
 		for(int i = 0; i < allExercises.size(); i++){
 			System.out.println(allExercises.get(i));
 			System.out.println(value[i]);
 			System.out.println(clicked[i]);
 		}
+		System.out.println("My exercises");
+		for(int i = 0; i < myExercises.size(); i++){
+			System.out.println(myExercises.get(i));
+		}
 	}
 	
 	public void update(Graphics2D g){
 		value = new int[allExercises.size()];
+		inMyExercise  = new boolean[allExercises.size()];
 		clicked  = new boolean[allExercises.size()];
 		addExercise(allExercises);
 		allExercises.remove(clickedGraphic);
 		showExercises();
-	} 
+	}  
 	
 	
-	public ArrayList<String> showExercises(){
-		return myExercises;
-	}
+	
 //	public boolean mouseClicked() {
 //		if(isHovered(getX(),getY())){
 //			return true;
@@ -60,12 +69,10 @@ public class NewExercise extends Button implements MouseListener{
 //		return false;
 //		
 //	}
-	
 	@Override
 	public boolean isHovered(int x, int y) {
 		return x>getX() && x<getX()+getWidth() && y > getY() && y<getY()+getHeight();
 	}
-	
 	//highlights picture when mouse hovers over image
 	public boolean highlight(){
 		for(int i = 0; i <  allExercises.size(); i++){
@@ -76,50 +83,59 @@ public class NewExercise extends Button implements MouseListener{
 			}
 		}
 	}
-	
 	//checks if exercise that is clicked on was already clicked on or not.  
 	//If it was not yet clicked on it will set the value to 0
 	public boolean isClicked(){
-		for(int i = 0; i < value.length; i++){
-			if(value[i] == 1){
-				value[i]--;
-				return true;
+		return false;
+	}
+	@Override
+	public void mouseClicked(MouseEvent g) {
+		for(Clickable c: allExercises){
+			if(c.isHovered(g.getX(), g.getY())){
+				c.act();
+				break;
 			}
 		}
-		return false;
 	}
 	
 	//adds exercises to myExercises
-	public ArrayList<String> addExercise(ArrayList<ButtonInterfaceMatthewN> g){
-		boolean clickedAgain = false;
-		
-		for(int i = 0; i < value.length; i++){
-			if(value[i] == 0 && isHovered(getX(),getY())){
-				System.out.println("You have already chosen this exercise.");
-				g.highlight();
-			}else{
+	public static ArrayList<String> addExercise(ArrayList<String> g){
+		for(int i = 0; i <  allExercises.size(); i++){
+			if(clicked[i] == true && inMyExercise[i] == false){
 				myExercises.add(allExercises.get(i));
-				allExercises.remove(allExercises.get(i));
-				return myExercises;
+				inMyExercise[i] = true;
+				value[i] = myExercises.size()-1;
+			}else{
+				if(inMyExercise[i] == true){
+					System.out.println("You have already added "+allExercises.get(i));
+				}else{
+					System.out.println("Nothing done to "+allExercises.get(i));
+				}
 			}
 		}
-		update();
-	}
-	
-	public static void getExercises(){
-		allExercises = new ArrayList<ButtonInterfaceMatthewN>();
-		//swap with images 
-//		allExercises.addAll("Push-up");
-//		allExercises.addAll("Curl-up");
-//		allExercises.add("Sit-up");
-//		allExercises.add("Bench Press");
-//		allExercises.add("Plank");
-//		allExercises.add("Dips");
-//		allExercises.addAll("Squats");
-	}
-	
-	public void startExercise(){
+		//update();
+		return myExercises;
 		
+		
+	}
+	public ArrayList<String> showExercises(){
+		return myExercises;
+	}
+	public static void getExercises(){
+		allExercises = new ArrayList<String>();
+		//swap with images 
+		allExercises.add("Treadmill");
+		allExercises.add("Squats");
+		allExercises.add("Crunches");
+		allExercises.add("Cycling");
+		allExercises.add("Push-up");
+		allExercises.add("Jump Rope");
+		//treadmill
+		//squat
+		//crunch
+		//cycling
+		//push-up
+		//jump rope
 	}
 	
 	@Override
@@ -143,13 +159,5 @@ public class NewExercise extends Button implements MouseListener{
 		
 	}
 	
-	@Override
-	public void mouseClicked(MouseEvent g) {
-		for(Clickable c: allExercises){
-			if(c.isHovered(g.getX(), g.getY())){
-				c.act();
-				break;
-			}
-		}
-	}
+	
 }
