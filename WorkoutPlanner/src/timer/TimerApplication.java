@@ -114,6 +114,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		}); 
 		v.add(title2);
 		
+		
 		//Creates Total time and current lap
 		totalTime1 = new ThemedTextLabel(50,SPACE*5,50,30, "Total", G);
 		v.add(totalTime1);
