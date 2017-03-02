@@ -45,9 +45,12 @@ public class NewExercise extends Button implements MouseListener{
 			System.out.println(value[i]);
 			System.out.println(clicked[i]);
 		}
+		clicked[0] = true;
+		addExercise(allExercises);
 		System.out.println("My exercises");
 		for(int i = 0; i < myExercises.size(); i++){
 			System.out.println(myExercises.get(i));
+			System.out.println(value[i]);
 		}
 	}
 	
@@ -105,6 +108,7 @@ public class NewExercise extends Button implements MouseListener{
 				myExercises.add(allExercises.get(i));
 				inMyExercise[i] = true;
 				value[i] = myExercises.size()-1;
+				System.out.println(allExercises.get(i)+" was added to my exercise.");
 			}else{
 				if(inMyExercise[i] == true){
 					System.out.println("You have already added "+allExercises.get(i));
