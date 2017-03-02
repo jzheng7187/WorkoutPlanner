@@ -1,35 +1,23 @@
-package gui.components;
+package mainMenu;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
-/**@
- * 
-* @author Alam 
-* Use this method to create the titles 
-* 40 spaces for each letter and 20 for spaces.
-*
-*/
+import gui.components.Component;
 
-
-public class TextHeadder extends TextLabel implements Clickable{	
-	//FIELD
+public class CustomTitle extends Component {
 	private String text;
 	private String font;
 	private int size;
 	private Color color;
-	private Action newAction;
-	
-	public TextHeadder(int x, int y, int w, int h, String text,Color color, Action act) {
-	
-		super(x, y, w, h, text);
+	public CustomTitle(int x, int y, int w, int h, String text,Color color) {
+		super(x, y, w, h);
 		this.text = text;
-		this.font = "Helvetica";
-		this.size = 55;
+		this.font = "Courier New";
+		this.size = 50;
 		this.color = color;
-		newAction = act;
 		update();
 	}
 
@@ -47,40 +35,29 @@ public class TextHeadder extends TextLabel implements Clickable{
 	public String getText() {
 		return text;
 	}
-	
+
 	public void setText(String text) {
 		this.text = text;
 		update();
 	}
-	
+
 	public String getFont() {
 		return font;
 	}
-	
+
 	public void setFont(String font) {
 		this.font = font;
 		update();
 	}
-	
+
 	public int getSize() {
 		return size;
 	}
 
-		public void setSize(int size) {
-			this.size = size;
-			update();
-		}
-
-		@Override
-		public boolean isHovered(int x, int y) {
-			return x > getX() && x < getX() + getWidth() && y > getY() && y < getY() + getHeight();
-		}
-
-		@Override
-		public void act() {
-			newAction.act();
-			
-		}
-
+	public void setSize(int size) {
+		this.size = size;
+		update();
 	}
 
+
+}

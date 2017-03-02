@@ -21,7 +21,7 @@ public class workoutPlanner extends GUIApplication {
 	 */
 	
 	public static workoutPlanner app;
-	public static Screen timerScreen;
+	public static TimerApplication timerScreen;
 	public static Screen exerciseScreen;
 	public static Screen stopwatchScreen;
 	public static Screen ws;

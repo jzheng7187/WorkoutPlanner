@@ -1,5 +1,7 @@
 package timer;
 
+import gui.components.TextLabel;
+
 /**
  * 
  * @author Nikita Smirnov 

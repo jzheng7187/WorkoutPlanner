@@ -11,6 +11,8 @@ import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import components.ThemedBorder;
+import components.ThemedBorder2;
 import components.ThemedTextLabel;
 import gui.components.Action;
 import gui.components.Button;
@@ -21,6 +23,8 @@ import gui.components.ThemedButton;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
 import main.workoutPlanner;
+import timer.TimeDisplay;
+
 
 /**
  * @author Alam
@@ -55,13 +59,13 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	//Buttons Dimensions
 	public static final int MARGINX=400;
 	public static final int MARGINY=200;
-	public static final int WIDTH=100;
-	public static final int HEIGHT=60;
+	public static final int WIDTH=200;
+	public static final int HEIGHT=75;
 	public static final int SPACE=35;
 	
 	//background
-	private BufferedImage image;
-	
+	private ThemedBorder border1;
+	private ThemedBorder2 border2;
 	
 	
 	//TODO  removed if unnecessary
@@ -70,10 +74,15 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	//lime green color temp out of service until background is fixed.
 	//TODO
 	//Color g = new Color (180,225,50);
-	public static final Color T = new Color (180,225,50);
-	public static final Color G = new Color (0,0,0);
+	public static final Color G = new Color (180,225,50);
+	public static final Color T = new Color (0,0,0);
 	public static final Color W = new Color (255,255,255);
 	public static final Color B = new Color (0,0,0);
+	
+	//Timer boolean
+	private boolean pauseTimer = false;
+	
+	
 	
 	public TimerApplication(int width, int height) {
 		super(width, height);
@@ -94,7 +103,12 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		}); 
 		//adds title to the page
 		v.add(title1);
-		title2 = new TextHeadder(185,SPACE*2,160,50, "Watch", W, null); 
+		title2 = new TextHeadder(185,SPACE*2,160,50, "Watch", W, new Action(){
+			@Override
+			public void act() {
+				workoutPlanner.app.setScreen(workoutPlanner.ws);
+			}
+		}); 
 		v.add(title2);
 		
 		//Creates Total time and current lap
@@ -114,36 +128,53 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		
 		
 		//Buttons 
-		start = new ThemedButton(MARGINX, MARGINY, WIDTH, HEIGHT, "Start", G ,new Action(){
+		start = new ThemedButton(MARGINX-30, MARGINY, WIDTH, HEIGHT, "Start", G ,new Action(){
 			@Override
 			public void act() {
-				
+				Timer.startTimer();
 			}
 		}, Color.WHITE);
 		v.add(start);
-		stop = new ThemedButton(MARGINX+110, MARGINY, WIDTH, HEIGHT, "Stop", G ,new Action(){
+		stop = new ThemedButton(MARGINX+180, MARGINY, WIDTH, HEIGHT, "Stop", G ,new Action(){
 			@Override
 			public void act() {
-				
+				Timer.stopTimer();
 			}
 		}, Color.WHITE);
 		v.add(stop);
-		lap = new ThemedButton(MARGINX, MARGINY+80, WIDTH, HEIGHT, "Lap", G ,new Action(){
+		lap = new ThemedButton(MARGINX-30, MARGINY+160, WIDTH, HEIGHT, "Lap", G ,new Action(){
 			@Override
 			public void act() {
-				
+				Timer.addLap();
 			}
 		}, Color.WHITE);
 		v.add(lap);
-		pause = new ThemedButton(MARGINX+110, MARGINY+80, WIDTH, HEIGHT, "Pause", G ,new Action(){
+		pause = new ThemedButton(MARGINX+180, MARGINY+160, WIDTH, HEIGHT, "Pause", G ,new Action(){
 			@Override
 			public void act() {
-				
+				if(pauseTimer){
+					//Timer.unpauseTimer();
+				}else{
+					//Timer.pauseTimer();
+				}
 			}
 		}, Color.WHITE);
 		v.add(pause);
 		
-		
+		border1 = new ThemedBorder(G,new Action() {
+			@Override
+			public void act() {
+
+			}
+		});
+		v.add(border1);
+		border2 = new ThemedBorder2(G, new Action() {
+			@Override
+			public void act() {
+
+			}
+		});
+		v.add(border2);
 	//add lines
 //		line = new DrawLines(0,0,0,0,W);
 //		v.add(line);
@@ -154,15 +185,13 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		// TODO Auto-generated method stub
 		
 	}
-	public void update(Graphics2D g){
-		
+
+	@Override
+	public void drawBackground(Graphics2D g){
+		Color c = new Color(0,0,0);
+		g.setColor(c);
+		g.fillRect(0, 0, getWidth(), getHeight());
 	}
-//	@Override
-//	public void drawBackground(Graphics2D g){
-//		Color c = new Color(180,225,50);
-//		g.setColor(c);
-//		g.fillRect(0, 0, image.getWidth(), image.getHeight());
-//	}
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
@@ -178,15 +207,19 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		
+		
+		
 //	public KeyListener getKeyListner(){
 //		return this;
 //	}
 		
 	}
+
 	@Override
 	public void run() {
-		
+		// TODO Auto-generated method stub
 		
 	}
+
 	
 }
