@@ -8,15 +8,15 @@ package timer;
 
 public interface TimeDisplay {
 	
-	public void markLongestTime(String time);
+	public String markLongestTime();
 	
-	public void markShortestTime(String time);
+	public String markShortestTime();
 	
-	public void markAverageTime(String time);
+	public String markAverageTime();
 
-	public void time(String time);
+	public String time(String time);
 	
-	public void currentLap(String time);
+	public String currentLap(String time);
 	
 	public void pauseTimer();
 	
