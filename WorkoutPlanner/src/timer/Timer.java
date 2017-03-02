@@ -65,28 +65,30 @@ public class Timer extends ClickableScreen implements TimeDisplay{
 //	}
 	
 	public static String showTime() {
+		long elapsedMilliSeconds = (System.currentTimeMillis() - startTime) % 1000;
 		long elapsedSeconds = (System.currentTimeMillis() - startTime) / 1000; // Convert time (milliseconds) to seconds.
 		
 		long secondsDisplay = elapsedSeconds % 60; // Set the current amount of seconds.
 		long minutesDisplay = elapsedSeconds / 60; // Set the current amount of minutes.
 		
 		if (secondsDisplay < 10){
-			return minutesDisplay + ":0" + secondsDisplay; //Set currentTime to a standard clock string.
+			return minutesDisplay + ":0" + secondsDisplay + ":" + elapsedMilliSeconds; //Set currentTime to a standard clock string.
 		} else {
-			return minutesDisplay + ":" + secondsDisplay; //Set currentTime to a standard clock string.
+			return minutesDisplay + ":" + secondsDisplay + ":" + elapsedMilliSeconds; //Set currentTime to a standard clock string.
 		}
 	}
 	
 	public static String showTimeSinceLap(long time) {
+		long elapsedMilliSeconds = time % 1000;
 		long elapsedSeconds = time / 1000; // Convert time (milliseconds) to seconds.
 		
 		long secondsDisplay = elapsedSeconds % 60; // Set the current amount of seconds.
 		long minutesDisplay = elapsedSeconds / 60; // Set the current amount of minutes.
 		
 		if (secondsDisplay < 10){
-			return minutesDisplay + ":0" + secondsDisplay; //Set currentTime to a standard clock string.
+			return minutesDisplay + ":0" + secondsDisplay + ":" + elapsedMilliSeconds; //Set currentTime to a standard clock string.
 		} else {
-			return minutesDisplay + ":" + secondsDisplay; //Set currentTime to a standard clock string.
+			return minutesDisplay + ":" + secondsDisplay + ":" + elapsedMilliSeconds; //Set currentTime to a standard clock string.
 		}
 	}
 	
