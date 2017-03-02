@@ -32,53 +32,37 @@ public class Timer extends ClickableScreen implements TimeDisplay{
 	}
 	
 	public static void main(String[] args) {
-		startTime();
-		try {
-			
-			while (count == true) {
-				Thread.sleep(1000); // 1 Second timer (1000 milliseconds)
-				
-				System.out.println(showTime()); //Print currentTime
-				
-				addLap(); //Add a new lap to ArrayList laps
-				System.out.println(ms); //Print ArrayList laps
-				System.out.println(laps); //Print ArrayList laps
-			}
-			
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+//		startTime();
+//		try {
+//			
+//			while (count == true) {
+//				Thread.sleep(1000); // 1 Second timer (1000 milliseconds)
+//				
+//				System.out.println(showTime()); //Print currentTime
+//				
+//				addLap(); //Add a new lap to ArrayList laps
+//				System.out.println(ms); //Print ArrayList laps
+//				System.out.println(laps); //Print ArrayList laps
+//			}
+//			
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	public static void startTime() {
 //		count = true; //Allow the timer to count
-		
-		try {
-			
-			while (count == true) {
-				Thread.sleep(1000); // 1 Second timer (1000 milliseconds)
-				
-				System.out.println(showTime()); //Print currentTime
-				
-				addLap(); //Add a new lap to ArrayList laps
-				System.out.println(ms); //Print ArrayList laps
-				System.out.println(laps); //Print ArrayList laps
-			}
-			
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		
 		startTime = System.currentTimeMillis(); //Start keeping track of startTime.
 		laps = new ArrayList<String>(); //Instantiate ArrayList.
 		ms = new ArrayList<Long>(); //Instantiate ArrayList.
 	}
 	
-	public static void pauseTime() {
-//		count = false; //Stop the timer from counting
-		
-		currentTimeM(); // Set the time since the start of timer.
-	}
+//	public static void pauseTime() {
+////		count = false; //Stop the timer from counting
+//		
+//		currentTimeM(); // Set the time since the start of timer.
+//	}
 	
 	public static String showTime() {
 		long elapsedSeconds = (System.currentTimeMillis() - startTime) / 1000; // Convert time (milliseconds) to seconds.
@@ -237,25 +221,26 @@ public class Timer extends ClickableScreen implements TimeDisplay{
 
 	@Override
 	public void pauseTimer() {
-		// TODO Auto-generated method stub
+		pauseTime = System.currentTimeMillis() - startTime;
 		
 	}
 
 	@Override
 	public void startTimer() {
+		startTime = System.currentTimeMillis();
 		startTime();
 		
 	}
 
 	@Override
 	public void unpauseTimer() {
-		// TODO Auto-generated method stub
+		startTime = (System.currentTimeMillis() - pauseTime) + startTime;
 		
 	}
 
 	@Override
 	public void resetTimer() {
-		// TODO Auto-generated method stub
+		startTime = (System.currentTimeMillis()) + startTime;
 		
 	}
 }
