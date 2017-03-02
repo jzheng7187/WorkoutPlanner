@@ -1,6 +1,7 @@
 package workoutPlanner;
 
 import java.awt.Color;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 //import components.ThemedTextLabel;
 
@@ -14,6 +15,12 @@ import gui.components.Visible;
 import gui.screens.ClickableScreen;
 
 public class InputDisplay extends ClickableScreen implements Runnable{
+	public static final int indexColumn = 60;
+	public static final int activityColumn = 140;
+	public static final int statusColumn = 340;
+	public static final int headerY = 250;
+	private int currentRow ;
+	public static final int rowHeight = 50;
 	private TextLabel title;
 	private ThemedTextLabel accentTitle;
 	private TextLabel topSub;
@@ -31,7 +38,7 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 
 public InputDisplay(int width, int height) {
 		super(width, height);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@Override
@@ -45,17 +52,19 @@ public InputDisplay(int width, int height) {
 		//tiles
 		title = new TextLabel(60,60,300,40,"Plan");
 		viewObjects.add(title); 
-		accentTitle = new ThemedTextLabel(100,60,300,40,"Your Routine", new Color(180,225,50));
+		title.setSize(40);
+		accentTitle = new ThemedTextLabel(150,60,300,40,"Your Routine", new Color(180,225,50));
 		viewObjects.add(accentTitle);
+		accentTitle.setSize(40);
 		//subtitles
 		topSub = new TextLabel(60, 160, 200, 50, "Total");
 		viewObjects.add(topSub);
 		sub = new ThemedTextLabel(110,160,200,50,"Activities:", new Color(180,225,50));
 		viewObjects.add(sub);
 		//next tiles
-		selected = new TextLabel(60, 200, 200 , 50, "Selected");
+		selected = new TextLabel(60, 180, 200 , 50, "Selected");
 		viewObjects.add(selected);
-		activity = new ThemedTextLabel(145, 200, 200, 50, "Activity:", new Color(180,225,50));
+		activity = new ThemedTextLabel(145, 180, 200, 50, "Activity:", new Color(180,225,50));
 		viewObjects.add(activity);
 		//borders
 		b1= new ThemedBorder(Color.black, null);
@@ -75,6 +84,35 @@ public InputDisplay(int width, int height) {
 		viewObjects.add(p5);
 		p6 = new Graphic(660, 300, .75, "resources/pushup.jpg");
 		viewObjects.add(p6);
+//		for(int i=0; i<viewObjects.size(); i++){
+//			if(viewObjects.get(i) instanceof TextLabel){
+//				TextLabel t = (TextLabel)viewObjects.get(i);
+//				t.setSize(25);
+//			}
+//		}
+		ThemedTextLabel num = new ThemedTextLabel(indexColumn, headerY, 200, 50, "#", Color.black);
+		viewObjects.add(num);
+		ThemedTextLabel act = new ThemedTextLabel(activityColumn, headerY, 200, 50, "Activity", new Color(180,225,50));
+		viewObjects.add(act);
+		ThemedTextLabel status = new ThemedTextLabel(statusColumn, headerY, 200, 50, "Status", new Color(180,225,50));
+		viewObjects.add(status);
+		currentRow = 1;
+	
 	} 
+	public void addActivity(String theExerciseName, String stat){
+		ThemedTextLabel num = new ThemedTextLabel(indexColumn, headerY+rowHeight*currentRow, 200, 50, currentRow+"", Color.black);
+		viewObjects.add(num);
+		ThemedTextLabel act = new ThemedTextLabel(activityColumn, headerY+rowHeight*currentRow, 200, 50, theExerciseName, new Color(180,225,50));
+		viewObjects.add(act);
+		if (stat != null){
+			ThemedTextLabel status = new ThemedTextLabel(statusColumn, headerY+rowHeight*currentRow, 200, 50, stat, new Color(180,225,50));
+			viewObjects.add(status);
+		}
+		currentRow++;
+	}
+	
+//	public void mouseClicked(MouseEvent e){
+//		addActivity("another item","done");
+//	}
 
 }
