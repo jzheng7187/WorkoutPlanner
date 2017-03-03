@@ -218,10 +218,18 @@ public class Timer extends ClickableScreen implements TimeDisplay{
 
 	@Override
 	public String currentLap() {
-		if(laps.size() > 0){
-			return laps.get(laps.size() - 1);
+//		if(laps.size() > 0){
+//			return laps.get(laps.size() - 1);
+//		}
+//		
+		if (ms.size() == 0){
+			currentTimeM();
+			return showTimeSinceLap(currentTimeM);
 		}
-		return "0:00";
+		else {
+			newLapTimeM();
+			return showTimeSinceLap(newLapTimeM);
+		}
 	}
 
 	@Override
