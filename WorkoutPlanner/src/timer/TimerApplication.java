@@ -176,6 +176,7 @@ public class TimerApplication extends ClickableScreen implements Runnable{
 			public void act() {
 				pauseTimer = true;
 				timer.pauseTimer();
+				
 				ThemedTextLabel stats = new ThemedTextLabel(MARGINX-30,MARGINY+(SPACE*8),200,30, "Stats: ", G);
 				//ThemedTextLabel longest = new ThemedTextLabel(MARGINX-30,MARGINY+(SPACE*9),200,30, timer.markLongestTime(), G);
 				//ThemedTextLabel Shortest = new ThemedTextLabel(MARGINX-30,(SPACE*10),200,30, timer.markShortestTime(), G);
