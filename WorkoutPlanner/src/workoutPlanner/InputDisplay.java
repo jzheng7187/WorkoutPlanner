@@ -71,10 +71,10 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 		sub = new ThemedTextLabel(110,160,200,50,"Activities:", new Color(180,225,50));
 		viewObjects.add(sub);
 		//next tiles
-		selected = new TextLabel(60, 180, 200 , 50, "Selected");
-		viewObjects.add(selected);
-		activity = new ThemedTextLabel(145, 180, 200, 50, "Activity:", new Color(180,225,50));
-		viewObjects.add(activity);
+		//selected = new TextLabel(60, 180, 200 , 50, "Selected");
+		//viewObjects.add(selected);
+		//activity = new ThemedTextLabel(145, 180, 200, 50, "Activity:", new Color(180,225,50));
+		//viewObjects.add(activity);
 		//borders
 		b1= new ThemedBorder(Color.black, null);
 		viewObjects.add(b1);//horizontal
@@ -167,8 +167,8 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 		currentRow = 1;
 		for(int i = 0; i <  myExercises.size(); i++){
 			addActivity(myExercises.get(i), "Start");
-			number = new ThemedTextLabel(200,160,200,50,(currentRow-1)+"", new Color(180,225,50));
-			viewObjects.add(number);
+			//number = new ThemedTextLabel(200,160,200,50,(currentRow-1)+"", new Color(180,225,50));
+			//viewObjects.add(number);
 
 		}
 //		number = new ThemedTextLabel(200,160,200,50,"   ", Color.white);
