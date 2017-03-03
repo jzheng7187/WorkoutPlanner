@@ -82,6 +82,8 @@ public class TimerApplication extends ClickableScreen implements Runnable{
 	
 	//Timer boolean
 	private static boolean pauseTimer = false;
+	//completion boolean
+	private static boolean complete = false;
 	
 	//getters for Hunter
 	public static boolean getTimerStatus(){
@@ -90,6 +92,9 @@ public class TimerApplication extends ClickableScreen implements Runnable{
 	
 	public static String getTime(){
 		return timer.time();	
+	}
+	public static boolean getCompletionStatus(){
+		return complete;
 	}
 	
 	//implements interface
@@ -144,8 +149,8 @@ public class TimerApplication extends ClickableScreen implements Runnable{
 			@Override
 			public void act() {
 				timer.startTimer();
+				complete = false;
 				Thread startTimer = new Thread(new Runnable() {
-					
 					@Override
 					public void run() {
 						try{
@@ -175,6 +180,7 @@ public class TimerApplication extends ClickableScreen implements Runnable{
 			@Override
 			public void act() {
 				pauseTimer = true;
+				complete = true;
 				timer.pauseTimer();
 				
 				ThemedTextLabel stats = new ThemedTextLabel(MARGINX-30,MARGINY+(SPACE*8),200,30, "Stats: ", W);
