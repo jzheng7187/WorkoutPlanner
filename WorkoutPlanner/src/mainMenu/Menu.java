@@ -50,6 +50,7 @@ public class Menu extends ClickableScreen implements Runnable {
 	private ArrayList<String> finishedList;
 	private ArrayList<Long> timeFinished;
 	private ArrayList<String> exerciseList;
+	private boolean isTimerStop;
 
 	public Menu(int width, int height) {
 		super(width, height);
@@ -78,9 +79,9 @@ public class Menu extends ClickableScreen implements Runnable {
 		view.add(label);
 		label2 = new TextHeadder(280, 60, 300, 50, "Planner", Color.black,null);
 		view.add(label2);
-		remain = new ThemedTextLabel(50, 200, 120, 50, "Remaining", Color.white);
+		remain = new ThemedTextLabel(50, 200, 120, 50, "Exercises", Color.white);
 		view.add(remain);
-		exerci = new ThemedTextLabel(175, 200, 100, 50, "Exercises", Color.black);
+		exerci = new ThemedTextLabel(175, 200, 100, 50, "Checked", Color.black);
 		view.add(exerci);
 		stat = new ThemedTextLabel(330, 300, 100, 50, "Status", Color.black);
 		view.add(stat);
@@ -145,7 +146,10 @@ public class Menu extends ClickableScreen implements Runnable {
 
 			@Override
 			public void act() {
-				isTimerOn = true;
+				isTimerStop = false;
+				TimerApplication.setPauseTimer(true);
+				TimerApplication.setComplete(true);
+				TimerApplication.timer.pauseTimer();
 			}
 		}, Color.BLACK);
 		view.add(stop);
@@ -172,6 +176,7 @@ public class Menu extends ClickableScreen implements Runnable {
 		updateExercises();
 		while(true){
 			sTimer = TimerApplication.getTime();
+			isTimerOn = TimerApplication.getTimerStatus();
 			if(!isTimerOn){
 				changeTime(sTimer);
 			}
