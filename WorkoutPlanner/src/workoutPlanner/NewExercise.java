@@ -25,7 +25,7 @@ public class NewExercise extends Button implements MouseListener{
 	//new exercise adds exercises into a list
 	public NewExercise(int x, int y, int w, int h, String text, Color color, Action action) {
 		super(x, y, w, h, text, color, action);
-		update();
+		getExercises();
 	}
 	//used for debugging
 	/*
@@ -90,6 +90,9 @@ public class NewExercise extends Button implements MouseListener{
 		allExercises.add("Cycling");
 		allExercises.add("Pushup");
 		allExercises.add("Jumprope");
+		value = new int[allExercises.size()];
+		inMyExercise  = new boolean[allExercises.size()];
+		clicked  = new boolean[allExercises.size()];
 	}
 	//checks if the exercise was clicked on.  
 	public static boolean isClicked(int index){
