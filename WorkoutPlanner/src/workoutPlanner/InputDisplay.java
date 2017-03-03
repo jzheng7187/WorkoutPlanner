@@ -9,6 +9,7 @@ import components.ThemedBorder;
 import components.ThemedBorder2;
 import components.ThemedTextLabel;
 import gui.components.Action;
+import gui.components.Button;
 import gui.components.ClickableGraphic;
 import gui.components.Graphic;
 //import gui.Screen;
@@ -38,7 +39,10 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 	private Graphic p4;
 	private Graphic p5;
 	private Graphic p6;
-
+	private Button button1;
+	private Button button2;
+	
+	
 	public InputDisplay(int width, int height) {
 		super(width, height);
 		
@@ -53,12 +57,12 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		//tiles
-		title = new TextLabel(60,60,300,40,"Plan");
+		title = new TextLabel(60,80,350,60,"Plan");
 		viewObjects.add(title); 
-		title.setSize(40);
-		accentTitle = new ThemedTextLabel(150,60,300,40,"Your Routine", new Color(180,225,50));
+		title.setSize(60);
+		accentTitle = new ThemedTextLabel(180,80,350,60,"Your Routine", new Color(180,225,50));
 		viewObjects.add(accentTitle);
-		accentTitle.setSize(40);
+		accentTitle.setSize(60);
 		//subtitles
 		topSub = new TextLabel(60, 160, 200, 50, "Total");
 		viewObjects.add(topSub);
@@ -123,6 +127,20 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 //				t.setSize(25);
 //			}
 //		}
+		//buttons
+		button1 = new Button (60, 600, 200, 50, "Remove", Color.black, new Action(){
+			public void act(){
+				ExercisesInterfaceJonathanZ.removeExercise();
+			}
+		});
+		viewObjects.add(button1);
+		button2 = new Button (300, 600, 200, 50, "Change Order", Color.black, new Action(){
+			public void act(){
+				ExercisesInterfaceJonathanZ.changeOrder();
+			}
+		});
+		viewObjects.add(button2);
+		//column headers
 		ThemedTextLabel num = new ThemedTextLabel(indexColumn, headerY, 200, 50, "#", Color.black);
 		viewObjects.add(num);
 		ThemedTextLabel act = new ThemedTextLabel(activityColumn, headerY, 200, 50, "Activity", new Color(180,225,50));
