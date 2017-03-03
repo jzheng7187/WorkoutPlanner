@@ -19,6 +19,7 @@ import workoutPlanner.NewExercise;
 
 public class Menu extends ClickableScreen implements Runnable {
 	private Timer timerInterface;
+	private Timer TimeDisplay;
 	private CustomButton timer;
 	private CustomButton exercises;
 	private CustomButton stop;
@@ -65,7 +66,7 @@ public class Menu extends ClickableScreen implements Runnable {
 		for(int i = 0; i < Activity.length; i++){
 			Activity[i] = "";
 		}
-		
+			
 		
 		act = new ThemedTextLabel[3];
 		fin = new ThemedTextLabel[3];
@@ -100,9 +101,9 @@ public class Menu extends ClickableScreen implements Runnable {
 		view.add(act[0]);
 		view.add(act[1]);
 		view.add(act[2]);
-		fin[0] = new ThemedTextLabel(50, 450, 200, 50, Activity[0], Color.white);
-		fin[1] = new ThemedTextLabel(50, 500, 200, 50, Activity[1], Color.white);
-		fin[2] = new ThemedTextLabel(50, 550, 200, 50, Activity[2], Color.white);
+		fin[0] = new ThemedTextLabel(50, 500, 200, 50, TimerApplication.getTime(), Color.white);
+		fin[1] = new ThemedTextLabel(50, 550, 200, 50, TimerApplication.getTime(), Color.white);
+		fin[2] = new ThemedTextLabel(50, 600, 200, 50, TimerApplication.getTime(), Color.white);
 		view.add(fin[0]);
 		view.add(fin[1]);
 		view.add(fin[2]);
@@ -188,19 +189,21 @@ public class Menu extends ClickableScreen implements Runnable {
 			finishedList.add(exerciseList.get(i));
 			exerciseList.remove(i);
 		};
-		for(int i = 0; i < timeFinished.size(); i++ ){
-			
+		//if the pause timer is true and and complete is true
+		//gettime();
+//		for(int i = 0; i < timeFinished.size(); i++ ){
+//			
 //			double startTime = Timer;
 //			
 //			if(){
 //				
 //			}
-		long startTime = System.nanoTime();
-		run();
-		long endTime = System.nanoTime();
-		long duration = (endTime - startTime);
-		timeFinished.add(duration);
-		};
+//		long startTime = System.nanoTime();
+//		run();
+//		long endTime = System.nanoTime();
+//		long duration = (endTime - startTime);
+//		timeFinished.add(duration);
+//		};
 	}
 	private void updateExercises() {
 		if(exerciseList.size() < 3){
