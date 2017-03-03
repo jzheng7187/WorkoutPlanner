@@ -16,7 +16,7 @@ public class NewExercise extends Button implements MouseListener{
 	private static ArrayList<String> allExercises;
 	//myExercises  has all the exercises you decide to add
 	private static ArrayList<String> myExercises = new ArrayList<String>();
-	
+	private static boolean isInitialize = false;//used to initialize variables for the first time
 	private static boolean[] clicked;//used to check if exercise was clicked
 	private static boolean[] inMyExercise;//used to check if exercise is already added
 	private static int[] value;// an array of ids to keep track of each exercise
@@ -26,7 +26,6 @@ public class NewExercise extends Button implements MouseListener{
 	public NewExercise(int x, int y, int w, int h, String text, Color color, Action action) {
 		super(x, y, w, h, text, color, action);
 		getExercises();
-		update();
 	}
 	//used for debugging
 	/*
@@ -57,24 +56,6 @@ public class NewExercise extends Button implements MouseListener{
 		
 	}
 	*/
-	public void update(Graphics2D g){
-		allExercises = new ArrayList<String>();
-		//swap with images 
-		allExercises.add("Treadmill");
-		allExercises.add("Squats");
-		allExercises.add("Crunches");
-		allExercises.add("Cycling");
-		allExercises.add("Pushup");
-		allExercises.add("Jumprope");
-		value = new int[allExercises.size()];
-		inMyExercise  = new boolean[allExercises.size()];
-		clicked  = new boolean[allExercises.size()];
-		/*
-		addExercise(allExercises);
-		allExercises.remove(clickedGraphic);
-		showExercises();
-		*/
-	}  
 	@Override
 	public boolean isHovered(int x, int y) {
 		return x>getX() && x<getX()+getWidth() && y > getY() && y<getY()+getHeight();
@@ -118,45 +99,69 @@ public class NewExercise extends Button implements MouseListener{
 	//checks if an exercise has been clicked on and adds it to myExercises. if the exercise is already in myExercises, it will not be added.
 	public static ArrayList<String> addExercise(ArrayList<String> g){
 		for(int i = 0; i <  allExercises.size(); i++){
-			if(isClicked(i) && isInMyExercises(i)){
+			if(isClicked(i) && !isInMyExercises(i)){
 				myExercises.add(allExercises.get(i));
 				inMyExercise[i] = true;
 				System.out.println(allExercises.get(i)+" was added to my exercise.");
 			}else{
 				if(isInMyExercises(i)){
-					System.out.println("You have already added "+allExercises.get(i));
+					System.out.println(allExercises.get(i)+" was already included in your exercise");
 				}else{
 					System.out.println("Nothing done to "+allExercises.get(i));
 				}
 			}
 		}
-		//update();
+		System.out.println(myExercises);
 		return myExercises;
 	}
 	public ArrayList<String> showExercises(){
 		return myExercises;
 	}
 	public static void clickTreadmill(){
+		if(!isInitialize){
+			isInitialize = true;
+			getExercises();
+		}
 		clicked[0] = true;
 		addExercise(allExercises);
 	}
 	public static void clickSquats(){
+		if(!isInitialize){
+			isInitialize = true;
+			getExercises();
+		}
 		clicked[1] = true;
 		addExercise(allExercises);
 	}
 	public static void clickCrunches(){
+		if(!isInitialize){
+			isInitialize = true;
+			getExercises();
+		}
 		clicked[2] = true;
 		addExercise(allExercises);
 	}
 	public static void clickCycling(){
+		if(!isInitialize){
+			isInitialize = true;
+			getExercises();
+		}
 		clicked[3] = true;
 		addExercise(allExercises);
 	}
 	public static void clickPushup(){
+		if(!isInitialize){
+			isInitialize = true;
+			getExercises();
+		}
 		clicked[4] = true;
 		addExercise(allExercises);
 	}
 	public static void clickJumprope(){
+		if(!isInitialize){
+			isInitialize = true;
+			getExercises();
+		}
 		clicked[5] = true;
 		addExercise(allExercises);
 	}
