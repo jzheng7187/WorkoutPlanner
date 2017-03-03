@@ -50,6 +50,7 @@ public class Menu extends ClickableScreen implements Runnable {
 	private ArrayList<String> finishedList;
 	private ArrayList<Long> timeFinished;
 	private ArrayList<String> exerciseList;
+	private boolean isTimerStop;
 
 	public Menu(int width, int height) {
 		super(width, height);
@@ -145,7 +146,10 @@ public class Menu extends ClickableScreen implements Runnable {
 
 			@Override
 			public void act() {
-				isTimerOn = true;
+				isTimerStop = false;
+				TimerApplication.setPauseTimer(true);
+				TimerApplication.setComplete(true);
+				TimerApplication.timer.pauseTimer();
 			}
 		}, Color.BLACK);
 		view.add(stop);
@@ -172,6 +176,7 @@ public class Menu extends ClickableScreen implements Runnable {
 		updateExercises();
 		while(true){
 			sTimer = TimerApplication.getTime();
+			isTimerOn = TimerApplication.getTimerStatus();
 			if(!isTimerOn){
 				changeTime(sTimer);
 			}
