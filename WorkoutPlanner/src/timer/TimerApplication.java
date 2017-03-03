@@ -141,12 +141,8 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 					public void run() {
 						try{
 							pauseTimer = false;
-						
-							
-							//we NEED NOCKLES TO FIX THIS
-							
 							while(pauseTimer == false){
-								Thread.sleep(100);
+								Thread.sleep(150);
 								tt.setText(timer.time());
 								update();	
 							}
@@ -194,15 +190,24 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 				if(pauseTimer){
 					timer.unpauseTimer();
 					pauseTimer = false;
-					try{
-						while(pauseTimer == false){
-							Thread.sleep(100);
-							tt.setText(timer.time());
-							update();	
+					Thread startTimer = new Thread(new Runnable() {
+						@Override
+						public void run() {
+							try{
+								pauseTimer = false;
+								while(pauseTimer == false){
+									Thread.sleep(150);
+									tt.setText(timer.time());
+									update();	
+								}
+								
+								
+							}catch(InterruptedException e) {
+								e.printStackTrace(); 	
+							}
 						}
-					}catch(InterruptedException e) {
-						e.printStackTrace(); 
-					}
+					});
+					startTimer.start();
 				}else{
 					timer.pauseTimer();
 					pauseTimer = true;
