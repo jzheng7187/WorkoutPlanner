@@ -302,11 +302,6 @@ public class TimerApplication extends ClickableScreen implements Runnable, Timer
 		
 	}
 
-	@Override
-	public boolean isTimerOn() {
-		return isPauseTimer();
-	}
-
 	/**
 	 * @return the pauseTimer
 	 */

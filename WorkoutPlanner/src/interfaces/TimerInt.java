@@ -1,6 +1,14 @@
 package interfaces;
 
+/**
+ * 
+ * @author Hunter
+ *
+ */
+
 public interface TimerInt {
 
-	 boolean isTimerOn();
+	 static boolean isTimerOn() {
+		return false;
+	}
 }

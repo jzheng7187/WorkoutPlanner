@@ -12,14 +12,15 @@ import gui.components.Action;
 import gui.components.TextHeadder;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
+import interfaces.Exercises;
 import interfaces.TimerInt;
 import main.workoutPlanner;
 import timer.TimeDisplay;
 import timer.TimerApplication;
 import workoutPlanner.NewExercise;
 
-public class Menu extends ClickableScreen implements Runnable {
-	private TimerInt timerInterface;
+public class Menu extends ClickableScreen implements Runnable, TimerInt {
+	private Exercises ExerciseInterface;
 	private CustomButton timer;
 	private CustomButton exercises;
 	private CustomButton stop;
@@ -52,8 +53,6 @@ public class Menu extends ClickableScreen implements Runnable {
 	private ArrayList<String> finishedList;
 	private ArrayList<Long> timeFinished;
 	private ArrayList<String> exerciseList;
-	private boolean isTimerStop;
-	private String exercise;
 
 	public Menu(int width, int height) {
 		super(width, height);
@@ -189,7 +188,6 @@ public class Menu extends ClickableScreen implements Runnable {
 
 			@Override
 			public void act() {
-				isTimerStop = false;
 				TimerApplication.setPauseTimer(true);
 				TimerApplication.setComplete(true);
 				TimerApplication.timer.pauseTimer();
@@ -218,12 +216,14 @@ public class Menu extends ClickableScreen implements Runnable {
 	public void run() {
 		while(true){
 			sTimer = TimerApplication.getTime();
-			isTimerOn = TimerApplication.getTimerStatus();
+			isTimerOn = TimerInt.isTimerOn();
 			if(!isTimerOn){
 				changeTime(sTimer);
 			}
 		}
 	}
+	
+	//
 	private void updateFinished(){
 		for(int i = 0; i < finishedList.size(); i++ ){
 			finishedList.add(exerciseList.get(i));
@@ -245,22 +245,29 @@ public class Menu extends ClickableScreen implements Runnable {
 		//		timeFinished.add(duration);
 		//		};
 	}
+	
+	//Hunter
 	private void updateExercises(String exercise2) {
 		int counter = 0;
 		for(int i = 0; i < exerciseList.size(); i++){
-			if(exerciseList.get(i) == exercise2) {
+			if(exerciseList.get(i) == exercise2
+					//ExerciseInterface.clickedExercise();
+			) {
 				exerciseList.remove(i);
 				exerciseList.add(0, exercise2
+						//ExerciseInterface.clickedExercise();
 						);
 				counter = 1;
 			}
 		}
 		if(exerciseList.size() < 3 && counter == 0){
 			exerciseList.add(0, exercise2
+					//ExerciseInterface.clickedExercise();
 					);
 		}else if(counter == 0){
 			exerciseList.remove(2);
 			exerciseList.add(0, exercise2
+					//ExerciseInterface.clickedExercise();
 					);
 		}
 		for(int i = 0; i < exerciseList.size(); i++){
@@ -274,5 +281,9 @@ public class Menu extends ClickableScreen implements Runnable {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public boolean isTimerOn() {
+		return TimerApplication.getTimerStatus();
 	}
 }

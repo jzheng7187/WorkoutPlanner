@@ -2,5 +2,5 @@ package interfaces;
 
 public interface Exercises {
 
-	void clickedExercise();
+	String clickedExercise();
 }
