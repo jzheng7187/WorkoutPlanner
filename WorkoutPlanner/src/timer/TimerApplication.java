@@ -29,7 +29,7 @@ import main.workoutPlanner;
  *
  *
  */
-public class TimerApplication extends ClickableScreen implements KeyListener, Runnable{
+public class TimerApplication extends ClickableScreen implements Runnable{
 
 	//Buttons
 	private Button start;
@@ -75,19 +75,25 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	//lime green color temp out of service until background is fixed.
 	//TODO
 	//Color g = new Color (180,225,50);
-	public static final Color G = new Color (180,225,50);
+	public static final Color G = new Color (102,204,0);
 	public static final Color T = new Color (0,0,0);
 	public static final Color W = new Color (255,255,255);
 	public static final Color B = new Color (0,0,0);
 	
 	//Timer boolean
 	private static boolean pauseTimer = false;
+	
+	//getters for Hunter
 	public static boolean getTimerStatus(){
 		return pauseTimer;
 	}
 	
-//implements interface
-	public Timer timer = new Timer(800, 600);
+	public static String getTime(){
+		return timer.time();	
+	}
+	
+	//implements interface
+	public static Timer timer = new Timer(800, 600);
 
 	
 	public TimerApplication(int width, int height) {
@@ -132,9 +138,6 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		cl = new ThemedTextLabel(170,SPACE*6,100,30, "00:00:00", W);
 		v.add(cl);
 		
-		//laps
-		
-		
 		
 		//Start button
 		start = new ThemedButton(MARGINX-30, MARGINY, WIDTH, HEIGHT, "Start", G ,new Action(){
@@ -161,7 +164,6 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 					}
 				});
 				startTimer.start();
-				
 					
 			}
 
@@ -174,8 +176,23 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 			public void act() {
 				pauseTimer = true;
 				timer.pauseTimer();
-				tt.setText(timer.time());
-				//cl.setText(timer.currentLap());
+				
+				ThemedTextLabel stats = new ThemedTextLabel(MARGINX-30,MARGINY+(SPACE*8),200,30, "Stats: ", W);
+				v.add(stats);
+				
+				ThemedTextLabel longest = new ThemedTextLabel(MARGINX-30,MARGINY+(SPACE*9),200,30, "Worst ", W);
+				ThemedTextLabel longest2 = new ThemedTextLabel(MARGINX+27,MARGINY+(SPACE*9),200,30, "Lap: "+timer.markLongestTime(), G);
+				ThemedTextLabel Shortest = new ThemedTextLabel(MARGINX-30,MARGINY+(SPACE*10),200,30,"Best" , W);
+				ThemedTextLabel Shortest2 = new ThemedTextLabel(MARGINX+16,MARGINY+(SPACE*10),200,30, "Lap: "+timer.markShortestTime(), G);
+				ThemedTextLabel average = new ThemedTextLabel(MARGINX-30,MARGINY+(SPACE*11),200,30, "Average", W);
+				ThemedTextLabel average2 = new ThemedTextLabel(MARGINX+47,MARGINY+(SPACE*11),200,30, "Lap: "+timer.markAverageTime(), G);
+				v.add(longest);
+				v.add(Shortest);
+				v.add(average);
+				v.add(longest2);
+				v.add(Shortest2);
+				v.add(average2);
+				
 				update();	
 				timer.resetTimer();
 				
@@ -189,6 +206,14 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 			@Override
 			public void act() {
 				timer.addLap();
+				for (int i = 0, s = 7; i < timer.laps.size(); i++, s++) {
+				ThemedTextLabel localLap1 = new ThemedTextLabel(50,SPACE*s,200,30, "Lap ", G);
+				ThemedTextLabel localLap2 = new ThemedTextLabel(87,SPACE*s,200,30, (i+1) + ": " + timer.laps.get(i), W);
+				v.add(localLap1);
+				v.add(localLap2);
+				update();
+				}
+					
 			}
 		}, Color.WHITE);
 		v.add(lap);
@@ -262,27 +287,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		g.fillRect(0, 0, getWidth(), getHeight());
 	}
 
-	@Override
-	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-		
-		
-//	public KeyListener getKeyListner(){
-//		return this;
-//	}
-		
-	}
+
 
 	@Override
 	public void run() {
