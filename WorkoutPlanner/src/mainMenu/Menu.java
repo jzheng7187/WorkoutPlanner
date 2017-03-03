@@ -11,6 +11,8 @@ import gui.components.Visible;
 import gui.screens.ClickableScreen;
 import interfaces.Timer;
 import main.workoutPlanner;
+import timer.TimeDisplay;
+import timer.TimerApplication;
 
 public class Menu extends ClickableScreen implements Runnable {
 	private Timer timerInterface;
@@ -38,6 +40,7 @@ public class Menu extends ClickableScreen implements Runnable {
 	public static final int HEIGHT = 120;
 	public static final int SPACE = 160;
 	public static final Color BUTTON_COLOR = new Color(255, 255, 255);
+	private String sTimer;
 	private double Timer;
 	private boolean isTimerOn;
 	private String[] Activity;
@@ -141,6 +144,7 @@ public class Menu extends ClickableScreen implements Runnable {
 			@Override
 			public void act() {
 				isTimerOn = false;
+				//TimerApplication.pauseTimer = false;
 			}
 		}, Color.BLACK);
 		view.add(stop);
@@ -165,8 +169,9 @@ public class Menu extends ClickableScreen implements Runnable {
 	@Override
 	public void run() {
 		//Timer = timerInterface.getTimer();
+		//System.out.println(sTimer);
 		//isTimerOn = timerInterface.isTimerOn();
-		Timer = 0.00;
+		//Timer = Integer.valueOf(sTimer);
 		isTimerOn = false;
 		updateExercises();
 		while(isTimerOn){
