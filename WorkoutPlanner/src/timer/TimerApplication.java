@@ -87,7 +87,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	}
 	
 //implements interface
-	Timer timer = new Timer(800, 600);
+	public Timer timer = new Timer(800, 600);
 
 	
 	public TimerApplication(int width, int height) {
