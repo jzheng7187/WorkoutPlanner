@@ -12,39 +12,43 @@ import gui.components.Clickable;
 
 public class NewExercise extends Button implements MouseListener{
 	
-	//allExercises ArrayList has all the exercises
-	private static ArrayList<ButtonInterfaceMatthewN> allExercises;
-	//myExercises ArrayList has all the exercises you added
+	//allExercises has all the exercises //ButtonInterfaceMatthewN
+	private static ArrayList<String> allExercises;
+	//myExercises  has all the exercises you decide to add
 	private static ArrayList<String> myExercises = new ArrayList<String>();
-	
-	//private ArrayList<ButtonInterfaceMatthewN> ;
-	private static boolean[] clicked;
-	private static int[] value;
+	private static boolean isInitialize = false;//used to initialize variables for the first time
+	private static boolean[] clicked;//used to check if exercise was clicked
+	private static boolean[] inMyExercise;//used to check if exercise is already added
+	private static int[] value;// an array of ids to keep track of each exercise
 	private String clickedGraphic;
 	
 	//new exercise adds exercises into a list
 	public NewExercise(int x, int y, int w, int h, String text, Color color, Action action) {
 		super(x, y, w, h, text, color, action);
-		update();
+		getExercises();
 	}
-	
+	//used for debugging
+	/*
 	public static void main(String[] args) {
 		getExercises();
+		value = new int[allExercises.size()];
+		inMyExercise  = new boolean[allExercises.size()];
+		clicked  = new boolean[allExercises.size()];
 		for(int i = 0; i < allExercises.size(); i++){
-			value[i] = 1;
+			value[i] = i;
+			inMyExercise[i] = false;
 			clicked[i] = false;
 		}
+		
+		System.out.println("All exercises and attributes");
 		for(int i = 0; i < allExercises.size(); i++){
 			System.out.println(allExercises.get(i));
 			System.out.println(value[i]);
 			System.out.println(clicked[i]);
 		}
-	}
-	
-	public void update(Graphics2D g){
-		value = new int[allExercises.size()];
-		clicked  = new boolean[allExercises.size()];
+		clicked[0] = true;
 		addExercise(allExercises);
+<<<<<<< HEAD
 		allExercises.remove(clickedGraphic);
 		showExercises();
 	} 
@@ -52,76 +56,135 @@ public class NewExercise extends Button implements MouseListener{
 	
 	public ArrayList<String> showExercises(){
 		return getMyExercises();
+=======
+		System.out.println("My exercises");
+		for(int i = 0; i < myExercises.size(); i++){
+			System.out.println(myExercises.get(i));
+			System.out.println(value[i]);
+		}
+		
+>>>>>>> refs/heads/Planner
 	}
-//	public boolean mouseClicked() {
-//		if(isHovered(getX(),getY())){
-//			return true;
-//		}
-//		return false;
-//		
-//	}
-	
+	*/
 	@Override
 	public boolean isHovered(int x, int y) {
 		return x>getX() && x<getX()+getWidth() && y > getY() && y<getY()+getHeight();
 	}
-	
 	//highlights picture when mouse hovers over image
 	public boolean highlight(){
 		for(int i = 0; i <  allExercises.size(); i++){
 			if(isHovered(getX(),getY())){
-				return allExercises.get(i).setColor(new Color(255, 255, 255, 25));
+				return allExercises.get(i).setColor(new Color(180,225,50, 25));
 			}else{
-				return false;
+				return allExercises.get(i).setColor(new Color(0, 0, 0, 0));;
 			}
 		}
 	}
 	
-	//checks if exercise that is clicked on was already clicked on or not.  
-	//If it was not yet clicked on it will set the value to 0
-	public boolean isClicked(){
-		for(int i = 0; i < value.length; i++){
-			if(value[i] == 1){
-				value[i]--;
-				return true;
-			}
-		}
-		return false;
-	}
 	
-	//adds exercises to myExercises
-	public ArrayList<String> addExercise(ArrayList<ButtonInterfaceMatthewN> g){
-		boolean clickedAgain = false;
-		
-		for(int i = 0; i < value.length; i++){
-			if(value[i] == 0 && isHovered(getX(),getY())){
-				System.out.println("You have already chosen this exercise.");
-				g.highlight();
-			}else{
-				getMyExercises().add(allExercises.get(i));
-				allExercises.remove(allExercises.get(i));
-				return getMyExercises();
-			}
-		}
-		update();
-	}
 	
 	public static void getExercises(){
-		allExercises = new ArrayList<ButtonInterfaceMatthewN>();
+		allExercises = new ArrayList<String>();
 		//swap with images 
-//		allExercises.addAll("Push-up");
-//		allExercises.addAll("Curl-up");
-//		allExercises.add("Sit-up");
-//		allExercises.add("Bench Press");
-//		allExercises.add("Plank");
-//		allExercises.add("Dips");
-//		allExercises.addAll("Squats");
+		allExercises.add("Treadmill");
+		allExercises.add("Squats");
+		allExercises.add("Crunches");
+		allExercises.add("Cycling");
+		allExercises.add("Pushup");
+		allExercises.add("Jumprope");
+		value = new int[allExercises.size()];
+		inMyExercise  = new boolean[allExercises.size()];
+		clicked   = new boolean[allExercises.size()];
 	}
-	
-	public void startExercise(){
-		
+	//checks if the exercise was clicked on.  
+	public static boolean isClicked(int index){
+		return clicked[index];
 	}
-	
+	//checks if the exercise is already in myExercises.  
+	public static boolean isInMyExercises(int index){
+		return inMyExercise[index];
+	}
+	//checks if an exercise has been clicked on and adds it to myExercises. if the exercise is already in myExercises, it will not be added.
+	public static ArrayList<String> addExercise(ArrayList<String> g){
+		for(int i = 0; i <  allExercises.size(); i++){
+			if(isClicked(i) && !isInMyExercises(i)){
+				myExercises.add(allExercises.get(i));
+				inMyExercise[i] = true;
+				System.out.println(allExercises.get(i)+" was added to my exercise.");
+			}else{
+				if(isInMyExercises(i)){
+					System.out.println(allExercises.get(i)+" was already included in your exercise");
+				}else{
+					System.out.println("Nothing done to "+allExercises.get(i));
+				}
+			}
+		}
+		System.out.println(myExercises);
+		return myExercises;
+	}
+	public ArrayList<String> showExercises(){
+		return myExercises;
+	}
+	public static ArrayList<String> clickTreadmill(){
+		if(!isInitialize){
+			isInitialize = true;
+			getExercises();
+		}
+		clicked[0] = true;
+		addExercise(allExercises);
+		return myExercises;
+	}
+	public static ArrayList<String> clickSquats(){
+		if(!isInitialize){
+			isInitialize = true;
+			getExercises();
+		}
+		clicked[1] = true;
+		addExercise(allExercises);
+		return myExercises;
+	}
+	public static ArrayList<String> clickCrunches(){
+		if(!isInitialize){
+			isInitialize = true;
+			getExercises();
+		}
+		clicked[2] = true;
+		addExercise(allExercises);
+		return myExercises;
+	}
+	public static ArrayList<String> clickCycling(){
+		if(!isInitialize){
+			isInitialize = true;
+			getExercises();
+		}
+		clicked[3] = true;
+		addExercise(allExercises);
+		return myExercises;
+	}
+	public static ArrayList<String> clickPushup(){
+		if(!isInitialize){
+			isInitialize = true;
+			getExercises();
+		}
+		clicked[4] = true;
+		addExercise(allExercises);
+		return myExercises;
+	}
+	public static ArrayList<String> clickJumprope(){
+		if(!isInitialize){
+			isInitialize = true;
+			getExercises();
+		}
+		clicked[5] = true;
+		addExercise(allExercises);
+		return myExercises;
+	}
+	/*
+	public static void clickTest(){
+		System.out.println("Sucessful");
+	}
+	*/
+
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub

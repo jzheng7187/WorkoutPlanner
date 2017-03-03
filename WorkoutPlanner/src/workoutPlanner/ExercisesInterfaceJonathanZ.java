@@ -8,6 +8,8 @@ public interface ExercisesInterfaceJonathanZ {
 	
 	void setColor(Color color);
 	
+	void changeOrder();
 	
+	void removeExercise();
 	
 }
