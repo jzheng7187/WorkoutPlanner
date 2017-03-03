@@ -61,6 +61,9 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	public static final int HEIGHT=120;
 	public static final int SPACE=35;
 	
+	//refresh rate
+	public static final int REFRESH = 5;
+	
 	//background
 	private ThemedBorder border1;
 	private ThemedBorder2 border2;
@@ -78,8 +81,10 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	public static final Color B = new Color (0,0,0);
 	
 	//Timer boolean
-	private boolean pauseTimer = false;
-	
+	private static boolean pauseTimer = false;
+	public static boolean getTimerStatus(){
+		return pauseTimer;
+	}
 	
 //implements interface
 	Timer timer = new Timer(800, 600);
@@ -143,7 +148,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 						try{
 							pauseTimer = false;
 							while(pauseTimer == false){
-								Thread.sleep(150);
+								Thread.sleep(REFRESH);
 								tt.setText(timer.time());
 								//cl.setText(timer.currentLap());
 								update();	
@@ -202,7 +207,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 							try{
 								pauseTimer = false;
 								while(pauseTimer == false){
-									Thread.sleep(150);
+									Thread.sleep(REFRESH);
 									tt.setText(timer.time());
 									//cl.setText(timer.currentLap());
 									update();	
