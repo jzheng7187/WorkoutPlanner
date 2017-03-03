@@ -99,7 +99,7 @@ public class NewExercise extends Button implements MouseListener{
 		}
 	}
 	
-	//adds exercises to myExercises
+	//checks if an exercise has been clicked on and adds it to myExercises. if the exercise is already in myExercises, it will not be added.
 	public static ArrayList<String> addExercise(ArrayList<String> g){
 		for(int i = 0; i <  allExercises.size(); i++){
 			if(clicked[i] == true && inMyExercise[i] == false){
@@ -128,8 +128,8 @@ public class NewExercise extends Button implements MouseListener{
 		allExercises.add("Squats");
 		allExercises.add("Crunches");
 		allExercises.add("Cycling");
-		allExercises.add("Push-up");
-		allExercises.add("Jump Rope");
+		allExercises.add("Pushup");
+		allExercises.add("Jumprope");
 		//treadmill
 		//squat
 		//crunch
@@ -137,7 +137,30 @@ public class NewExercise extends Button implements MouseListener{
 		//push-up
 		//jump rope
 	}
-	
+	public static void clickTreadmill(){
+		clicked[0] = true;
+		addExercise(allExercises);
+	}
+	public static void clickSquats(){
+		clicked[1] = true;
+		addExercise(allExercises);
+	}
+	public static void clickCrunches(){
+		clicked[2] = true;
+		addExercise(allExercises);
+	}
+	public static void clickCycling(){
+		clicked[3] = true;
+		addExercise(allExercises);
+	}
+	public static void clickPushup(){
+		clicked[4] = true;
+		addExercise(allExercises);
+	}
+	public static void clickJumprope(){
+		clicked[5] = true;
+		addExercise(allExercises);
+	}
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
