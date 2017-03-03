@@ -12,12 +12,11 @@ import gui.components.Clickable;
 
 public class NewExercise extends Button implements MouseListener{
 	
-	//allExercises ArrayList has all the exercises //ButtonInterfaceMatthewN
+	//allExercises has all the exercises //ButtonInterfaceMatthewN
 	private static ArrayList<String> allExercises;
-	//myExercises ArrayList has all the exercises you added
+	//myExercises  has all the exercises you decide to add
 	private static ArrayList<String> myExercises = new ArrayList<String>();
 	
-	//private ArrayList<ButtonInterfaceMatthewN> ;
 	private static boolean[] clicked;//used to check if exercise was clicked
 	private static boolean[] inMyExercise;//used to check if exercise is already added
 	private static int[] value;// an array of ids to keep track of each exercise
@@ -28,7 +27,8 @@ public class NewExercise extends Button implements MouseListener{
 		super(x, y, w, h, text, color, action);
 		update();
 	}
-	
+	//used for debugging
+	/*
 	public static void main(String[] args) {
 		getExercises();
 		value = new int[allExercises.size()];
@@ -53,7 +53,7 @@ public class NewExercise extends Button implements MouseListener{
 			System.out.println(value[i]);
 		}
 	}
-	
+	*/
 	public void update(Graphics2D g){
 		value = new int[allExercises.size()];
 		inMyExercise  = new boolean[allExercises.size()];
@@ -62,14 +62,6 @@ public class NewExercise extends Button implements MouseListener{
 		allExercises.remove(clickedGraphic);
 		showExercises();
 	}  
-	
-//	public boolean mouseClicked() {
-//		if(isHovered(getX(),getY())){
-//			return true;
-//		}
-//		return false;
-//		
-//	}
 	@Override
 	public boolean isHovered(int x, int y) {
 		return x>getX() && x<getX()+getWidth() && y > getY() && y<getY()+getHeight();
@@ -78,37 +70,44 @@ public class NewExercise extends Button implements MouseListener{
 	public boolean highlight(){
 		for(int i = 0; i <  allExercises.size(); i++){
 			if(isHovered(getX(),getY())){
-				return allExercises.get(i).setColor(new Color(255, 255, 255, 25));
+				return allExercises.get(i).setColor(new Color(180,225,50, 25));
 			}else{
-				return false;
-			}
-		}
-	}
-	//checks if exercise that is clicked on was already clicked on or not.  
-	//If it was not yet clicked on it will set the value to 0
-	public boolean isClicked(){
-		return false;
-	}
-	@Override
-	public void mouseClicked(MouseEvent g) {
-		for(Clickable c: allExercises){
-			if(c.isHovered(g.getX(), g.getY())){
-				c.act();
-				break;
+				return allExercises.get(i).setColor(new Color(0, 0, 0, 0));;
 			}
 		}
 	}
 	
+	
+	
+	
+	
+	public static void getExercises(){
+		allExercises = new ArrayList<String>();
+		//swap with images 
+		allExercises.add("Treadmill");
+		allExercises.add("Squats");
+		allExercises.add("Crunches");
+		allExercises.add("Cycling");
+		allExercises.add("Pushup");
+		allExercises.add("Jumprope");
+	}
+	//checks if the exercise was clicked on.  
+	public static boolean isClicked(int index){
+		return clicked[index];
+	}
+	//checks if the exercise is already in myExercises.  
+	public static boolean isInMyExercises(int index){
+		return inMyExercise[index];
+	}
 	//checks if an exercise has been clicked on and adds it to myExercises. if the exercise is already in myExercises, it will not be added.
 	public static ArrayList<String> addExercise(ArrayList<String> g){
 		for(int i = 0; i <  allExercises.size(); i++){
-			if(clicked[i] == true && inMyExercise[i] == false){
+			if(isClicked(i) && isInMyExercises(i)){
 				myExercises.add(allExercises.get(i));
 				inMyExercise[i] = true;
-				value[i] = myExercises.size()-1;
 				System.out.println(allExercises.get(i)+" was added to my exercise.");
 			}else{
-				if(inMyExercise[i] == true){
+				if(isInMyExercises(i)){
 					System.out.println("You have already added "+allExercises.get(i));
 				}else{
 					System.out.println("Nothing done to "+allExercises.get(i));
@@ -120,22 +119,6 @@ public class NewExercise extends Button implements MouseListener{
 	}
 	public ArrayList<String> showExercises(){
 		return myExercises;
-	}
-	public static void getExercises(){
-		allExercises = new ArrayList<String>();
-		//swap with images 
-		allExercises.add("Treadmill");
-		allExercises.add("Squats");
-		allExercises.add("Crunches");
-		allExercises.add("Cycling");
-		allExercises.add("Pushup");
-		allExercises.add("Jumprope");
-		//treadmill
-		//squat
-		//crunch
-		//cycling
-		//push-up
-		//jump rope
 	}
 	public static void clickTreadmill(){
 		clicked[0] = true;
@@ -160,6 +143,10 @@ public class NewExercise extends Button implements MouseListener{
 	public static void clickJumprope(){
 		clicked[5] = true;
 		addExercise(allExercises);
+	}
+	@Override
+	public void mouseClicked(MouseEvent g) {
+		
 	}
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
