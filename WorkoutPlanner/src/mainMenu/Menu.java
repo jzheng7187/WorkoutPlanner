@@ -20,6 +20,7 @@ import timer.TimerApplication;
 import workoutPlanner.NewExercise;
 
 public class Menu extends ClickableScreen implements Runnable, TimerInt {
+	
 	private Exercises ExerciseInterface;
 	private CustomButton timer;
 	private CustomButton exercises;
@@ -59,7 +60,6 @@ public class Menu extends ClickableScreen implements Runnable, TimerInt {
 		Thread play = new Thread(this);
 		play.start();
 	}
-
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
@@ -118,7 +118,6 @@ public class Menu extends ClickableScreen implements Runnable, TimerInt {
 		finishedex = new ThemedTextLabel(50, 450, 300, 50, "Finished Excercises", Color.black);
 		view.add(finishedex);
 		stopwatch = new ThemedTextLabel(650, 90, 100, 50, "0.0.0", Color.black);
-
 		label = new TextHeadder(50, 60, 300, 50, "Workout", Color.white,null);
 		view.add(label);
 		label2 = new TextHeadder(280, 60, 300, 50, "Planner", Color.black,null);
@@ -133,8 +132,6 @@ public class Menu extends ClickableScreen implements Runnable, TimerInt {
 		view.add(curr);
 		start = new ThemedTextLabel(330, 400, 100, 50, "Start", Color.black);
 		view.add(start);
-
-
 		act[0] = new ThemedTextLabel(50, 300, 200, 50, Activity[0], Color.white);
 		act[1] = new ThemedTextLabel(50, 350, 200, 50, Activity[1], Color.white);
 		act[2] = new ThemedTextLabel(50, 400, 200, 50, Activity[2], Color.white);
@@ -154,9 +151,7 @@ public class Menu extends ClickableScreen implements Runnable, TimerInt {
 			}
 		}, Color.BLACK);
 		view.add(stopwatchbut);
-
 		timer = new CustomButton(MARGINX, MARGINY, WIDTH, HEIGHT, "Timer", BUTTON_COLOR, new Action() {
-
 			@Override
 			public void act() {
 				workoutPlanner.app.setScreen(workoutPlanner.timerScreen);
@@ -227,7 +222,6 @@ public class Menu extends ClickableScreen implements Runnable, TimerInt {
 	private void updateFinished(){
 		for(int i = 0; i < finishedList.size(); i++ ){
 			finishedList.add(exerciseList.get(i));
-			exerciseList.remove(i);
 		};
 		//if the pause timer is true and and complete is true
 		//gettime();
