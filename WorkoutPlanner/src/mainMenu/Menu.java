@@ -15,6 +15,7 @@ import interfaces.Timer;
 import main.workoutPlanner;
 import timer.TimeDisplay;
 import timer.TimerApplication;
+import workoutPlanner.NewExercise;
 
 public class Menu extends ClickableScreen implements Runnable {
 	private Timer timerInterface;
@@ -56,7 +57,7 @@ public class Menu extends ClickableScreen implements Runnable {
 		Thread play = new Thread(this);
 		play.start();
 	}
-	//
+	
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
@@ -99,9 +100,9 @@ public class Menu extends ClickableScreen implements Runnable {
 		view.add(act[0]);
 		view.add(act[1]);
 		view.add(act[2]);
-		fin[0] = new ThemedTextLabel(50, 0, 200, 50, Activity[0], Color.white);
-		fin[1] = new ThemedTextLabel(50, 350, 200, 50, Activity[1], Color.white);
-		fin[2] = new ThemedTextLabel(50, 400, 200, 50, Activity[2], Color.white);
+		fin[0] = new ThemedTextLabel(50, 450, 200, 50, Activity[0], Color.white);
+		fin[1] = new ThemedTextLabel(50, 500, 200, 50, Activity[1], Color.white);
+		fin[2] = new ThemedTextLabel(50, 550, 200, 50, Activity[2], Color.white);
 		view.add(fin[0]);
 		view.add(fin[1]);
 		view.add(fin[2]);
