@@ -223,26 +223,37 @@ public class Timer extends ClickableScreen implements TimeDisplay{
 
 	@Override
 	public void pauseTimer() {
-		pauseTime = System.currentTimeMillis() - startTime;
+		pauseTime = System.currentTimeMillis();
 		
 	}
 
 	@Override
 	public void startTimer() {
-		startTime = System.currentTimeMillis();
 		startTime();
 		
 	}
 
 	@Override
 	public void unpauseTimer() {
-		startTime = (System.currentTimeMillis() - pauseTime) + startTime;
+		startTime = startTime + (System.currentTimeMillis() - pauseTime);
 		
 	}
 
 	@Override
 	public void resetTimer() {
-		startTime = (System.currentTimeMillis()) + startTime;
+		startTime = System.currentTimeMillis();
+		ms.clear();
+		laps.clear();
 		
+	}
+
+	@Override
+	public void addNewLap() {
+		addLap();
+	}
+
+	@Override
+	public ArrayList<String> laps() {
+		return laps;
 	}
 }
