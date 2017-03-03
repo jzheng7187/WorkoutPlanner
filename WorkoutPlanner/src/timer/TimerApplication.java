@@ -82,13 +82,21 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	
 	//Timer boolean
 	private static boolean pauseTimer = false;
+	
+	//getters for Hunter
 	public static boolean getTimerStatus(){
 		return pauseTimer;
 	}
 	
+	public static String getTime(){
+		return timer.time();	
+	}
+	
 //implements interface
-	public Timer timer = new Timer(800, 600);
+	public static Timer timer = new Timer(800, 600);
 
+	
+	
 	
 	public TimerApplication(int width, int height) {
 		super(width, height);
@@ -132,7 +140,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		cl = new ThemedTextLabel(170,SPACE*6,100,30, "00:00:00", W);
 		v.add(cl);
 		
-		//laps
+		
 		
 		
 		
