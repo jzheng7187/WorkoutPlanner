@@ -75,7 +75,7 @@ public class TimerApplication extends ClickableScreen implements Runnable{
 	//lime green color temp out of service until background is fixed.
 	//TODO
 	//Color g = new Color (180,225,50);
-	public static final Color G = new Color (180,225,50);
+	public static final Color G = new Color (102,204,0);
 	public static final Color T = new Color (0,0,0);
 	public static final Color W = new Color (255,255,255);
 	public static final Color B = new Color (0,0,0);
