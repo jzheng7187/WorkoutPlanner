@@ -51,7 +51,7 @@ public class NewExercise extends Button implements MouseListener{
 	
 	
 	public ArrayList<String> showExercises(){
-		return myExercises;
+		return getMyExercises();
 	}
 //	public boolean mouseClicked() {
 //		if(isHovered(getX(),getY())){
@@ -98,9 +98,9 @@ public class NewExercise extends Button implements MouseListener{
 				System.out.println("You have already chosen this exercise.");
 				g.highlight();
 			}else{
-				myExercises.add(allExercises.get(i));
+				getMyExercises().add(allExercises.get(i));
 				allExercises.remove(allExercises.get(i));
-				return myExercises;
+				return getMyExercises();
 			}
 		}
 		update();
@@ -151,5 +151,13 @@ public class NewExercise extends Button implements MouseListener{
 				break;
 			}
 		}
+	}
+
+	public static ArrayList<String> getMyExercises() {
+		return myExercises;
+	}
+
+	public static void setMyExercises(ArrayList<String> myExercises) {
+		NewExercise.myExercises = myExercises;
 	}
 }
