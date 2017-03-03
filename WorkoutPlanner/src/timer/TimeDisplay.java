@@ -10,15 +10,15 @@ import gui.components.TextLabel;
 
 public interface TimeDisplay {
 	
-	public void markLongestTime(String time);
+	public String markLongestTime();
 	
-	public void markShortestTime(String time);
+	public String markShortestTime();
 	
-	public void markAverageTime(String time);
+	public String markAverageTime();
 
-	public void time(String time);
+	public String time();
 	
-	public void currentLap(String time);
+	public String currentLap();
 	
 	public void pauseTimer();
 	

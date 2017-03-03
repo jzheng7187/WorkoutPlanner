@@ -8,7 +8,6 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import components.ThemedBorder;
@@ -23,7 +22,6 @@ import gui.components.ThemedButton;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
 import main.workoutPlanner;
-import timer.TimeDisplay;
 
 
 /**
@@ -60,8 +58,11 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	public static final int MARGINX=400;
 	public static final int MARGINY=200;
 	public static final int WIDTH=200;
-	public static final int HEIGHT=75;
+	public static final int HEIGHT=120;
 	public static final int SPACE=35;
+	
+	//refresh rate
+	public static final int REFRESH = 5;
 	
 	//background
 	private ThemedBorder border1;
@@ -80,9 +81,14 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 	public static final Color B = new Color (0,0,0);
 	
 	//Timer boolean
-	private boolean pauseTimer = false;
+	private static boolean pauseTimer = false;
+	public static boolean getTimerStatus(){
+		return pauseTimer;
+	}
 	
-	
+//implements interface
+	public Timer timer = new Timer(800, 600);
+
 	
 	public TimerApplication(int width, int height) {
 		super(width, height);
@@ -126,41 +132,105 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		cl = new ThemedTextLabel(170,SPACE*6,100,30, "00:00:00", W);
 		v.add(cl);
 		
+		//laps
 		
-		//Buttons 
+		
+		
+		//Start button
 		start = new ThemedButton(MARGINX-30, MARGINY, WIDTH, HEIGHT, "Start", G ,new Action(){
 			@Override
 			public void act() {
-				Timer.startTimer();
+				timer.startTimer();
+				Thread startTimer = new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						try{
+							pauseTimer = false;
+							while(pauseTimer == false){
+								Thread.sleep(REFRESH);
+								tt.setText(timer.time());
+								//cl.setText(timer.currentLap());
+								update();	
+							}
+							
+							
+						}catch(InterruptedException e) {
+							e.printStackTrace(); 	
+						}
+					}
+				});
+				startTimer.start();
+				
+					
 			}
+
 		}, Color.WHITE);
 		v.add(start);
+		
+		//stop button
 		stop = new ThemedButton(MARGINX+180, MARGINY, WIDTH, HEIGHT, "Stop", G ,new Action(){
 			@Override
 			public void act() {
-				Timer.stopTimer();
+				pauseTimer = true;
+				timer.pauseTimer();
+				tt.setText(timer.time());
+				//cl.setText(timer.currentLap());
+				update();	
+				timer.resetTimer();
+				
 			}
 		}, Color.WHITE);
 		v.add(stop);
-		lap = new ThemedButton(MARGINX-30, MARGINY+160, WIDTH, HEIGHT, "Lap", G ,new Action(){
+		
+		
+		//lap button
+		lap = new ThemedButton(MARGINX-30, MARGINY+140, WIDTH, HEIGHT, "Lap", G ,new Action(){
 			@Override
 			public void act() {
-				Timer.addLap();
+				timer.addLap();
 			}
 		}, Color.WHITE);
 		v.add(lap);
-		pause = new ThemedButton(MARGINX+180, MARGINY+160, WIDTH, HEIGHT, "Pause", G ,new Action(){
+		
+		
+		//pause button
+		pause = new ThemedButton(MARGINX+180, MARGINY+140, WIDTH, HEIGHT, "Pause", G ,new Action(){
 			@Override
 			public void act() {
 				if(pauseTimer){
-					//Timer.unpauseTimer();
+					timer.unpauseTimer();
+					pauseTimer = false;
+					Thread startTimer = new Thread(new Runnable() {
+						@Override
+						public void run() {
+							try{
+								pauseTimer = false;
+								while(pauseTimer == false){
+									Thread.sleep(REFRESH);
+									tt.setText(timer.time());
+									//cl.setText(timer.currentLap());
+									update();	
+								}
+								
+								
+							}catch(InterruptedException e) {
+								e.printStackTrace(); 	
+							}
+						}
+					});
+					startTimer.start();
 				}else{
-					//Timer.pauseTimer();
+					pauseTimer = true;
+					timer.pauseTimer();
+					
 				}
 			}
 		}, Color.WHITE);
 		v.add(pause);
 		
+		
+		//add lines
 		border1 = new ThemedBorder(G,new Action() {
 			@Override
 			public void act() {
@@ -168,6 +238,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 			}
 		});
 		v.add(border1);
+		
 		border2 = new ThemedBorder2(G, new Action() {
 			@Override
 			public void act() {
@@ -175,10 +246,8 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 			}
 		});
 		v.add(border2);
-	//add lines
-//		line = new DrawLines(0,0,0,0,W);
-//		v.add(line);
-		
+
+
 	}
 
 	private static void createButton(String string, int w, int h, int x, int y) {

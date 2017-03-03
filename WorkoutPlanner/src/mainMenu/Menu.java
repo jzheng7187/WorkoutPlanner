@@ -24,12 +24,14 @@ public class Menu extends ClickableScreen implements Runnable {
 	private CustomTitle label;
 	private CustomTitle label2;
 	private CustomTextLabel remain;
+	private CustomTextLabel finishedex;
 	private CustomTextLabel exerci;
 	private CustomTextLabel stat;
 	private CustomTextLabel curr;
 	private CustomTextLabel start;
 	private CustomTextLabel progress;
 	private CustomTextLabel[] act;
+	private CustomTextLabel[] fin; 
 	public static final int MARGINX = 550;
 	public static final int MARGINY = 200;
 	public static final int WIDTH = 200;
@@ -39,24 +41,34 @@ public class Menu extends ClickableScreen implements Runnable {
 	private double Timer;
 	private boolean isTimerOn;
 	private String[] Activity;
+	private String[] Finished;
+	private ArrayList<String> finishedList;
+	private ArrayList<Long> timeFinished;
 	private ArrayList<String> exerciseList;
 
 	public Menu(int width, int height) {
 		super(width, height);
 		Thread play = new Thread(this);
 		play.start();
-		// jframe.setBackground(Color.RED);
 	}
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
-		Activity = new String[5];
-		for(int i = 0; i < 5; i++){
+		Activity = new String[3];
+		for(int i = 0; i < Activity.length; i++){
 			Activity[i] = "";
 		}
-		act = new CustomTextLabel[5];
+		
+		
+		act = new CustomTextLabel[3];
+		fin = new CustomTextLabel[3];
 		exerciseList = new ArrayList<String>();
+		finishedList = new ArrayList<String>();
+		timeFinished = new ArrayList<Long>();
+		finishedex = new CustomTextLabel(50, 450, 300, 50, "Finished Excercises", Color.black);
+		view.add(finishedex);
 		stopwatch = new CustomTextLabel(650, 90, 100, 50, "0.00", Color.black);
+		
 		label = new CustomTitle(50, 50, 300, 50, "Workout", Color.white);
 		view.add(label);
 		label2 = new CustomTitle(280, 50, 300, 50, "Planner", Color.black);
@@ -73,21 +85,24 @@ public class Menu extends ClickableScreen implements Runnable {
 		view.add(start);
 		progress = new CustomTextLabel(50, 250, 130, 50, "Inprogress", Color.white);
 		view.add(progress);
+		
+		
 		act[0] = new CustomTextLabel(50, 300, 200, 50, Activity[0], Color.white);
 		act[1] = new CustomTextLabel(50, 350, 200, 50, Activity[1], Color.white);
 		act[2] = new CustomTextLabel(50, 400, 200, 50, Activity[2], Color.white);
-		act[3] = new CustomTextLabel(50, 450, 200, 50, Activity[3], Color.white);
-		act[4] = new CustomTextLabel(50, 500, 200, 50, Activity[4] , Color.white);
 		view.add(act[0]);
 		view.add(act[1]);
 		view.add(act[2]);
-		view.add(act[3]);
-		view.add(act[4]);
-
+		fin[0] = new CustomTextLabel(50, 0, 200, 50, Activity[0], Color.white);
+		fin[1] = new CustomTextLabel(50, 350, 200, 50, Activity[1], Color.white);
+		fin[2] = new CustomTextLabel(50, 400, 200, 50, Activity[2], Color.white);
+		view.add(fin[0]);
+		view.add(fin[1]);
+		view.add(fin[2]);
 		stopwatchbut = new CustomButton(600, 55, 200, 100, "Elapsed Time", BUTTON_COLOR, new Action() {
 			@Override
 			public void act() {
-
+				//updateFinished();
 			}
 		}, Color.BLACK);
 		view.add(stopwatchbut);
@@ -159,40 +174,48 @@ public class Menu extends ClickableScreen implements Runnable {
 			Timer += .01;
 		}
 	}
-
+	private void updateFinished(){
+		for(int i = 0; i < finishedList.size(); i++ ){
+			finishedList.add(exerciseList.get(i));
+			exerciseList.remove(i);
+		};
+		for(int i = 0; i < timeFinished.size(); i++ ){
+			
+//			double startTime = Timer;
+//			
+//			if(){
+//				
+//			}
+		long startTime = System.nanoTime();
+		run();
+		long endTime = System.nanoTime();
+		long duration = (endTime - startTime);
+		timeFinished.add(duration);
+		};
+	}
 	private void updateExercises() {
-		if(exerciseList.size() < 5){
+		if(exerciseList.size() < 3){
 			exerciseList.add(0,"Exercise 1"
 					//Exercises.clickedExercise()
 					);
 		}
-		if(exerciseList.size() < 5){
+		if(exerciseList.size() < 3){
 			exerciseList.add(0,"Exercise 2"
 					//Exercises.clickedExercise()
 					);
 		}
-		if(exerciseList.size() < 5){
+		if(exerciseList.size() < 3){
 			exerciseList.add(0,"Exercise 3"
 					//Exercises.clickedExercise()
 					);
 		}
-		if(exerciseList.size() < 5){
+		if(exerciseList.size() < 3){
 			exerciseList.add(0,"Exercise 4"
 					//Exercises.clickedExercise()
 					);
-		}
-		if(exerciseList.size() < 5){
-			exerciseList.add(0,"Exercise 5"
-					//Exercises.clickedExercise()
-					);
-		}
-		if(exerciseList.size() < 5){
-			exerciseList.add(0,"Exercise 6"
-					//Exercises.clickedExercise()
-					);
 		}else{
-			exerciseList.remove(4);
-			exerciseList.add(0,"Exercise 6"
+			exerciseList.remove(2);
+			exerciseList.add(0,"Exercise 4"
 					//Exercises.clickedExercise()
 					);
 		}
