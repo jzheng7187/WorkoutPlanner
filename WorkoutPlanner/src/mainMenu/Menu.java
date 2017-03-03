@@ -67,7 +67,6 @@ public class Menu extends ClickableScreen implements Runnable {
 			Activity[i] = "";
 		}
 
-
 		act = new ThemedTextLabel[3];
 		fin = new ThemedTextLabel[3];
 		exerciseList = new ArrayList<String>();
