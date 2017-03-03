@@ -86,7 +86,7 @@ public class JonathanPlans extends ClickableScreen implements ExercisesInterface
 		highlight = false;
 		update();
 	}
-	private void removeExercise() {
+	public void removeExercise() {
 		if(isHovered()){
 			b.highlight();
 			NewExercise.getMyExercises().remove(b);
