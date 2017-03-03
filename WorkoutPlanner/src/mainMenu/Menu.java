@@ -58,7 +58,7 @@ public class Menu extends ClickableScreen implements Runnable {
 		Thread play = new Thread(this);
 		play.start();
 	}
-	
+
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
@@ -66,8 +66,7 @@ public class Menu extends ClickableScreen implements Runnable {
 		for(int i = 0; i < Activity.length; i++){
 			Activity[i] = "";
 		}
-			
-		
+
 		act = new ThemedTextLabel[3];
 		fin = new ThemedTextLabel[3];
 		exerciseList = new ArrayList<String>();
@@ -75,8 +74,8 @@ public class Menu extends ClickableScreen implements Runnable {
 		timeFinished = new ArrayList<Long>();
 		finishedex = new ThemedTextLabel(50, 450, 300, 50, "Finished Excercises", Color.black);
 		view.add(finishedex);
-		stopwatch = new ThemedTextLabel(650, 90, 100, 50, "0.00", Color.black);
-		
+		stopwatch = new ThemedTextLabel(650, 90, 100, 50, "0.0.0", Color.black);
+
 		label = new TextHeadder(50, 60, 300, 50, "Workout", Color.white,null);
 		view.add(label);
 		label2 = new TextHeadder(280, 60, 300, 50, "Planner", Color.black,null);
@@ -93,8 +92,8 @@ public class Menu extends ClickableScreen implements Runnable {
 		view.add(start);
 		progress = new ThemedTextLabel(50, 250, 130, 50, "Inprogress", Color.white);
 		view.add(progress);
-		
-		
+
+
 		act[0] = new ThemedTextLabel(50, 300, 200, 50, Activity[0], Color.white);
 		act[1] = new ThemedTextLabel(50, 350, 200, 50, Activity[1], Color.white);
 		act[2] = new ThemedTextLabel(50, 400, 200, 50, Activity[2], Color.white);
@@ -159,7 +158,7 @@ public class Menu extends ClickableScreen implements Runnable {
 	private void changeTime(String string) {
 		stopwatch.setText(string);
 		try {
-			Thread.sleep(10);
+			Thread.sleep(1);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -173,15 +172,13 @@ public class Menu extends ClickableScreen implements Runnable {
 
 	@Override
 	public void run() {
-		//Timer = timerInterface.getTimer();
-		//System.out.println(sTimer);
-		//isTimerOn = timerInterface.isTimerOn();
-		//Timer = Integer.valueOf(sTimer);
-		isTimerOn = false;
 		updateExercises();
-		while(isTimerOn){
-			changeTime((""+(int)(Timer*100)/100.00));
-			Timer += .01;
+		while(true){
+			isTimerOn = TimerApplication.getTimerStatus();
+			while(isTimerOn){
+				sTimer = TimerApplication.getTime();
+				changeTime(sTimer);
+			}
 		}
 	}
 	private void updateFinished(){
@@ -191,19 +188,19 @@ public class Menu extends ClickableScreen implements Runnable {
 		};
 		//if the pause timer is true and and complete is true
 		//gettime();
-//		for(int i = 0; i < timeFinished.size(); i++ ){
-//			
-//			double startTime = Timer;
-//			
-//			if(){
-//				
-//			}
-//		long startTime = System.nanoTime();
-//		run();
-//		long endTime = System.nanoTime();
-//		long duration = (endTime - startTime);
-//		timeFinished.add(duration);
-//		};
+		//		for(int i = 0; i < timeFinished.size(); i++ ){
+		//			
+		//			double startTime = Timer;
+		//			
+		//			if(){
+		//				
+		//			}
+		//		long startTime = System.nanoTime();
+		//		run();
+		//		long endTime = System.nanoTime();
+		//		long duration = (endTime - startTime);
+		//		timeFinished.add(duration);
+		//		};
 	}
 	private void updateExercises() {
 		if(exerciseList.size() < 3){

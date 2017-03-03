@@ -2,7 +2,7 @@ package interfaces;
 
 public interface Timer {
 
-	double getTimer();
+	String getTimer();
 
 	boolean isTimerOn();
 }
