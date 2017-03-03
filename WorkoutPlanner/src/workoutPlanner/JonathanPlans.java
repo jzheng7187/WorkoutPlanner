@@ -119,6 +119,7 @@ public class JonathanPlans extends ClickableScreen implements ExercisesInterface
 			        new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
 			    textPane.getHighlighter().addHighlight(0, exercises.get(i).length, 
 			            highlightPainter);
+		//trouble
 	}
 	
 	public void setAction(Action action) {
