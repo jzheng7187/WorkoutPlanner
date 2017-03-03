@@ -56,6 +56,7 @@ public class Menu extends ClickableScreen implements Runnable {
 		Thread play = new Thread(this);
 		play.start();
 	}
+	//
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
