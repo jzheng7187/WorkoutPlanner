@@ -29,7 +29,7 @@ import main.workoutPlanner;
  *
  *
  */
-public class TimerApplication extends ClickableScreen implements KeyListener, Runnable{
+public class TimerApplication extends ClickableScreen implements Runnable{
 
 	//Buttons
 	private Button start;
@@ -139,9 +139,6 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		v.add(cl);
 		
 		
-		
-		
-		
 		//Start button
 		start = new ThemedButton(MARGINX-30, MARGINY, WIDTH, HEIGHT, "Start", G ,new Action(){
 			@Override
@@ -167,7 +164,6 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 					}
 				});
 				startTimer.start();
-				
 					
 			}
 
@@ -180,8 +176,15 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 			public void act() {
 				pauseTimer = true;
 				timer.pauseTimer();
-				tt.setText(timer.time());
-				//cl.setText(timer.currentLap());
+				ThemedTextLabel stats = new ThemedTextLabel(MARGINX-30,MARGINY+(SPACE*8),200,30, "Stats: ", G);
+				//ThemedTextLabel longest = new ThemedTextLabel(MARGINX-30,MARGINY+(SPACE*9),200,30, timer.markLongestTime(), G);
+				//ThemedTextLabel Shortest = new ThemedTextLabel(MARGINX-30,(SPACE*10),200,30, timer.markShortestTime(), G);
+				//ThemedTextLabel average = new ThemedTextLabel(MARGINX-30,(SPACE*11),200,30, timer.markAverageTime(), G);
+				v.add(stats);
+				//v.add(longest);
+				//v.add(Shortest);
+				//v.add(average);
+				
 				update();	
 				timer.resetTimer();
 				
@@ -276,27 +279,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		g.fillRect(0, 0, getWidth(), getHeight());
 	}
 
-	@Override
-	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-		
-		
-//	public KeyListener getKeyListner(){
-//		return this;
-//	}
-		
-	}
+
 
 	@Override
 	public void run() {
