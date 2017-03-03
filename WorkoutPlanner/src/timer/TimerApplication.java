@@ -177,14 +177,21 @@ public class TimerApplication extends ClickableScreen implements Runnable{
 				pauseTimer = true;
 				timer.pauseTimer();
 				
-				ThemedTextLabel stats = new ThemedTextLabel(MARGINX-30,MARGINY+(SPACE*8),200,30, "Stats: ", G);
-				//ThemedTextLabel longest = new ThemedTextLabel(MARGINX-30,MARGINY+(SPACE*9),200,30, timer.markLongestTime(), G);
-				//ThemedTextLabel Shortest = new ThemedTextLabel(MARGINX-30,(SPACE*10),200,30, timer.markShortestTime(), G);
-				//ThemedTextLabel average = new ThemedTextLabel(MARGINX-30,(SPACE*11),200,30, timer.markAverageTime(), G);
+				ThemedTextLabel stats = new ThemedTextLabel(MARGINX-30,MARGINY+(SPACE*8),200,30, "Stats: ", W);
 				v.add(stats);
-				//v.add(longest);
-				//v.add(Shortest);
-				//v.add(average);
+				
+				ThemedTextLabel longest = new ThemedTextLabel(MARGINX-30,MARGINY+(SPACE*9),200,30, "Worst ", W);
+				ThemedTextLabel longest2 = new ThemedTextLabel(MARGINX+27,MARGINY+(SPACE*9),200,30, "Lap: "+timer.markLongestTime(), G);
+				ThemedTextLabel Shortest = new ThemedTextLabel(MARGINX-30,MARGINY+(SPACE*10),200,30,"Best" , W);
+				ThemedTextLabel Shortest2 = new ThemedTextLabel(MARGINX+16,MARGINY+(SPACE*10),200,30, "Lap: "+timer.markShortestTime(), G);
+				ThemedTextLabel average = new ThemedTextLabel(MARGINX-30,MARGINY+(SPACE*11),200,30, "Average", W);
+				ThemedTextLabel average2 = new ThemedTextLabel(MARGINX+47,MARGINY+(SPACE*11),200,30, "Lap: "+timer.markAverageTime(), G);
+				v.add(longest);
+				v.add(Shortest);
+				v.add(average);
+				v.add(longest2);
+				v.add(Shortest2);
+				v.add(average2);
 				
 				update();	
 				timer.resetTimer();
