@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import gui.components.Action;
+import gui.components.Clickable;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
 
@@ -43,6 +44,7 @@ public class JonathanPlans extends ClickableScreen implements ExercisesInterface
 	private void runMethods(){
 		for(int i = 0; i < exercises.size(); i++){	
 			b = exercises.get(i);
+			b.setColor(Color.green);
 		}
 	}
 	
@@ -60,7 +62,12 @@ public class JonathanPlans extends ClickableScreen implements ExercisesInterface
 	}
 
 	private void MouseClicked(MouseEvent g) {
-		// TODO Auto-generated method stub;
+		for(Clickable c: getClickables()){
+			if(c.isHovered(g.getX(), g.getY())){
+				c.act();
+				break;
+			}
+		}
 	}
 
 	public void changeOrder(){
@@ -70,20 +77,29 @@ public class JonathanPlans extends ClickableScreen implements ExercisesInterface
 //			exercises.set(i, exercises.get(i-1));
 //			exercises.set(i-1, toMove);
 //		}
-		for(int i = 0; i < exercises.size(); i++){
-			Color[] colors = {Color.red, Color.blue, Color.yellow, Color.green};
-			int j = exercises.indexOf(exercises.get(i));
-			b.setAction(new Action(){
-
-				@Override
-				public void act() {
-					b.highlight();
+//		for(int i = 0; i < exercises.size(); i++){
+//			Color[] colors = {Color.red, Color.blue, Color.yellow, Color.green};
+//			int j = exercises.indexOf(exercises.get(i));
+//			b.setAction(new Action(){
+//
+//				@Override
+//				public void act() {
+//					b.highlight();
+//				}
+//				
+//			}
+//					);
+//			int k = exercises.indexOf(exercises.get());
+//			Collections.swap(exercises, j, k);
+//		}
+		String[] swap = new String[2];
+		for(int i = 0; i < swap.length; i++){
+			for(int k = 0; k < exercises.size(); k++){
+				if(isHovered() && isClicked()){
+					swap[i] += exercises.indexOf(exercises.get(k));
+					Collections.swap(exercises, i, k);
 				}
-				
 			}
-					);
-			int k = exercises.indexOf(exercises.get());
-			Collections.swap(exercises, j, k);
 		}
 	}
 	
