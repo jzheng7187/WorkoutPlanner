@@ -9,6 +9,7 @@ import components.ThemedBorder;
 import components.ThemedBorder2;
 import components.ThemedTextLabel;
 import gui.components.Action;
+import gui.components.Button;
 import gui.components.ClickableGraphic;
 import gui.components.Graphic;
 //import gui.Screen;
@@ -38,7 +39,12 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 	private Graphic p4;
 	private Graphic p5;
 	private Graphic p6;
+	private Button button1;
+	private Button button2;
+	private ThemedTextLabel number;
+	private ThemedTextLabel number2;
 
+	
 	public InputDisplay(int width, int height) {
 		super(width, height);
 		
@@ -53,12 +59,12 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		//tiles
-		title = new TextLabel(60,60,300,40,"Plan");
+		title = new TextLabel(60,80,350,60,"Plan");
 		viewObjects.add(title); 
-		title.setSize(40);
-		accentTitle = new ThemedTextLabel(150,60,300,40,"Your Routine", new Color(180,225,50));
+		title.setSize(60);
+		accentTitle = new ThemedTextLabel(180,80,350,60,"Your Routine", new Color(180,225,50));
 		viewObjects.add(accentTitle);
-		accentTitle.setSize(40);
+		accentTitle.setSize(60);
 		//subtitles
 		topSub = new TextLabel(60, 160, 200, 50, "Total");
 		viewObjects.add(topSub);
@@ -75,42 +81,42 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 		b2= new ThemedBorder2(Color.black, null);
 		viewObjects.add(b2);//vertical
 		//pics
-		p1 = new ClickableGraphic(400, 150, .75, "resources/treadmill.jpg",new Action(){
+		p1 = new ClickableGraphic(400, 250, .75, "resources/treadmill.jpg",new Action(){
 			@Override
 			public void act() {
 				updateMyExerciseList(NewExercise.clickTreadmill());
 			}
 		});
 		viewObjects.add(p1);
-		p2 = new ClickableGraphic(560, 150, .75, "resources/squat.png",new Action(){
+		p2 = new ClickableGraphic(560, 250, .75, "resources/squat.png",new Action(){
 			@Override
 			public void act() {
 				updateMyExerciseList(NewExercise.clickSquats());
 			}
 		});
 		viewObjects.add(p2);
-		p3 = new ClickableGraphic(700, 150, .75, "resources/crunch.jpg",new Action(){
+		p3 = new ClickableGraphic(700, 250, .75, "resources/crunch.jpg",new Action(){
 			@Override
 			public void act() {
 				updateMyExerciseList(NewExercise.clickCrunches());
 			}
 		});
 		viewObjects.add(p3);
-		p4 = new ClickableGraphic(400, 300, .75, "resources/biking.jpeg",new Action(){
+		p4 = new ClickableGraphic(400, 400, .75, "resources/biking.jpeg",new Action(){
 			@Override
 			public void act() {
 				updateMyExerciseList(NewExercise.clickCycling());
 			}
 		});
 		viewObjects.add(p4);
-		p5 = new ClickableGraphic(560, 300, .75, "resources/jumprope.png",new Action(){
+		p5 = new ClickableGraphic(560, 400, .75, "resources/jumprope.png",new Action(){
 			@Override
 			public void act() {
 				updateMyExerciseList(NewExercise.clickPushup());
 			}
 		});
 		viewObjects.add(p5);
-		p6 = new ClickableGraphic(660, 300, .75, "resources/pushup.jpg",new Action(){
+		p6 = new ClickableGraphic(660, 400, .75, "resources/pushup.jpg",new Action(){
 			@Override
 			public void act() {
 				updateMyExerciseList(NewExercise.clickJumprope());
@@ -123,6 +129,20 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 //				t.setSize(25);
 //			}
 //		}
+		//buttons
+		button1 = new Button (60, 620, 200, 50, "Remove", Color.black, new Action(){
+			public void act(){
+				ExercisesInterfaceJonathanZ.removeExercise();
+			}
+		});
+		viewObjects.add(button1);
+		button2 = new Button (300, 620, 200, 50, "Change Order", Color.black, new Action(){
+			public void act(){
+				ExercisesInterfaceJonathanZ.changeOrder();
+			}
+		});
+		viewObjects.add(button2);
+		//column headers
 		ThemedTextLabel num = new ThemedTextLabel(indexColumn, headerY, 200, 50, "#", Color.black);
 		viewObjects.add(num);
 		ThemedTextLabel act = new ThemedTextLabel(activityColumn, headerY, 200, 50, "Activity", new Color(180,225,50));
@@ -147,10 +167,16 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 		currentRow = 1;
 		for(int i = 0; i <  myExercises.size(); i++){
 			addActivity(myExercises.get(i), "Start");
+			number = new ThemedTextLabel(200,160,200,50,(currentRow-1)+"", new Color(180,225,50));
+			viewObjects.add(number);
+
 		}
+//		number = new ThemedTextLabel(200,160,200,50,"   ", Color.white);
+//		viewObjects.add(number);
 	}
 //	public void mouseClicked(MouseEvent e){
 //		addActivity("another item","done");
 //	}
 
 }
+
