@@ -171,12 +171,9 @@ public class Menu extends ClickableScreen implements Runnable {
 	@Override
 	public void run() {
 		updateExercises();
-		while(true){
-			isTimerOn = TimerApplication.getTimerStatus();
-			while(isTimerOn){
-				sTimer = TimerApplication.getTime();
-				changeTime(sTimer);
-			}
+		while(isTimerOn){
+			sTimer = TimerApplication.getTime();
+			changeTime(sTimer);
 		}
 	}
 	private void updateFinished(){

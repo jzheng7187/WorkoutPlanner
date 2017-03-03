@@ -48,7 +48,7 @@ public class TimerApplication extends ClickableScreen implements Runnable, Timer
 	//private static ThemedBorder 1;
 	
 	//Dynamic changing text fields
-	private TextLabel tt; //Total time
+	private static TextLabel tt; //Total time
 	private TextLabel cl; //Current lap
 	
 	//lines
@@ -92,7 +92,7 @@ public class TimerApplication extends ClickableScreen implements Runnable, Timer
 	}
 	
 	public static String getTime(){
-		return timer.time();	
+		return tt.getText();	
 	}
 	public static boolean getCompletionStatus(){
 		return complete;
@@ -300,11 +300,6 @@ public class TimerApplication extends ClickableScreen implements Runnable, Timer
 	public void run() {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public String getTimer() {
-		return tt.getText();
 	}
 
 	@Override
