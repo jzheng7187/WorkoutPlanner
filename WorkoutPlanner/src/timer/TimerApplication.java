@@ -21,6 +21,7 @@ import gui.components.TextLabel;
 import gui.components.ThemedButton;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
+import interfaces.TimerInt;
 import main.workoutPlanner;
 
 
@@ -29,7 +30,7 @@ import main.workoutPlanner;
  *
  *
  */
-public class TimerApplication extends ClickableScreen implements Runnable{
+public class TimerApplication extends ClickableScreen implements Runnable, TimerInt{
 
 	//Buttons
 	private Button start;
@@ -299,6 +300,16 @@ public class TimerApplication extends ClickableScreen implements Runnable{
 	public void run() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public String getTimer() {
+		return tt.getText();
+	}
+
+	@Override
+	public boolean isTimerOn() {
+		return pauseTimer;
 	}
 
 	

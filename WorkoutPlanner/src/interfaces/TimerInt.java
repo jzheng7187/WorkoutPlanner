@@ -1,6 +1,6 @@
 package interfaces;
 
-public interface Timer {
+public interface TimerInt {
 
 	String getTimer();
 

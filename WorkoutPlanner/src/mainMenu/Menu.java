@@ -11,15 +11,14 @@ import gui.components.Action;
 import gui.components.TextHeadder;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
-import interfaces.Timer;
+import interfaces.TimerInt;
 import main.workoutPlanner;
 import timer.TimeDisplay;
 import timer.TimerApplication;
 import workoutPlanner.NewExercise;
 
 public class Menu extends ClickableScreen implements Runnable {
-	private Timer timerInterface;
-	private Timer TimeDisplay;
+	private TimerInt timerInterface;
 	private CustomButton timer;
 	private CustomButton exercises;
 	private CustomButton stop;
@@ -45,7 +44,6 @@ public class Menu extends ClickableScreen implements Runnable {
 	public static final int SPACE = 160;
 	public static final Color BUTTON_COLOR = new Color(255, 255, 255);
 	private String sTimer;
-	private double Timer;
 	private boolean isTimerOn;
 	private String[] Activity;
 	private String[] Finished;
