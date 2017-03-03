@@ -12,4 +12,6 @@ public interface ButtonInterfaceMatthewN extends Clickable {
 	public void clickCycling();
 	public void clickPushup();
 	public void clickJumprope();
+	
+	//public void clickTest();
 }

@@ -39,7 +39,7 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 	private Graphic p5;
 	private Graphic p6;
 
-public InputDisplay(int width, int height) {
+	public InputDisplay(int width, int height) {
 		super(width, height);
 		
 	}

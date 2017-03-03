@@ -39,6 +39,7 @@ public class NewExercise extends Button implements MouseListener{
 			inMyExercise[i] = false;
 			clicked[i] = false;
 		}
+		
 		System.out.println("All exercises and attributes");
 		for(int i = 0; i < allExercises.size(); i++){
 			System.out.println(allExercises.get(i));
@@ -52,6 +53,7 @@ public class NewExercise extends Button implements MouseListener{
 			System.out.println(myExercises.get(i));
 			System.out.println(value[i]);
 		}
+		
 	}
 	*/
 	public void update(Graphics2D g){
@@ -92,7 +94,7 @@ public class NewExercise extends Button implements MouseListener{
 		allExercises.add("Jumprope");
 		value = new int[allExercises.size()];
 		inMyExercise  = new boolean[allExercises.size()];
-		clicked  = new boolean[allExercises.size()];
+		clicked   = new boolean[allExercises.size()];
 	}
 	//checks if the exercise was clicked on.  
 	public static boolean isClicked(int index){
@@ -147,6 +149,11 @@ public class NewExercise extends Button implements MouseListener{
 		clicked[5] = true;
 		addExercise(allExercises);
 	}
+	/*
+	public static void clickTest(){
+		System.out.println("Sucessful");
+	}
+	*/
 	@Override
 	public void mouseClicked(MouseEvent g) {
 		
