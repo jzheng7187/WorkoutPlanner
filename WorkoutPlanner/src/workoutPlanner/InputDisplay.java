@@ -78,42 +78,42 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 		p1 = new ClickableGraphic(400, 150, .75, "resources/treadmill.jpg",new Action(){
 			@Override
 			public void act() {
-				NewExercise.clickTreadmill();
+				updateMyExerciseList(NewExercise.clickTreadmill());
 			}
 		});
 		viewObjects.add(p1);
 		p2 = new ClickableGraphic(560, 150, .75, "resources/squat.png",new Action(){
 			@Override
 			public void act() {
-				NewExercise.clickSquats();
+				updateMyExerciseList(NewExercise.clickSquats());
 			}
 		});
 		viewObjects.add(p2);
 		p3 = new ClickableGraphic(700, 150, .75, "resources/crunch.jpg",new Action(){
 			@Override
 			public void act() {
-				NewExercise.clickCrunches();
+				updateMyExerciseList(NewExercise.clickCrunches());
 			}
 		});
 		viewObjects.add(p3);
 		p4 = new ClickableGraphic(400, 300, .75, "resources/biking.jpeg",new Action(){
 			@Override
 			public void act() {
-				NewExercise.clickCycling();
+				updateMyExerciseList(NewExercise.clickCycling());
 			}
 		});
 		viewObjects.add(p4);
 		p5 = new ClickableGraphic(560, 300, .75, "resources/jumprope.png",new Action(){
 			@Override
 			public void act() {
-				NewExercise.clickPushup();
+				updateMyExerciseList(NewExercise.clickPushup());
 			}
 		});
 		viewObjects.add(p5);
 		p6 = new ClickableGraphic(660, 300, .75, "resources/pushup.jpg",new Action(){
 			@Override
 			public void act() {
-				NewExercise.clickJumprope();
+				updateMyExerciseList(NewExercise.clickJumprope());
 			}
 		});
 		viewObjects.add(p6);
@@ -143,7 +143,12 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 		}
 		currentRow++;
 	}
-	
+	private void updateMyExerciseList(ArrayList<String> myExercises) {
+		currentRow = 1;
+		for(int i = 0; i <  myExercises.size(); i++){
+			addActivity(myExercises.get(i), "Start");
+		}
+	}
 //	public void mouseClicked(MouseEvent e){
 //		addActivity("another item","done");
 //	}

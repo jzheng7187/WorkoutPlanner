@@ -117,53 +117,59 @@ public class NewExercise extends Button implements MouseListener{
 	public ArrayList<String> showExercises(){
 		return myExercises;
 	}
-	public static void clickTreadmill(){
+	public static ArrayList<String> clickTreadmill(){
 		if(!isInitialize){
 			isInitialize = true;
 			getExercises();
 		}
 		clicked[0] = true;
 		addExercise(allExercises);
+		return myExercises;
 	}
-	public static void clickSquats(){
+	public static ArrayList<String> clickSquats(){
 		if(!isInitialize){
 			isInitialize = true;
 			getExercises();
 		}
 		clicked[1] = true;
 		addExercise(allExercises);
+		return myExercises;
 	}
-	public static void clickCrunches(){
+	public static ArrayList<String> clickCrunches(){
 		if(!isInitialize){
 			isInitialize = true;
 			getExercises();
 		}
 		clicked[2] = true;
 		addExercise(allExercises);
+		return myExercises;
 	}
-	public static void clickCycling(){
+	public static ArrayList<String> clickCycling(){
 		if(!isInitialize){
 			isInitialize = true;
 			getExercises();
 		}
 		clicked[3] = true;
 		addExercise(allExercises);
+		return myExercises;
 	}
-	public static void clickPushup(){
+	public static ArrayList<String> clickPushup(){
 		if(!isInitialize){
 			isInitialize = true;
 			getExercises();
 		}
 		clicked[4] = true;
 		addExercise(allExercises);
+		return myExercises;
 	}
-	public static void clickJumprope(){
+	public static ArrayList<String> clickJumprope(){
 		if(!isInitialize){
 			isInitialize = true;
 			getExercises();
 		}
 		clicked[5] = true;
 		addExercise(allExercises);
+		return myExercises;
 	}
 	/*
 	public static void clickTest(){
