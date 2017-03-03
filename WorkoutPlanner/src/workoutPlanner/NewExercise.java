@@ -63,8 +63,6 @@ public class NewExercise extends Button implements MouseListener{
 		showExercises();
 	}  
 	
-	
-	
 //	public boolean mouseClicked() {
 //		if(isHovered(getX(),getY())){
 //			return true;
@@ -119,8 +117,6 @@ public class NewExercise extends Button implements MouseListener{
 		}
 		//update();
 		return myExercises;
-		
-		
 	}
 	public ArrayList<String> showExercises(){
 		return myExercises;
