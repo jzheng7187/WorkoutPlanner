@@ -1,6 +1,13 @@
 package workoutPlanner;
 
+import java.awt.Color;
+
 public interface ExercisesInterfaceJonathanZ {
 	
-	public void getExercises();
+	void highlight();
+	
+	void setColor(Color color);
+	
+	
+	
 }
