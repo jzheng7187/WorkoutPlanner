@@ -145,8 +145,7 @@ public class Menu extends ClickableScreen implements Runnable {
 
 			@Override
 			public void act() {
-				isTimerOn = false;
-				//TimerApplication.pauseTimer = false;
+				isTimerOn = true;
 			}
 		}, Color.BLACK);
 		view.add(stop);
@@ -171,9 +170,11 @@ public class Menu extends ClickableScreen implements Runnable {
 	@Override
 	public void run() {
 		updateExercises();
-		while(isTimerOn){
+		while(true){
 			sTimer = TimerApplication.getTime();
-			changeTime(sTimer);
+			if(!isTimerOn){
+				changeTime(sTimer);
+			}
 		}
 	}
 	private void updateFinished(){
