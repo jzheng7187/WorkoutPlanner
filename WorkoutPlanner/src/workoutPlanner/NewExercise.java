@@ -26,6 +26,7 @@ public class NewExercise extends Button implements MouseListener{
 	public NewExercise(int x, int y, int w, int h, String text, Color color, Action action) {
 		super(x, y, w, h, text, color, action);
 		getExercises();
+		update();
 	}
 	//used for debugging
 	/*
@@ -57,12 +58,22 @@ public class NewExercise extends Button implements MouseListener{
 	}
 	*/
 	public void update(Graphics2D g){
+		allExercises = new ArrayList<String>();
+		//swap with images 
+		allExercises.add("Treadmill");
+		allExercises.add("Squats");
+		allExercises.add("Crunches");
+		allExercises.add("Cycling");
+		allExercises.add("Pushup");
+		allExercises.add("Jumprope");
 		value = new int[allExercises.size()];
 		inMyExercise  = new boolean[allExercises.size()];
 		clicked  = new boolean[allExercises.size()];
+		/*
 		addExercise(allExercises);
 		allExercises.remove(clickedGraphic);
 		showExercises();
+		*/
 	}  
 	@Override
 	public boolean isHovered(int x, int y) {
