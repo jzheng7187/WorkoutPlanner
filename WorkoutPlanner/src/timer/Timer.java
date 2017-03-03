@@ -218,7 +218,10 @@ public class Timer extends ClickableScreen implements TimeDisplay{
 
 	@Override
 	public String currentLap() {
-		return laps.get(laps.size() - 1);
+		if(laps.size() > 0){
+			return laps.get(laps.size() - 1);
+		}
+		return "0:00";
 	}
 
 	@Override
@@ -254,7 +257,10 @@ public class Timer extends ClickableScreen implements TimeDisplay{
 
 	@Override
 	public ArrayList<String> laps() {
-		return laps;
+		if(laps.size() > 0){
+			return laps;
+		}
+		return null;
 		
 	}
 }
