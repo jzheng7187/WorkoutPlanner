@@ -3,6 +3,7 @@ package mainMenu;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import components.ThemedBorder;
 import components.ThemedBorder2;
@@ -22,6 +23,7 @@ public class Menu extends ClickableScreen implements Runnable {
 	private CustomButton timer;
 	private CustomButton exercises;
 	private CustomButton stop;
+	private CustomButton[] exerciseClicked;
 	private ThemedTextLabel stopwatch;
 	private CustomButton stopwatchbut;
 	private CustomButton border1;
@@ -51,6 +53,7 @@ public class Menu extends ClickableScreen implements Runnable {
 	private ArrayList<Long> timeFinished;
 	private ArrayList<String> exerciseList;
 	private boolean isTimerStop;
+	private String exercise;
 
 	public Menu(int width, int height) {
 		super(width, height);
@@ -65,7 +68,49 @@ public class Menu extends ClickableScreen implements Runnable {
 		for(int i = 0; i < Activity.length; i++){
 			Activity[i] = "";
 		}
-
+		exerciseClicked = new CustomButton[6];
+		exerciseClicked[0] = new CustomButton(300, 500 + 0 * 25, 150, 25, "Walking" , BUTTON_COLOR,new Action() {
+			@Override
+			public void act() {
+				updateExercises("Walking");
+			}
+		}, Color.black);
+		exerciseClicked[1] = new CustomButton(300, 500 + 1 * 25, 150, 25, "Squats" , BUTTON_COLOR,new Action() {
+			@Override
+			public void act() {
+				updateExercises("Squats");
+			}
+		}, Color.black);
+		exerciseClicked[2] = new CustomButton(300, 500 + 2 * 25, 150, 25, "Lunges" , BUTTON_COLOR,new Action() {
+			@Override
+			public void act() {
+				updateExercises("Lunges");
+			}
+		}, Color.black);
+		exerciseClicked[3] = new CustomButton(300, 500 + 3 * 25, 150, 25, "Push Up" , BUTTON_COLOR,new Action() {
+			@Override
+			public void act() {
+				updateExercises("Push Up");
+			}
+		}, Color.black);
+		exerciseClicked[4] = new CustomButton(300, 500 + 4 * 25, 150, 25, "Crunches" , BUTTON_COLOR,new Action() {
+			@Override
+			public void act() {
+				updateExercises("Crunches");
+			}
+		}, Color.black);
+		exerciseClicked[5] = new CustomButton(300, 500 + 5 * 25, 150, 25, "Bent-Over Rows" , BUTTON_COLOR,new Action() {
+			@Override
+			public void act() {
+				updateExercises("Bent-Over Rows");
+			}
+		}, Color.black);
+		view.add(exerciseClicked[0]);
+		view.add(exerciseClicked[1]);
+		view.add(exerciseClicked[2]);
+		view.add(exerciseClicked[3]);
+		view.add(exerciseClicked[4]);
+		view.add(exerciseClicked[5]);
 		act = new ThemedTextLabel[3];
 		fin = new ThemedTextLabel[3];
 		exerciseList = new ArrayList<String>();
@@ -81,7 +126,7 @@ public class Menu extends ClickableScreen implements Runnable {
 		view.add(label2);
 		remain = new ThemedTextLabel(50, 200, 120, 50, "Exercises", Color.white);
 		view.add(remain);
-		exerci = new ThemedTextLabel(175, 200, 100, 50, "Checked", Color.black);
+		exerci = new ThemedTextLabel(175, 200, 100, 50, "Clicked", Color.black);
 		view.add(exerci);
 		stat = new ThemedTextLabel(330, 300, 100, 50, "Status", Color.black);
 		view.add(stat);
@@ -89,8 +134,6 @@ public class Menu extends ClickableScreen implements Runnable {
 		view.add(curr);
 		start = new ThemedTextLabel(330, 400, 100, 50, "Start", Color.black);
 		view.add(start);
-		progress = new ThemedTextLabel(50, 250, 130, 50, "Inprogress", Color.white);
-		view.add(progress);
 
 
 		act[0] = new ThemedTextLabel(50, 300, 200, 50, Activity[0], Color.white);
@@ -173,7 +216,6 @@ public class Menu extends ClickableScreen implements Runnable {
 
 	@Override
 	public void run() {
-		updateExercises();
 		while(true){
 			sTimer = TimerApplication.getTime();
 			isTimerOn = TimerApplication.getTimerStatus();
@@ -203,30 +245,22 @@ public class Menu extends ClickableScreen implements Runnable {
 		//		timeFinished.add(duration);
 		//		};
 	}
-	private void updateExercises() {
-		if(exerciseList.size() < 3){
-			exerciseList.add(0,"Exercise 1"
-					//Exercises.clickedExercise()
-					);
+	private void updateExercises(String exercise2) {
+		int counter = 0;
+		for(int i = 0; i < exerciseList.size(); i++){
+			if(exerciseList.get(i) == exercise2) {
+				exerciseList.remove(i);
+				exerciseList.add(0, exercise2
+						);
+				counter = 1;
+			}
 		}
-		if(exerciseList.size() < 3){
-			exerciseList.add(0,"Exercise 2"
-					//Exercises.clickedExercise()
+		if(exerciseList.size() < 3 && counter == 0){
+			exerciseList.add(0, exercise2
 					);
-		}
-		if(exerciseList.size() < 3){
-			exerciseList.add(0,"Exercise 3"
-					//Exercises.clickedExercise()
-					);
-		}
-		if(exerciseList.size() < 3){
-			exerciseList.add(0,"Exercise 4"
-					//Exercises.clickedExercise()
-					);
-		}else{
+		}else if(counter == 0){
 			exerciseList.remove(2);
-			exerciseList.add(0,"Exercise 4"
-					//Exercises.clickedExercise()
+			exerciseList.add(0, exercise2
 					);
 		}
 		for(int i = 0; i < exerciseList.size(); i++){
