@@ -31,7 +31,6 @@ public class JonathanPlans extends ClickableScreen implements ExercisesInterface
 	private int y;
 	private int input;
 	private Color color;
-	private String b;
 	private Object displayColor;
 	private boolean highlight;
 	private Action action;
@@ -44,13 +43,6 @@ public class JonathanPlans extends ClickableScreen implements ExercisesInterface
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		// TODO Auto-generated method stub
 		
-	}
-	
-	private void runMethods(){
-		for(int i = 0; i < exercises.size(); i++){	
-			b = exercises.get(i);
-			b.setColor(Color.green);
-		}
 	}
 	
 	private boolean isClicked() {
@@ -86,10 +78,16 @@ public class JonathanPlans extends ClickableScreen implements ExercisesInterface
 		highlight = false;
 		update();
 	}
+	
 	public void removeExercise() {
-		if(isHovered()){
-			b.highlight();
-			NewExercise.getMyExercises().remove(b);
+		int[] remove = new int[1];
+		for(int i = 0; i < remove.length; i++){
+			for(int j = 0; j < exercises.size(); j++){
+				if(isClicked() && isHovered()){
+					remove[i] += exercises.indexOf(exercises.get(j));
+					exercises.remove(remove[i]);
+				}
+			}
 		}
 	}
 
