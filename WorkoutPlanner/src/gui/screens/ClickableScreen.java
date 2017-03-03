@@ -19,10 +19,10 @@ public abstract class ClickableScreen extends Screen implements MouseListener{
 
 	public void initObjects(ArrayList<Visible> viewObjects) {
 		initAllObjects(viewObjects);
-		clickables = new ArrayList<Clickable>();
+		setClickables(new ArrayList<Clickable>());
 		for(Visible v: viewObjects){
 			if(v instanceof Clickable){
-				clickables.add((Clickable) v);
+				getClickables().add((Clickable) v);
 			}
 		}
 
@@ -38,7 +38,7 @@ public abstract class ClickableScreen extends Screen implements MouseListener{
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		for(Clickable c: clickables){
+		for(Clickable c: getClickables()){
 			if(c.isHovered(e.getX(), e.getY())){
 				c.act();
 				break;
@@ -73,13 +73,21 @@ public abstract class ClickableScreen extends Screen implements MouseListener{
 	public void addObject(Visible v){
 		super.addObject(v);
 		if(v instanceof Clickable){
-			clickables.add((Clickable)v);
+			getClickables().add((Clickable)v);
 		}
 	}
 
 	public void remove(Visible v){
 		super.remove(v);
-		clickables.remove((Clickable)v);
+		getClickables().remove((Clickable)v);
+	}
+
+	public ArrayList<Clickable> getClickables() {
+		return clickables;
+	}
+
+	public void setClickables(ArrayList<Clickable> clickables) {
+		this.clickables = clickables;
 	} 
 
 }

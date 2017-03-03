@@ -1,5 +1,7 @@
 package timer;
 
+import java.util.ArrayList;
+
 import gui.components.TextLabel;
 
 /**
@@ -19,6 +21,10 @@ public interface TimeDisplay {
 	public String time();
 	
 	public String currentLap();
+	
+	public ArrayList<String> laps();
+	
+	public void addNewLap();
 	
 	public void pauseTimer();
 	

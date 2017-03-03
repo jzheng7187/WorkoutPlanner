@@ -218,31 +218,57 @@ public class Timer extends ClickableScreen implements TimeDisplay{
 
 	@Override
 	public String currentLap() {
-		return laps.get(laps.size() - 1);
+//		if(laps.size() > 0){
+//			return laps.get(laps.size() - 1);
+//		}
+//		
+		if (ms.size() == 0){
+			currentTimeM();
+			return showTimeSinceLap(currentTimeM);
+		}
+		else {
+			newLapTimeM();
+			return showTimeSinceLap(newLapTimeM);
+		}
 	}
 
 	@Override
 	public void pauseTimer() {
-		pauseTime = System.currentTimeMillis() - startTime;
+		pauseTime = System.currentTimeMillis();
 		
 	}
 
 	@Override
 	public void startTimer() {
-		startTime = System.currentTimeMillis();
 		startTime();
 		
 	}
 
 	@Override
 	public void unpauseTimer() {
-		startTime = (System.currentTimeMillis() - pauseTime) + startTime;
+		startTime = startTime + (System.currentTimeMillis() - pauseTime);
 		
 	}
 
 	@Override
 	public void resetTimer() {
-		startTime = (System.currentTimeMillis()) + startTime;
+		startTime = System.currentTimeMillis();
+		ms.clear();
+		laps.clear();
+		
+	}
+
+	@Override
+	public void addNewLap() {
+		addLap();
+	}
+
+	@Override
+	public ArrayList<String> laps() {
+		if(laps.size() > 0){
+			return laps;
+		}
+		return null;
 		
 	}
 }

@@ -6,38 +6,45 @@ import java.util.ArrayList;
 
 import components.ThemedBorder;
 import components.ThemedBorder2;
+import components.ThemedTextLabel;
 import gui.components.Action;
+import gui.components.TextHeadder;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
 import interfaces.Timer;
 import main.workoutPlanner;
+import timer.TimeDisplay;
+import timer.TimerApplication;
+import workoutPlanner.NewExercise;
 
 public class Menu extends ClickableScreen implements Runnable {
 	private Timer timerInterface;
+	private Timer TimeDisplay;
 	private CustomButton timer;
 	private CustomButton exercises;
 	private CustomButton stop;
-	private CustomTextLabel stopwatch;
+	private ThemedTextLabel stopwatch;
 	private CustomButton stopwatchbut;
 	private CustomButton border1;
 	private CustomButton border2;
-	private CustomTitle label;
-	private CustomTitle label2;
-	private CustomTextLabel remain;
-	private CustomTextLabel finishedex;
-	private CustomTextLabel exerci;
-	private CustomTextLabel stat;
-	private CustomTextLabel curr;
-	private CustomTextLabel start;
-	private CustomTextLabel progress;
-	private CustomTextLabel[] act;
-	private CustomTextLabel[] fin; 
+	private TextHeadder label;
+	private TextHeadder label2;
+	private ThemedTextLabel remain;
+	private ThemedTextLabel finishedex;
+	private ThemedTextLabel exerci;
+	private ThemedTextLabel stat;
+	private ThemedTextLabel curr;
+	private ThemedTextLabel start;
+	private ThemedTextLabel progress;
+	private ThemedTextLabel[] act;
+	private ThemedTextLabel[] fin; 
 	public static final int MARGINX = 550;
 	public static final int MARGINY = 200;
 	public static final int WIDTH = 200;
 	public static final int HEIGHT = 120;
 	public static final int SPACE = 160;
 	public static final Color BUTTON_COLOR = new Color(255, 255, 255);
+	private String sTimer;
 	private double Timer;
 	private boolean isTimerOn;
 	private String[] Activity;
@@ -51,6 +58,7 @@ public class Menu extends ClickableScreen implements Runnable {
 		Thread play = new Thread(this);
 		play.start();
 	}
+	
 
 	@Override
 	public void initAllObjects(ArrayList<Visible> view) {
@@ -58,44 +66,44 @@ public class Menu extends ClickableScreen implements Runnable {
 		for(int i = 0; i < Activity.length; i++){
 			Activity[i] = "";
 		}
+			
 		
-		
-		act = new CustomTextLabel[3];
-		fin = new CustomTextLabel[3];
+		act = new ThemedTextLabel[3];
+		fin = new ThemedTextLabel[3];
 		exerciseList = new ArrayList<String>();
 		finishedList = new ArrayList<String>();
 		timeFinished = new ArrayList<Long>();
-		finishedex = new CustomTextLabel(50, 450, 300, 50, "Finished Excercises", Color.black);
+		finishedex = new ThemedTextLabel(50, 450, 300, 50, "Finished Excercises", Color.black);
 		view.add(finishedex);
-		stopwatch = new CustomTextLabel(650, 90, 100, 50, "0.00", Color.black);
+		stopwatch = new ThemedTextLabel(650, 90, 100, 50, "0.00", Color.black);
 		
-		label = new CustomTitle(50, 50, 300, 50, "Workout", Color.white);
+		label = new TextHeadder(50, 60, 300, 50, "Workout", Color.white,null);
 		view.add(label);
-		label2 = new CustomTitle(280, 50, 300, 50, "Planner", Color.black);
+		label2 = new TextHeadder(280, 60, 300, 50, "Planner", Color.black,null);
 		view.add(label2);
-		remain = new CustomTextLabel(50, 200, 120, 50, "Remaining", Color.white);
+		remain = new ThemedTextLabel(50, 200, 120, 50, "Remaining", Color.white);
 		view.add(remain);
-		exerci = new CustomTextLabel(175, 200, 100, 50, "Exercises", Color.black);
+		exerci = new ThemedTextLabel(175, 200, 100, 50, "Exercises", Color.black);
 		view.add(exerci);
-		stat = new CustomTextLabel(330, 300, 100, 50, "Status", Color.black);
+		stat = new ThemedTextLabel(330, 300, 100, 50, "Status", Color.black);
 		view.add(stat);
-		curr = new CustomTextLabel(330, 350, 100, 50, "Current", Color.black);
+		curr = new ThemedTextLabel(330, 350, 100, 50, "Current", Color.black);
 		view.add(curr);
-		start = new CustomTextLabel(330, 400, 100, 50, "Start", Color.black);
+		start = new ThemedTextLabel(330, 400, 100, 50, "Start", Color.black);
 		view.add(start);
-		progress = new CustomTextLabel(50, 250, 130, 50, "Inprogress", Color.white);
+		progress = new ThemedTextLabel(50, 250, 130, 50, "Inprogress", Color.white);
 		view.add(progress);
 		
 		
-		act[0] = new CustomTextLabel(50, 300, 200, 50, Activity[0], Color.white);
-		act[1] = new CustomTextLabel(50, 350, 200, 50, Activity[1], Color.white);
-		act[2] = new CustomTextLabel(50, 400, 200, 50, Activity[2], Color.white);
+		act[0] = new ThemedTextLabel(50, 300, 200, 50, Activity[0], Color.white);
+		act[1] = new ThemedTextLabel(50, 350, 200, 50, Activity[1], Color.white);
+		act[2] = new ThemedTextLabel(50, 400, 200, 50, Activity[2], Color.white);
 		view.add(act[0]);
 		view.add(act[1]);
 		view.add(act[2]);
-		fin[0] = new CustomTextLabel(50, 0, 200, 50, Activity[0], Color.white);
-		fin[1] = new CustomTextLabel(50, 350, 200, 50, Activity[1], Color.white);
-		fin[2] = new CustomTextLabel(50, 400, 200, 50, Activity[2], Color.white);
+		fin[0] = new ThemedTextLabel(50, 500, 200, 50, TimerApplication.getTime(), Color.white);
+		fin[1] = new ThemedTextLabel(50, 550, 200, 50, TimerApplication.getTime(), Color.white);
+		fin[2] = new ThemedTextLabel(50, 600, 200, 50, TimerApplication.getTime(), Color.white);
 		view.add(fin[0]);
 		view.add(fin[1]);
 		view.add(fin[2]);
@@ -141,6 +149,7 @@ public class Menu extends ClickableScreen implements Runnable {
 			@Override
 			public void act() {
 				isTimerOn = false;
+				//TimerApplication.pauseTimer = false;
 			}
 		}, Color.BLACK);
 		view.add(stop);
@@ -165,8 +174,9 @@ public class Menu extends ClickableScreen implements Runnable {
 	@Override
 	public void run() {
 		//Timer = timerInterface.getTimer();
+		//System.out.println(sTimer);
 		//isTimerOn = timerInterface.isTimerOn();
-		Timer = 0.00;
+		//Timer = Integer.valueOf(sTimer);
 		isTimerOn = false;
 		updateExercises();
 		while(isTimerOn){
@@ -179,19 +189,21 @@ public class Menu extends ClickableScreen implements Runnable {
 			finishedList.add(exerciseList.get(i));
 			exerciseList.remove(i);
 		};
-		for(int i = 0; i < timeFinished.size(); i++ ){
-			
+		//if the pause timer is true and and complete is true
+		//gettime();
+//		for(int i = 0; i < timeFinished.size(); i++ ){
+//			
 //			double startTime = Timer;
 //			
 //			if(){
 //				
 //			}
-		long startTime = System.nanoTime();
-		run();
-		long endTime = System.nanoTime();
-		long duration = (endTime - startTime);
-		timeFinished.add(duration);
-		};
+//		long startTime = System.nanoTime();
+//		run();
+//		long endTime = System.nanoTime();
+//		long duration = (endTime - startTime);
+//		timeFinished.add(duration);
+//		};
 	}
 	private void updateExercises() {
 		if(exerciseList.size() < 3){

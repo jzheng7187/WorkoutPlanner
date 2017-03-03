@@ -48,12 +48,6 @@ public class NewExercise extends Button implements MouseListener{
 		}
 		clicked[0] = true;
 		addExercise(allExercises);
-		System.out.println("My exercises");
-		for(int i = 0; i < myExercises.size(); i++){
-			System.out.println(myExercises.get(i));
-			System.out.println(value[i]);
-		}
-		
 	}
 	*/
 	@Override
@@ -70,10 +64,6 @@ public class NewExercise extends Button implements MouseListener{
 			}
 		}
 	}
-	
-	
-	
-	
 	
 	public static void getExercises(){
 		allExercises = new ArrayList<String>();
@@ -200,6 +190,5 @@ public class NewExercise extends Button implements MouseListener{
 		// TODO Auto-generated method stub
 		
 	}
-	
 	
 }
