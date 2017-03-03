@@ -255,5 +255,6 @@ public class Timer extends ClickableScreen implements TimeDisplay{
 	@Override
 	public ArrayList<String> laps() {
 		return laps;
+		
 	}
 }
