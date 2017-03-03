@@ -25,7 +25,7 @@ import gui.screens.ClickableScreen;
  */
 public class JonathanPlans extends ClickableScreen implements ExercisesInterfaceJonathanZ, MouseListener{
 
-	private ArrayList<String> exercises = NewExercise.getMyExercises();
+	private static ArrayList<String> exercises = NewExercise.getMyExercises();
 	private int value;
 	private int x;
 	private int y;
@@ -45,7 +45,7 @@ public class JonathanPlans extends ClickableScreen implements ExercisesInterface
 		
 	}
 	
-	private boolean isClicked() {
+	private static boolean isClicked() {
 		if(isHovered()){
 			return true;
 		}
@@ -61,7 +61,7 @@ public class JonathanPlans extends ClickableScreen implements ExercisesInterface
 		}
 	}
 
-	public void changeOrder(){
+	public static void changeOrder(){
 		String[] swap = new String[2];
 		for(int i = 0; i < swap.length; i++){
 			for(int k = 0; k < exercises.size(); k++){
@@ -79,11 +79,11 @@ public class JonathanPlans extends ClickableScreen implements ExercisesInterface
 		update();
 	}
 	
-	public void removeExercise() {
+	public static void removeExercise() {
 		int[] remove = new int[1];
 		for(int i = 0; i < remove.length; i++){
 			for(int j = 0; j < exercises.size(); j++){
-				if(isClicked() && isHovered()){
+				if(isClicked()){
 					remove[i] += exercises.indexOf(exercises.get(j));
 					exercises.remove(remove[i]);
 				}
@@ -91,6 +91,7 @@ public class JonathanPlans extends ClickableScreen implements ExercisesInterface
 		}
 	}
 
+	
 	private int getY() {
 		return y;
 	}
@@ -100,7 +101,7 @@ public class JonathanPlans extends ClickableScreen implements ExercisesInterface
 	}
 	
 	public boolean isHovered(){
-		return x>getX() && x<getX()+getWidth() && y > getY() && y<getY()+getHeight();
+		return x>getX() && x<getX()+getWidth() && y > getY() && y<getY()+ getHeight();
 	}
 
 	public void act() {

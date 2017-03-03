@@ -132,13 +132,13 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 		//buttons
 		button1 = new Button (60, 620, 200, 50, "Remove", Color.black, new Action(){
 			public void act(){
-				ExercisesInterfaceJonathanZ.removeExercise();
+				JonathanPlans.removeExercise();
 			}
 		});
 		viewObjects.add(button1);
 		button2 = new Button (300, 620, 200, 50, "Change Order", Color.black, new Action(){
 			public void act(){
-				ExercisesInterfaceJonathanZ.changeOrder();
+				JonathanPlans.changeOrder();
 			}
 		});
 		viewObjects.add(button2);
