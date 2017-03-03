@@ -16,6 +16,7 @@ import components.ThemedTextLabel;
 import gui.components.Action;
 import gui.components.Button;
 import gui.components.DrawLines;
+import gui.components.Rect;
 import gui.components.TextHeadder;
 import gui.components.TextLabel;
 import gui.components.ThemedButton;
@@ -62,7 +63,7 @@ public class TimerApplication extends ClickableScreen implements Runnable{
 	public static final int SPACE=35;
 	
 	//refresh rate
-	public static final int REFRESH = 5;
+	public static final int REFRESH = 10;
 	
 	//background
 	private ThemedBorder border1;
@@ -80,6 +81,10 @@ public class TimerApplication extends ClickableScreen implements Runnable{
 	public static final Color W = new Color (255,255,255);
 	public static final Color B = new Color (0,0,0);
 	
+	//rect
+	private static Rect rect;
+	private static Rect rect2;
+	
 	//Timer boolean
 	private static boolean pauseTimer = false;
 	//completion boolean
@@ -89,6 +94,8 @@ public class TimerApplication extends ClickableScreen implements Runnable{
 	public static boolean getTimerStatus(){
 		return pauseTimer;
 	}
+	
+	
 	
 	public static String getTime(){
 		return timer.time();	
@@ -158,7 +165,7 @@ public class TimerApplication extends ClickableScreen implements Runnable{
 							while(pauseTimer == false){
 								Thread.sleep(REFRESH);
 								tt.setText(timer.time());
-								//cl.setText(timer.currentLap());
+								cl.setText(timer.currentLap());
 								update();	
 							}
 							
@@ -169,7 +176,10 @@ public class TimerApplication extends ClickableScreen implements Runnable{
 					}
 				});
 				startTimer.start();
-					
+				rect = new Rect(50,SPACE*7,300,getHeight()-(SPACE*7));
+				rect2 = new Rect(MARGINX-30,MARGINY+(SPACE*8),300,150);
+				v.add(rect);
+				v.add(rect2);
 			}
 
 		}, Color.WHITE);
@@ -240,7 +250,7 @@ public class TimerApplication extends ClickableScreen implements Runnable{
 								while(pauseTimer == false){
 									Thread.sleep(REFRESH);
 									tt.setText(timer.time());
-									//cl.setText(timer.currentLap());
+									cl.setText(timer.currentLap());
 									update();	
 								}
 								
