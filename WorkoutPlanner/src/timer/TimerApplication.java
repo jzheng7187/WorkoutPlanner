@@ -63,7 +63,7 @@ public class TimerApplication extends ClickableScreen implements Runnable{
 	public static final int SPACE=35;
 	
 	//refresh rate
-	public static final int REFRESH = 10;
+	public static final int REFRESH = 150;
 	
 	//background
 	private ThemedBorder border1;
