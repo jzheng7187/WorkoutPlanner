@@ -8,7 +8,6 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import components.ThemedBorder;
@@ -23,7 +22,6 @@ import gui.components.ThemedButton;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
 import main.workoutPlanner;
-import timer.TimeDisplay;
 
 
 /**
@@ -129,6 +127,9 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		cl = new ThemedTextLabel(170,SPACE*6,100,30, "00:00:00", W);
 		v.add(cl);
 		
+		//laps
+		
+		
 		
 		//Start button
 		start = new ThemedButton(MARGINX-30, MARGINY, WIDTH, HEIGHT, "Start", G ,new Action(){
@@ -144,6 +145,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 							while(pauseTimer == false){
 								Thread.sleep(150);
 								tt.setText(timer.time());
+								//cl.setText(timer.currentLap());
 								update();	
 							}
 							
@@ -165,11 +167,13 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		stop = new ThemedButton(MARGINX+180, MARGINY, WIDTH, HEIGHT, "Stop", G ,new Action(){
 			@Override
 			public void act() {
+				pauseTimer = true;
 				timer.pauseTimer();
 				tt.setText(timer.time());
+				//cl.setText(timer.currentLap());
 				update();	
-				pauseTimer = true;
 				timer.resetTimer();
+				
 			}
 		}, Color.WHITE);
 		v.add(stop);
@@ -200,6 +204,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 								while(pauseTimer == false){
 									Thread.sleep(150);
 									tt.setText(timer.time());
+									//cl.setText(timer.currentLap());
 									update();	
 								}
 								
@@ -211,8 +216,9 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 					});
 					startTimer.start();
 				}else{
-					timer.pauseTimer();
 					pauseTimer = true;
+					timer.pauseTimer();
+					
 				}
 			}
 		}, Color.WHITE);
