@@ -9,6 +9,11 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.swing.JTextArea;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Highlighter;
+import javax.swing.text.Highlighter.HighlightPainter;
+
 import gui.components.Action;
 import gui.components.Clickable;
 import gui.components.Visible;
@@ -48,12 +53,6 @@ public class JonathanPlans extends ClickableScreen implements ExercisesInterface
 		}
 	}
 	
-	public void runMethod(){
-		if(isHovered() && isClicked()){
-			
-		}
-		editExercises();
-	}
 	private boolean isClicked() {
 		if(isHovered()){
 			return true;
@@ -71,27 +70,6 @@ public class JonathanPlans extends ClickableScreen implements ExercisesInterface
 	}
 
 	public void changeOrder(){
-//		int i = exercises.size();
-//		if(i > 0) {
-//			String toMove = exercises.get(i);
-//			exercises.set(i, exercises.get(i-1));
-//			exercises.set(i-1, toMove);
-//		}
-//		for(int i = 0; i < exercises.size(); i++){
-//			Color[] colors = {Color.red, Color.blue, Color.yellow, Color.green};
-//			int j = exercises.indexOf(exercises.get(i));
-//			b.setAction(new Action(){
-//
-//				@Override
-//				public void act() {
-//					b.highlight();
-//				}
-//				
-//			}
-//					);
-//			int k = exercises.indexOf(exercises.get());
-//			Collections.swap(exercises, j, k);
-//		}
 		String[] swap = new String[2];
 		for(int i = 0; i < swap.length; i++){
 			for(int k = 0; k < exercises.size(); k++){
@@ -101,16 +79,6 @@ public class JonathanPlans extends ClickableScreen implements ExercisesInterface
 				}
 			}
 		}
-	}
-	
-	public void editExercises(){
-		System.out.println("What would you like to edit within the exercise?");
-		if(getX() == 100 && getY() == 100){
-			removeExercise();
-		}else{
-			changeOrder();
-		}
-		
 	}
 	
 	public void dim() {
@@ -143,10 +111,14 @@ public class JonathanPlans extends ClickableScreen implements ExercisesInterface
 
 	@Override
 	public void highlight() {
-		if(color != null) 
-			displayColor = color;
-		highlight = true;
-		update();
+//		if(color != null) 
+//		displayColor = color;
+//		highlight = true;
+//		update();
+		 DefaultHighlighter.DefaultHighlightPainter highlightPainter = 
+			        new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
+			    textPane.getHighlighter().addHighlight(0, exercises.get(i).length, 
+			            highlightPainter);
 	}
 	
 	public void setAction(Action action) {
@@ -158,4 +130,5 @@ public class JonathanPlans extends ClickableScreen implements ExercisesInterface
 		displayColor = color;
 		update();
 	}
+
 }
