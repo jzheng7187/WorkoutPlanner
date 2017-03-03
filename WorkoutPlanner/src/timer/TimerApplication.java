@@ -130,7 +130,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		v.add(cl);
 		
 		
-		//Buttons 
+		//Start button
 		start = new ThemedButton(MARGINX-30, MARGINY, WIDTH, HEIGHT, "Start", G ,new Action(){
 			@Override
 			public void act() {
@@ -161,7 +161,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		}, Color.WHITE);
 		v.add(start);
 		
-		
+		//stop button
 		stop = new ThemedButton(MARGINX+180, MARGINY, WIDTH, HEIGHT, "Stop", G ,new Action(){
 			@Override
 			public void act() {
@@ -175,6 +175,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		v.add(stop);
 		
 		
+		//lap button
 		lap = new ThemedButton(MARGINX-30, MARGINY+140, WIDTH, HEIGHT, "Lap", G ,new Action(){
 			@Override
 			public void act() {
@@ -184,6 +185,7 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		v.add(lap);
 		
 		
+		//pause button
 		pause = new ThemedButton(MARGINX+180, MARGINY+140, WIDTH, HEIGHT, "Pause", G ,new Action(){
 			@Override
 			public void act() {
@@ -216,6 +218,8 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 		}, Color.WHITE);
 		v.add(pause);
 		
+		
+		//add lines
 		border1 = new ThemedBorder(G,new Action() {
 			@Override
 			public void act() {
@@ -231,10 +235,8 @@ public class TimerApplication extends ClickableScreen implements KeyListener, Ru
 			}
 		});
 		v.add(border2);
-	//add lines
-//		line = new DrawLines(0,0,0,0,W);
-//		v.add(line);
-		
+
+
 	}
 
 	private static void createButton(String string, int w, int h, int x, int y) {
