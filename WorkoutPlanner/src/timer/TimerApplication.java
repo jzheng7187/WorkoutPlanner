@@ -221,15 +221,18 @@ public class TimerApplication extends ClickableScreen implements Runnable{
 		lap = new ThemedButton(MARGINX-30, MARGINY+140, WIDTH, HEIGHT, "Lap", G ,new Action(){
 			@Override
 			public void act() {
-				timer.addLap();
-				for (int i = 0, s = 7; i < timer.laps.size(); i++, s++) {
-				ThemedTextLabel localLap1 = new ThemedTextLabel(50,SPACE*s,200,30, "Lap ", G);
-				ThemedTextLabel localLap2 = new ThemedTextLabel(87,SPACE*s,200,30, (i+1) + ": " + timer.laps.get(i), W);
-				v.add(localLap1);
-				v.add(localLap2);
-				update();
-				}
+				if(pauseTimer){
 					
+				}else{
+					timer.addLap();
+					for (int i = 0, s = 7; i < timer.laps.size(); i++, s++) {
+					ThemedTextLabel localLap1 = new ThemedTextLabel(50,SPACE*s,200,30, "Lap ", G);
+					ThemedTextLabel localLap2 = new ThemedTextLabel(87,SPACE*s,200,30, (i+1) + ": " + timer.laps.get(i), W);
+					v.add(localLap1);
+					v.add(localLap2);
+					update();
+					}
+				}	
 			}
 		}, Color.WHITE);
 		v.add(lap);
