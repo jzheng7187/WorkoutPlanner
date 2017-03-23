@@ -156,6 +156,8 @@ public class TimerApplication extends ClickableScreen implements Runnable{
 			@Override
 			public void act() {
 				timer.startTimer();
+				timer.resetTimer();
+				timer.startTimer();
 				complete = false;
 				Thread startTimer = new Thread(new Runnable() {
 					@Override
@@ -312,6 +314,28 @@ public class TimerApplication extends ClickableScreen implements Runnable{
 	public void run() {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+
+	public static void setComplete(boolean c) {
+		pauseTimer = true;
+		complete = true;
+		timer.pauseTimer();
+		
+		
+	}
+
+
+
+	public static void setPauseTimer(boolean c) {
+		if(pauseTimer){
+			timer.unpauseTimer();
+			pauseTimer = false;
+		}else{
+			pauseTimer = true;
+			timer.pauseTimer();
+		}
 	}
 
 	
