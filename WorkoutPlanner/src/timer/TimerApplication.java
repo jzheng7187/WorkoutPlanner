@@ -16,12 +16,12 @@ import components.ThemedTextLabel;
 import gui.components.Action;
 import gui.components.Button;
 import gui.components.DrawLines;
+import gui.components.Rect;
 import gui.components.TextHeadder;
 import gui.components.TextLabel;
 import gui.components.ThemedButton;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
-import interfaces.TimerInt;
 import main.workoutPlanner;
 
 
@@ -30,7 +30,7 @@ import main.workoutPlanner;
  *
  *
  */
-public class TimerApplication extends ClickableScreen implements Runnable, TimerInt{
+public class TimerApplication extends ClickableScreen implements Runnable{
 
 	//Buttons
 	private Button start;
@@ -48,7 +48,7 @@ public class TimerApplication extends ClickableScreen implements Runnable, Timer
 	//private static ThemedBorder 1;
 	
 	//Dynamic changing text fields
-	private static TextLabel tt; //Total time
+	private TextLabel tt; //Total time
 	private TextLabel cl; //Current lap
 	
 	//lines
@@ -63,7 +63,7 @@ public class TimerApplication extends ClickableScreen implements Runnable, Timer
 	public static final int SPACE=35;
 	
 	//refresh rate
-	public static final int REFRESH = 5;
+	public static final int REFRESH = 150;
 	
 	//background
 	private ThemedBorder border1;
@@ -81,6 +81,10 @@ public class TimerApplication extends ClickableScreen implements Runnable, Timer
 	public static final Color W = new Color (255,255,255);
 	public static final Color B = new Color (0,0,0);
 	
+	//rect
+	private static Rect rect;
+	private static Rect rect2;
+	
 	//Timer boolean
 	private static boolean pauseTimer = false;
 	//completion boolean
@@ -88,14 +92,16 @@ public class TimerApplication extends ClickableScreen implements Runnable, Timer
 	
 	//getters for Hunter
 	public static boolean getTimerStatus(){
-		return isPauseTimer();
+		return pauseTimer;
 	}
 	
+	
+	
 	public static String getTime(){
-		return tt.getText();	
+		return timer.time();	
 	}
 	public static boolean getCompletionStatus(){
-		return isComplete();
+		return complete;
 	}
 	
 	//implements interface
@@ -150,16 +156,16 @@ public class TimerApplication extends ClickableScreen implements Runnable, Timer
 			@Override
 			public void act() {
 				timer.startTimer();
-				setComplete(false);
+				complete = false;
 				Thread startTimer = new Thread(new Runnable() {
 					@Override
 					public void run() {
 						try{
-							setPauseTimer(false);
-							while(isPauseTimer() == false){
+							pauseTimer = false;
+							while(pauseTimer == false){
 								Thread.sleep(REFRESH);
 								tt.setText(timer.time());
-								//cl.setText(timer.currentLap());
+								cl.setText(timer.currentLap());
 								update();	
 							}
 							
@@ -170,7 +176,10 @@ public class TimerApplication extends ClickableScreen implements Runnable, Timer
 					}
 				});
 				startTimer.start();
-					
+				rect = new Rect(50,SPACE*7,300,getHeight()-(SPACE*7));
+				rect2 = new Rect(MARGINX-30,MARGINY+(SPACE*8),300,150);
+				v.add(rect);
+				v.add(rect2);
 			}
 
 		}, Color.WHITE);
@@ -180,8 +189,8 @@ public class TimerApplication extends ClickableScreen implements Runnable, Timer
 		stop = new ThemedButton(MARGINX+180, MARGINY, WIDTH, HEIGHT, "Stop", G ,new Action(){
 			@Override
 			public void act() {
-				setPauseTimer(true);
-				setComplete(true);
+				pauseTimer = true;
+				complete = true;
 				timer.pauseTimer();
 				
 				ThemedTextLabel stats = new ThemedTextLabel(MARGINX-30,MARGINY+(SPACE*8),200,30, "Stats: ", W);
@@ -230,18 +239,18 @@ public class TimerApplication extends ClickableScreen implements Runnable, Timer
 		pause = new ThemedButton(MARGINX+180, MARGINY+140, WIDTH, HEIGHT, "Pause", G ,new Action(){
 			@Override
 			public void act() {
-				if(isPauseTimer()){
+				if(pauseTimer){
 					timer.unpauseTimer();
-					setPauseTimer(false);
+					pauseTimer = false;
 					Thread startTimer = new Thread(new Runnable() {
 						@Override
 						public void run() {
 							try{
-								setPauseTimer(false);
-								while(isPauseTimer() == false){
+								pauseTimer = false;
+								while(pauseTimer == false){
 									Thread.sleep(REFRESH);
 									tt.setText(timer.time());
-									//cl.setText(timer.currentLap());
+									cl.setText(timer.currentLap());
 									update();	
 								}
 								
@@ -253,7 +262,7 @@ public class TimerApplication extends ClickableScreen implements Runnable, Timer
 					});
 					startTimer.start();
 				}else{
-					setPauseTimer(true);
+					pauseTimer = true;
 					timer.pauseTimer();
 					
 				}
@@ -300,34 +309,6 @@ public class TimerApplication extends ClickableScreen implements Runnable, Timer
 	public void run() {
 		// TODO Auto-generated method stub
 		
-	}
-
-	/**
-	 * @return the pauseTimer
-	 */
-	public static boolean isPauseTimer() {
-		return pauseTimer;
-	}
-
-	/**
-	 * @param pauseTimer the pauseTimer to set
-	 */
-	public static void setPauseTimer(boolean pauseTimer) {
-		TimerApplication.pauseTimer = pauseTimer;
-	}
-
-	/**
-	 * @return the complete
-	 */
-	public static boolean isComplete() {
-		return complete;
-	}
-
-	/**
-	 * @param complete the complete to set
-	 */
-	public static void setComplete(boolean complete) {
-		TimerApplication.complete = complete;
 	}
 
 	
