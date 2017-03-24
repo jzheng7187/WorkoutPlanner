@@ -1,6 +1,7 @@
 package workoutPlanner;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 //import components.ThemedTextLabel;
@@ -12,11 +13,13 @@ import gui.components.Action;
 import gui.components.Button;
 import gui.components.ClickableGraphic;
 import gui.components.Graphic;
+import gui.components.TextHeadder;
 //import gui.Screen;
 import gui.components.TextLabel;
 import gui.components.Visible;
 import gui.screens.ClickableScreen;
 import timer.Timer;
+import main.workoutPlanner;
 
 public class InputDisplay extends ClickableScreen implements Runnable{
 	public static final int indexColumn = 60;
@@ -25,8 +28,8 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 	public static final int headerY = 250;
 	private int currentRow ;
 	public static final int rowHeight = 50;
-	private TextLabel title;
-	private ThemedTextLabel accentTitle;
+	private TextHeadder title;
+	private TextHeadder accentTitle;
 	private TextLabel topSub;
 	private ThemedTextLabel sub;
 	private TextLabel selected;
@@ -42,8 +45,8 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 	private Button button1;
 	private Button button2;
 	private ThemedTextLabel number;
-	private ThemedTextLabel number2;
-
+	private Button thing1;
+	private Button thing2;
 	
 	public InputDisplay(int width, int height) {
 		super(width, height);
@@ -59,10 +62,20 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		//tiles
-		title = new TextLabel(60,80,350,60,"Plan");
+		title = new TextHeadder(60,80,350,60,"Plan", Color.black, new Action(){
+			@Override
+			public void act() {
+				workoutPlanner.app.setScreen(workoutPlanner.ws);
+			}
+		}); 
 		viewObjects.add(title); 
 		title.setSize(60);
-		accentTitle = new ThemedTextLabel(180,80,350,60,"Your Routine", new Color(180,225,50));
+		accentTitle = new TextHeadder(180,80,350,60,"Your Routine", new Color(180,225,50), new Action(){
+			@Override
+			public void act() {
+				workoutPlanner.app.setScreen(workoutPlanner.ws);
+			}
+		}); 
 		viewObjects.add(accentTitle);
 		accentTitle.setSize(60);
 		//subtitles
@@ -71,10 +84,10 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 		sub = new ThemedTextLabel(110,160,200,50,"Activities:", new Color(180,225,50));
 		viewObjects.add(sub);
 		//next tiles
-		//selected = new TextLabel(60, 180, 200 , 50, "Selected");
-		//viewObjects.add(selected);
-		//activity = new ThemedTextLabel(145, 180, 200, 50, "Activity:", new Color(180,225,50));
-		//viewObjects.add(activity);
+		selected = new TextLabel(60, 180, 200 , 50, "Selected");
+		viewObjects.add(selected);
+		activity = new ThemedTextLabel(145, 180, 200, 50, "Activity:", new Color(180,225,50));
+		viewObjects.add(activity);
 		//borders
 		b1= new ThemedBorder(Color.black, null);
 		viewObjects.add(b1);//horizontal
@@ -112,14 +125,14 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 		p5 = new ClickableGraphic(560, 400, .75, "resources/jumprope.png",new Action(){
 			@Override
 			public void act() {
-				updateMyExerciseList(NewExercise.clickPushup());
+				updateMyExerciseList(NewExercise.clickJumprope());
 			}
 		});
 		viewObjects.add(p5);
 		p6 = new ClickableGraphic(660, 400, .75, "resources/pushup.jpg",new Action(){
 			@Override
 			public void act() {
-				updateMyExerciseList(NewExercise.clickJumprope());
+				updateMyExerciseList(NewExercise.clickPushup());
 			}
 		});
 		viewObjects.add(p6);
@@ -160,6 +173,10 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 		if (stat != null){
 			ThemedTextLabel status = new ThemedTextLabel(statusColumn, headerY+rowHeight*currentRow, 200, 50, stat, new Color(180,225,50));
 			viewObjects.add(status);
+			thing2 = new Button (217, 206, 110, 25, " ", Color.white,null);
+			viewObjects.add(thing2);
+			act = new ThemedTextLabel(226, 180, 200, 50, theExerciseName, new Color(180,225,50));
+			viewObjects.add(act);
 		}
 		currentRow++;
 	}
@@ -167,16 +184,20 @@ public class InputDisplay extends ClickableScreen implements Runnable{
 		currentRow = 1;
 		for(int i = 0; i <  myExercises.size(); i++){
 			addActivity(myExercises.get(i), "Start");
-			//number = new ThemedTextLabel(200,160,200,50,(currentRow-1)+"", new Color(180,225,50));
-			//viewObjects.add(number);
+			//Graphics2D g.setColor(Color.white);
+			thing1 = new Button (199, 185, 24, 25, " ", Color.white,null);
+			viewObjects.add(thing1);
+			
+			number = new ThemedTextLabel(200,160,200,50,(currentRow-1)+"", new Color(180,225,50));
+			viewObjects.add(number);
 
 		}
-//		number = new ThemedTextLabel(200,160,200,50,"   ", Color.white);
-//		viewObjects.add(number);
+		
 	}
 //	public void mouseClicked(MouseEvent e){
 //		addActivity("another item","done");
 //	}
 
 }
+
 
