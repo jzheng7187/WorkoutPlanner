@@ -186,6 +186,8 @@ public class Menu extends ClickableScreen implements Runnable, TimerInt {
 				TimerApplication.setPauseTimer(true);
 				TimerApplication.setComplete(true);
 				TimerApplication.timer.pauseTimer();
+				TimerApplication.timer.resetTimer();
+				isTimerOn = true;
 			}
 		}, Color.BLACK);
 		view.add(stop);
@@ -211,8 +213,9 @@ public class Menu extends ClickableScreen implements Runnable, TimerInt {
 	public void run() {
 		while(true){
 			sTimer = TimerApplication.getTime();
-			isTimerOn = TimerInt.isTimerOn();
+			isTimerOn = isTimerOn();
 			if(!isTimerOn){
+				isTimerOn = isTimerOn();
 				changeTime(sTimer);
 			}
 		}
