@@ -9,6 +9,7 @@ import gui.screens.CoordinateScreen;
 import mainMenu.Menu;
 import timer.TimerApplication;
 import timer.TimerStarter;
+import workoutPlanner.InputDisplay;
 
 /**
  * @author Jonathan Zheng
@@ -38,6 +39,7 @@ public class workoutPlanner extends GUIApplication {
 	@Override
 	public void initScreen() {
 		timerScreen = new TimerApplication(getWidth(), getHeight());
+		exerciseScreen = new InputDisplay (getWidth(), getHeight());
 		ws = new Menu(getWidth(),getHeight());
 		setScreen(ws);
 	}
